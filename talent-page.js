@@ -211,8 +211,6 @@ function getTalent() {
   fetch(url, options)
     .then(data => {return data.json()})
     .then(res => {
-      console.log('ini res baru')
-      console.log({res})
       if (res.length > 0) {
         const dataDevBE = res.filter((data)=>{
           return data.talent_profile.talentCategory === 'Back End'
@@ -220,7 +218,6 @@ function getTalent() {
         const dataDevFE = res.filter((data)=>{
           return data.talent_profile.talentCategory === 'Front End'
         })
-        console.log({dataDevBE, dataDevFE})
         dataDevFE.forEach(talent => {
           mappingData(talent,'FE')
         })
