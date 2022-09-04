@@ -211,6 +211,7 @@ function getTalent() {
   fetch(url, options)
     .then(data => {return data.json()})
     .then(res => {
+      console.log('ini res baru')
       console.log({res})
       if (res.length > 0) {
         const dataDevBE = res.filter((data)=>{
