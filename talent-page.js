@@ -211,7 +211,7 @@ function getTalent() {
   fetch(url, options)
     .then(data => {return data.json()})
     .then(res => {
-      console.log(res)
+      console.log({res})
       if (res.length > 0) {
         const dataDevBE = res.filter((data)=>{
           return data.talent_profile.talentCategory === 'Back End'
