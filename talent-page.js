@@ -1,6 +1,5 @@
 
 (function logout() {
-  console.log('tag v1.1')
   const button = document.getElementById("confirm-logout");
   button.addEventListener("click", event => {
     sessionStorage.setItem("authToken", null);
@@ -205,6 +204,11 @@ function getTalent() {
       $('#talent-modal').fadeIn();
       $('#talent-modal-background').fadeIn();
     });
+
+    // when bookmark clicked
+    const bookmark = card.childNodes[0].childNodes[2];
+    console.log({card, bookmark})
+
     if(developerCategory === 'FE') cardContainerFE.appendChild(card);
     if(developerCategory === 'BE') cardContainerBE.appendChild(card);
   }
