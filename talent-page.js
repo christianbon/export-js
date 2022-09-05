@@ -206,7 +206,7 @@ function getTalent() {
     });
 
     // when bookmark clicked
-    const bookmark = card.childNodes[0].childNodes[2];
+    const bookmark = card.childNodes[0].childNodes[1];
     console.log({bookmark})
     console.log(card.childNodes)
     console.log('')
