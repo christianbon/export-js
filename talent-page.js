@@ -207,9 +207,10 @@ function getTalent() {
 
     // when bookmark clicked
     const bookmark = card.childNodes[0].childNodes[1];
-    console.log({bookmark})
-    console.log(card.childNodes)
-    console.log('')
+    bookmark.addEventListener('click',function(){
+      bookmark.style.color = 'orange';
+      console.log('bookmarked')
+    })
 
     if(developerCategory === 'FE') cardContainerFE.appendChild(card);
     if(developerCategory === 'BE') cardContainerBE.appendChild(card);
