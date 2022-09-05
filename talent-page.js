@@ -1,5 +1,6 @@
 
 (function logout() {
+  console.log('tag v1.1')
   const button = document.getElementById("confirm-logout");
   button.addEventListener("click", event => {
     sessionStorage.setItem("authToken", null);
