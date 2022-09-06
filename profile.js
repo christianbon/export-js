@@ -1,8 +1,22 @@
 
+(function logout() {
+  const button = document.getElementById("confirm-logout");
+  button.addEventListener("click", event => {
+    sessionStorage.setItem("authToken", null);
+    window.location.replace("https://alta-talent-dashboard.webflow.io/login");
+  });
+})();
+
 function chechAuth() {
   const loginStatus = sessionStorage.getItem("userId");
   if(loginStatus === null) window.location.replace("https://alta-talent-dashboard.webflow.io/login");
 }
+
+function changeUsername() {
+  const username = document.getElementById('profile-name');
+  username.innerHTML = sessionStorage.getItem("username");
+}
+
 
 const url = 'https://assessment-alta.as.r.appspot.com/api/users/' + sessionStorage.getItem("userId") + '?populate=*';
 const updateUrl = ''
@@ -18,7 +32,6 @@ function getSelfData() {
   fetch(url, options)
   .then(data => {return data.json()})
   .then(res => {
-    console.log(res);
     document.getElementById("field-fullname").value = res.fullName ? res.fullName : '';
     document.getElementById("field-email").value = res.email ? res.email : '';
     document.getElementById("field-whatsapp").value = res.phoneNumber ? res.phoneNumber : '';
@@ -66,5 +79,6 @@ function getSelfData() {
 // This fires all of the defined functions when the document is "ready" or loaded
 (function() {
     chechAuth()
+    changeUsername()
     getSelfData()
 })();
