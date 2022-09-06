@@ -184,7 +184,7 @@ function getTalent() {
 
       // experience tab
       const modalExperienceTab = document.getElementById('modal-experience-long')
-      const styleExperience = document.getElementById('card-talent-ui')
+      const styleExperience = document.getElementById('modal-experience-list')
       const cardExperience = styleExperience.cloneNode(true)
 
       // talent.talent_profile.experiences.map((data)=>{
