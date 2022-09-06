@@ -192,22 +192,20 @@ function getTalent() {
         const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
         experiencePosition.innerHTML = data?.position
 
-        const companyName =  card.childNodes[1];
+        const companyName =  cardExperience.childNodes[1];
         companyName.innerHTML = data?.companyName
+
+        const yearsExperience =  cardExperience.childNodes[2];
+        yearsExperience.innerHTML = data.dateStart + ' - ' + (data.present ? 'Present' : data.dateEnd)
+
+        const jobDescription =  cardExperience.childNodes[4];
+        jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'
   
-        // const detailExperience = 
-        // '<div class="text-block-35">' +
-        // data.companyName +
-        // '</div>' + 
-        // '<div class="text-block-34">' +
-        // data.dateStart + ' - ' + (data.present ? 'Present' : data.dateEnd) +
-        // '</div>' + 
-        // '<h5 class="heading-9">Job Description</h5>' + 
-        // '<pre style="font-family: poppins">' + data.jobDescription + '</pre>' +
-        // '</div>'
-        // console.log(detailExperience)
         modalExperienceTab.appendChild(cardExperience);
       })
+      modalExperienceTab.childNodes[0].remove()
+      modalExperienceTab.childNodes[0].remove()
+      modalExperienceTab.childNodes[0].remove()
       
       // post tracking
       fetch(trackingURL, {  
