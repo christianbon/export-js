@@ -184,26 +184,29 @@ function getTalent() {
 
       // experience tab
       const modalExperienceTab = document.getElementById('modal-experience-long')
-      talent.talent_profile.experiences.map((data)=>{
-        const detailExperience = 
-        '<div>' + 
-        '<h4 class="heading-8">' +
-        data.position +
-        '</h4>' + 
-        '<div class="text-block-35">' +
-        data.companyName +
-        '</div>' + 
-        '<div class="text-block-34">' +
-        data.dateStart + ' - ' + (data.present ? 'Present' : data.dateEnd) +
-        '</div>' + 
-        '<h5 class="heading-9">Job Description</h5>' + 
-        '<pre style="font-family: poppins">' + data.jobDescription + '</pre>' +
-        '</div>'
-        console.log(detailExperience)
-        modalExperienceTab.appendChild(detailExperience);
-      })
-      
+      const styleExperience = document.getElementById('card-talent-ui')
+      const cardExperience = styleExperience.cloneNode(true)
 
+      // talent.talent_profile.experiences.map((data)=>{
+      //   const detailExperience = 
+      //   '<div>' + 
+      //   '<h4 class="heading-8">' +
+      //   data.position +
+      //   '</h4>' + 
+      //   '<div class="text-block-35">' +
+      //   data.companyName +
+      //   '</div>' + 
+      //   '<div class="text-block-34">' +
+      //   data.dateStart + ' - ' + (data.present ? 'Present' : data.dateEnd) +
+      //   '</div>' + 
+      //   '<h5 class="heading-9">Job Description</h5>' + 
+      //   '<pre style="font-family: poppins">' + data.jobDescription + '</pre>' +
+      //   '</div>'
+      //   console.log(detailExperience)
+      //   modalExperienceTab.appendChild(detailExperience);
+      // })
+      
+      // post tracking
       fetch(trackingURL, {  
         method: 'POST',
         headers: {
@@ -229,23 +232,23 @@ function getTalent() {
     // when #bookmark clicked
     const bookmark = card.childNodes[0].childNodes[1];
     bookmark.addEventListener('click',function(){
-      
-      fetch(bookmarkURL, {  
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          data:{
-              clientId: String(sessionStorage.getItem('userId')),
-              clientIdentifier: sessionStorage.getItem("username"),
-              talentId: String(talent.id),
-              watchedPage: "Secondary",
-              talentName: talent.talent_profile.name
-          }})
-      })
+      console.log('bookmarked')
+      // fetch(bookmarkURL, {  
+      //   method: 'POST',
+      //   headers: {
+      //     'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+      //     'Accept': 'application/json',
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     data:{
+      //         clientId: String(sessionStorage.getItem('userId')),
+      //         clientIdentifier: sessionStorage.getItem("username"),
+      //         talentId: String(talent.id),
+      //         watchedPage: "Secondary",
+      //         talentName: talent.talent_profile.name
+      //     }})
+      // })
     })
 
     if(developerCategory === 'FE') cardContainerFE.appendChild(card);
