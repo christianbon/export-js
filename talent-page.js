@@ -194,7 +194,7 @@ function getTalent() {
         data.companyName +
         '</div>' + 
         '<div class="text-block-34">' +
-        data.dateStart + ' - ' + (data.present ? 'Present' : data.dateEnd)
+        data.dateStart + ' - ' + (data.present ? 'Present' : data.dateEnd) +
         '</div>' + 
         '<h5 class="heading-9">Job Description</h5>' + 
         '<pre style="font-family: poppins">' + data.jobDescription + '</pre>' +
