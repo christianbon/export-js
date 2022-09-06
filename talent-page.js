@@ -198,10 +198,16 @@ function getTalent() {
         companyName.innerHTML = data?.companyName
 
         const yearsExperience =  cardExperience.childNodes[2];
+        let endyear, endmonth, startyear, startmonth
         const startDate = new Date(data.dateStart)
-        const startyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(startDate);
-        const startmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(startDate);
-        yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : data.dateEnd)
+        startyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(startDate);
+        startmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(startDate);
+        if(!data.present) {
+          const endDate = new Date(data.dateStart)
+          endyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(endDate);
+          endmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(endDate);
+        }
+        yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : endmonth + ' ' + endyear)
 
         const jobDescription =  cardExperience.childNodes[4];
         jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'

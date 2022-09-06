@@ -25,19 +25,19 @@ function getSelfData() {
     document.getElementById("field-role").value = res.client_profile?.userPosition ? res.client_profile?.userPosition : '';
     document.getElementById("field-department").value = res.client_profile?.department ? res.client_profile?.department : '';
     
-    document.getElementById("profile-fullname").value = res.fullName ? res.fullName : '-';
-    document.getElementById("profile-email").value = res.email ? res.email : '-';
-    document.getElementById("profile-whatsapp").value = res.phoneNumber ? res.phoneNumber : '-';
-    document.getElementById("profile-role").value = res.client_profile?.userPosition ? res.client_profile?.userPosition : '-';
-    document.getElementById("field-department").value = res.client_profile?.department ? res.client_profile?.department : '-';
+    document.getElementById("profile-fullname").innerHTML = res.fullName ? res.fullName : '-';
+    document.getElementById("profile-email").innerHTML = res.email ? res.email : '-';
+    document.getElementById("profile-whatsapp").innerHTML = res.phoneNumber ? res.phoneNumber : '-';
+    document.getElementById("profile-role").innerHTML = res.client_profile?.userPosition ? res.client_profile?.userPosition : '-';
+    document.getElementById("field-department").innerHTML = res.client_profile?.department ? res.client_profile?.department : '-';
 
-    document.getElementById("profile-company-name").value = res.client_profile?.companyName ? res.client_profile?.companyName : '-';
-    document.getElementById("profile-about").value = res.client_profile?.about ? res.client_profile?.about : '-';
-    document.getElementById("profile-industry").value = res.client_profile?.industry ? res.client_profile?.industry : '-';
-    document.getElementById("profile-address").value = res.client_profile?.address ? res.client_profile?.address : '-';
-    document.getElementById("profile-website").value = res.client_profile?.companyWebsite ? res.client_profile?.companyWebsite : '-';
-    document.getElementById("profile-instagram").value = res.client_profile?.instagram ? res.client_profile?.instagram : '-';
-    document.getElementById("profile-company-size").value = res.client_profile?.size ? res.client_profile?.size : '-';
+    document.getElementById("profile-company-name").innerHTML = res.client_profile?.companyName ? res.client_profile?.companyName : '-';
+    document.getElementById("profile-about").innerHTML = res.client_profile?.about ? res.client_profile?.about : '-';
+    document.getElementById("profile-industry").innerHTML = res.client_profile?.industry ? res.client_profile?.industry : '-';
+    document.getElementById("profile-address").innerHTML = res.client_profile?.address ? res.client_profile?.address : '-';
+    document.getElementById("profile-website").innerHTML = res.client_profile?.companyWebsite ? res.client_profile?.companyWebsite : '-';
+    document.getElementById("profile-instagram").innerHTML = res.client_profile?.instagram ? res.client_profile?.instagram : '-';
+    document.getElementById("profile-company-size").innerHTML = res.client_profile?.size ? res.client_profile?.size : '-';
   })
 }
 
