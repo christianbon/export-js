@@ -186,6 +186,7 @@ function getTalent() {
       const modalExperienceTab = document.getElementById('modal-experience-long')
       const styleExperience = document.getElementById('modal-experience-list')
       const cardExperience = styleExperience.cloneNode(true)
+      modalExperienceTab.childNodes.remove()
       talent.talent_profile.experiences.map((data)=>{
         console.log({cardExperience})
 
@@ -203,9 +204,6 @@ function getTalent() {
   
         modalExperienceTab.appendChild(cardExperience);
       })
-      modalExperienceTab.childNodes[0].remove()
-      modalExperienceTab.childNodes[0].remove()
-      modalExperienceTab.childNodes[0].remove()
       
       // post tracking
       fetch(trackingURL, {  
