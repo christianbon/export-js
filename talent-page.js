@@ -185,7 +185,7 @@ function getTalent() {
       // experience tab
       const modalExperienceTab = document.getElementById('modal-experience-long')
       const experienceTab = []
-      talent.talent_profile.experience.map((data)=>{
+      talent.talent_profile.experiences.map((data)=>{
         const detailExperience = 
         '<div>' + 
         '<h4 class="heading-8">' +
