@@ -183,28 +183,31 @@ function getTalent() {
       '<p>Soft Skill: ' + stringSoftSkill.join(', ') + '</p>';
 
       // experience tab
-      const modalExperienceTab = document.getElementById('modal-experience-long')
-      const styleExperience = document.getElementById('modal-experience-list')
-      const cardExperience = styleExperience.cloneNode(true)
+      talent.talent_profile.experiences.map((data)=>{
+        const modalExperienceTab = document.getElementById('modal-experience-long')
+        const styleExperience = document.getElementById('modal-experience-list')
+        const cardExperience = styleExperience.cloneNode(true)
+        console.log({cardExperience})
 
-      // talent.talent_profile.experiences.map((data)=>{
-      //   const detailExperience = 
-      //   '<div>' + 
-      //   '<h4 class="heading-8">' +
-      //   data.position +
-      //   '</h4>' + 
-      //   '<div class="text-block-35">' +
-      //   data.companyName +
-      //   '</div>' + 
-      //   '<div class="text-block-34">' +
-      //   data.dateStart + ' - ' + (data.present ? 'Present' : data.dateEnd) +
-      //   '</div>' + 
-      //   '<h5 class="heading-9">Job Description</h5>' + 
-      //   '<pre style="font-family: poppins">' + data.jobDescription + '</pre>' +
-      //   '</div>'
-      //   console.log(detailExperience)
-      //   modalExperienceTab.appendChild(detailExperience);
-      // })
+        const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
+        experiencePosition.innerHTML = data?.position
+
+        const companyName =  card.childNodes[1];
+        companyName.innerHTML = data?.companyName
+  
+        // const detailExperience = 
+        // '<div class="text-block-35">' +
+        // data.companyName +
+        // '</div>' + 
+        // '<div class="text-block-34">' +
+        // data.dateStart + ' - ' + (data.present ? 'Present' : data.dateEnd) +
+        // '</div>' + 
+        // '<h5 class="heading-9">Job Description</h5>' + 
+        // '<pre style="font-family: poppins">' + data.jobDescription + '</pre>' +
+        // '</div>'
+        // console.log(detailExperience)
+        modalExperienceTab.appendChild(cardExperience);
+      })
       
       // post tracking
       fetch(trackingURL, {  
