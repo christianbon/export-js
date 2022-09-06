@@ -198,8 +198,9 @@ function getTalent() {
         companyName.innerHTML = data?.companyName
 
         const yearsExperience =  cardExperience.childNodes[2];
-        const startyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(data.dateStart);
-        const startmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(data.dateStart);
+        const startDate = new Date(data.dateStart)
+        const startyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(startDate);
+        const startmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(startDate);
         yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : data.dateEnd)
 
         const jobDescription =  cardExperience.childNodes[4];
