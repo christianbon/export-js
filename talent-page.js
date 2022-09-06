@@ -198,7 +198,9 @@ function getTalent() {
         companyName.innerHTML = data?.companyName
 
         const yearsExperience =  cardExperience.childNodes[2];
-        yearsExperience.innerHTML = data.dateStart + ' - ' + (data.present ? 'Present' : data.dateEnd)
+        const startyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(data.dateStart);
+        const startmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(data.dateStart);
+        yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : data.dateEnd)
 
         const jobDescription =  cardExperience.childNodes[4];
         jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'
