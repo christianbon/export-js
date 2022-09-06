@@ -105,6 +105,7 @@ function getTalent() {
     ////////////////////////////////////////////////////////////////////////
     // when clicked
     card.addEventListener('click', function() {
+      // about talent tab
       const modalTalentId = document.getElementById('modal-talent-id')
       modalTalentId.innerHTML = 'ID - ' + talent.id;
       
@@ -137,17 +138,15 @@ function getTalent() {
 
       const modalEducation = document.getElementById('modal-education')
       modalEducation.innerHTML = '<pre style="font-family: poppins">' + talent.talent_profile.education + '</pre>';
-      modalEducation.style.fontFamily = 'Poppins';
 
       const modalCertification = document.getElementById('modal-certification')
       modalCertification.innerHTML = talent.talent_profile.certification;
 
       const modalPortfolio = document.getElementById('modal-portfolio')
       modalPortfolio.innerHTML = '<pre style="font-family: poppins">' + talent.talent_profile.portofolio + '</pre>';
-      modalPortfolio.style.fontFamily = 'Poppins';
 
       const modalProject = document.getElementById('modal-project')
-      modalProject.innerHTML = talent.talent_profile?.project;
+      modalProject.innerHTML = '<pre style="font-family: poppins">' + talent.talent_profile?.project + '</pre>';
 
       const modalExpectedSalary = document.getElementById('modal-expected-salary')
       modalExpectedSalary.innerHTML = 'Rp. ' + Number(talent.talent_profile.expectedSalary).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
@@ -183,6 +182,29 @@ function getTalent() {
       '<p><strong>Other Skill</strong></p>' + 
       '<p>Soft Skill: ' + stringSoftSkill.join(', ') + '</p>';
 
+      // experience tab
+      const modalExperienceTab = document.getElementById('modal-experience-long')
+      const experienceTab = []
+      talent.talent_profile.experience.map((data)=>{
+        const detailExperience = 
+        '<div>' + 
+        '<h4 class="heading-8">' +
+        data.position +
+        '</h4>' + 
+        '<div class="text-block-35">' +
+        data.companyName +
+        '</div>' + 
+        '<div class="text-block-34">' +
+        data.dateStart + ' - ' + (data.present ? 'Present' : data.dateEnd)
+        '</div>' + 
+        '<h5 class="heading-9">Job Description</h5>' + 
+        '<pre style="font-family: poppins">' + data.jobDescription + '</pre>' +
+        '</div>'
+        experienceTab.append(detailExperience);
+      })
+      modalExperienceTab.innerHTML = experienceTab;
+      
+
       fetch(trackingURL, {  
         method: 'POST',
         headers: {
@@ -205,11 +227,26 @@ function getTalent() {
       $('#talent-modal-background').fadeIn();
     });
 
-    // when bookmark clicked
+    // when #bookmark clicked
     const bookmark = card.childNodes[0].childNodes[1];
     bookmark.addEventListener('click',function(){
-      bookmark.style.color = 'orange';
-      console.log('bookmarked')
+      
+      fetch(bookmarkURL, {  
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data:{
+              clientId: String(sessionStorage.getItem('userId')),
+              clientIdentifier: sessionStorage.getItem("username"),
+              talentId: String(talent.id),
+              watchedPage: "Secondary",
+              talentName: talent.talent_profile.name
+          }})
+      })
     })
 
     if(developerCategory === 'FE') cardContainerFE.appendChild(card);
