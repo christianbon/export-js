@@ -186,8 +186,8 @@ function getTalent() {
       const modalExperienceTab = document.getElementById('modal-experience-long')
       const styleExperience = document.getElementById('modal-experience-list')
       const cardExperience = styleExperience.cloneNode(true)
+      modalExperienceTab.removeChild();
       talent.talent_profile.experiences.map((data)=>{
-        console.log({cardExperience})
 
         const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
         experiencePosition.innerHTML = data?.position
