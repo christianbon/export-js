@@ -183,10 +183,10 @@ function getTalent() {
       '<p>Soft Skill: ' + stringSoftSkill.join(', ') + '</p>';
 
       // experience tab
+      const modalExperienceTab = document.getElementById('modal-experience-long')
+      const styleExperience = document.getElementById('modal-experience-list')
+      const cardExperience = styleExperience.cloneNode(true)
       talent.talent_profile.experiences.map((data)=>{
-        const modalExperienceTab = document.getElementById('modal-experience-long')
-        const styleExperience = document.getElementById('modal-experience-list')
-        const cardExperience = styleExperience.cloneNode(true)
         console.log({cardExperience})
 
         const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
