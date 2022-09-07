@@ -116,19 +116,25 @@ function getTalent() {
       modalTalentLocation.innerHTML = talent.talent_profile.currentCity + ', ' + talent.talent_profile.currentProvince;
       
       const modalAssessmentScore = document.getElementById('modal-assessment-score')
-      modalAssessmentScore.innerHTML = talent.talent_profile.assessmentScore;
+      modalAssessmentScore.innerHTML = talent.talent_profile.assessmentScore ? talent.talent_profile.assessmentScore : '-';
+
+      const modalLevel = document.getElementById('modal-level')
+      modalLevel.innerHTML = talent.talent_profile.assessmentLevel ? talent.talent_profile.assessmentLevel : '-';
+      
+      const modalHackerrank = document.getElementById('modal-hackerrank')
+      modalHackerrank.innerHTML = talent.talent_profile.hackerrankScore ? talent.talent_profile.hackerrankScore : '-';
       
       const modalStatus = document.getElementById('modal-status')
-      modalStatus.innerHTML = talent.talent_profile.status;
+      modalStatus.innerHTML = talent.talent_profile.status ? talent.talent_profile.status : '-';
       
       const modalYearsExperience = document.getElementById('modal-years-experience')
       modalYearsExperience.innerHTML = talent.talent_profile.yearsOfExperience + ' Years';
       
       const modalGender = document.getElementById('modal-gender')
-      modalGender.innerHTML = talent.talent_profile.gender;
+      modalGender.innerHTML = talent.talent_profile.gender ? talent.talent_profile.gender : '-';
       
       const modalTalentAge = document.getElementById('modal-age')
-      modalTalentAge.innerHTML = talent.talent_profile.age;
+      modalTalentAge.innerHTML = talent.talent_profile.age ? talent.talent_profile.age : '-';
 
       const modalProfileSummary = document.getElementById('modal-profile-summary')
       modalProfileSummary.innerHTML = talent.talent_profile.profileSummary;
