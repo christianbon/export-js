@@ -184,36 +184,41 @@ function getTalent() {
 
       // experience tab
       const modalExperienceTab = document.getElementById('modal-experience-long')
-      const styleExperience = document.getElementById('modal-experience-list')
-      const cardExperience = styleExperience.cloneNode(true)
-      while (modalExperienceTab.hasChildNodes()) {
-        modalExperienceTab.removeChild(modalExperienceTab.firstChild);
-      }
-      talent.talent_profile.experiences.map((data)=>{
-
-        const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
-        experiencePosition.innerHTML = data?.position
-
-        const companyName =  cardExperience.childNodes[1];
-        companyName.innerHTML = data?.companyName
-
-        const yearsExperience =  cardExperience.childNodes[2];
-        let endyear, endmonth, startyear, startmonth
-        const startDate = new Date(data.dateStart)
-        startyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(startDate);
-        startmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(startDate);
-        if(!data.present) {
-          const endDate = new Date(data.dateStart)
-          endyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(endDate);
-          endmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(endDate);
+      if(talent.talent_profile.experiences.length > 0) {
+        modalExperienceTab.style.display = 'block'
+        const styleExperience = document.getElementById('modal-experience-list')
+        const cardExperience = styleExperience.cloneNode(true)
+        while (modalExperienceTab.hasChildNodes()) {
+          modalExperienceTab.removeChild(modalExperienceTab.firstChild);
         }
-        yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : endmonth + ' ' + endyear)
+        talent.talent_profile.experiences.map((data)=>{
 
-        const jobDescription =  cardExperience.childNodes[4];
-        jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'
-  
-        modalExperienceTab.appendChild(cardExperience);
-      })
+          const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
+          experiencePosition.innerHTML = data?.position
+
+          const companyName =  cardExperience.childNodes[1];
+          companyName.innerHTML = data?.companyName
+
+          const yearsExperience =  cardExperience.childNodes[2];
+          let endyear, endmonth, startyear, startmonth
+          const startDate = new Date(data.dateStart)
+          startyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(startDate);
+          startmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(startDate);
+          if(!data.present) {
+            const endDate = new Date(data.dateStart)
+            endyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(endDate);
+            endmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(endDate);
+          }
+          yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : endmonth + ' ' + endyear)
+
+          const jobDescription =  cardExperience.childNodes[4];
+          jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'
+    
+          modalExperienceTab.appendChild(cardExperience);
+        })
+      } else {
+        modalExperienceTab.style.display = 'none'
+      }
       
       // post tracking
       fetch(trackingURL, {  
