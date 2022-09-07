@@ -39,9 +39,14 @@ function getTalent() {
     card.setAttribute('id', '');
     card.style.display = 'block';
 
+    console.log({card})
     // talentID
     const talentID = card.childNodes[0].childNodes[0].childNodes[1];
     talentID.innerHTML = 'ID - ' + talent.id;
+
+    // alta graduates
+    const altaGraduate = card.childNodes[0].childNodes[0].childNodes[2];
+    altaGraduate.style.display = talent.talent_profile.altaGraduate ? 'block' : 'none'
 
     // talent category
     const talentCategory = card.getElementsByTagName('H4')[0];
@@ -120,7 +125,7 @@ function getTalent() {
 
       const modalLevel = document.getElementById('modal-level')
       modalLevel.innerHTML = talent.talent_profile.assessmentLevel ? talent.talent_profile.assessmentLevel : '-';
-      
+
       const modalHackerrank = document.getElementById('modal-hackerrank')
       modalHackerrank.innerHTML = talent.talent_profile.hackerrankScore ? talent.talent_profile.hackerrankScore : '-';
       
