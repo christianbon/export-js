@@ -270,6 +270,7 @@ function getTalent() {
           const getDeletedBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
             return data.talentId === talent.id
           })
+          console.log({filteredBookmark, getDeletedBookmark})
           sessionStorage.setItem('bookmarked', JSON.stringify(filteredBookmark))
           fetch(bookmarkURL+'/'+ getDeletedBookmark[0].id, {  
             method: 'DELETE',
