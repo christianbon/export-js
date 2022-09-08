@@ -19,7 +19,7 @@ function chechAuth() {
 
 function isBookmarked(id) {
   const bookmarkData = JSON.parse(sessionStorage.getItem('bookmarked'))
-  console.log({bookmarkData})
+  console.log({bookmarkData, id})
   const filteredBookmark = bookmarkData.filter((data)=> {
     return data.talentId === id
   })
