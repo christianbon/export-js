@@ -40,6 +40,18 @@ function getTalent() {
     },
   };
 
+  // get bookmarks data
+  fetch(getBookmarkURL+String(sessionStorage.getItem('userId')), bookmarkOptions)
+    .then(data => {return data.json()})
+    .then(res => {
+      console.log({res})
+      const bookmarkList = res.data.map((data)=>{
+        return {id: data.id, talentId: data.attributes.talentId }
+      })
+      console.log({bookmarkList})
+      sessionStorage.setItem('bookmarked', bookmarkList)
+    })
+
   const cardContainerFE = document.getElementById("card-container-frontend")
   const cardContainerBE = document.getElementById("card-container-backend")
 
@@ -50,13 +62,6 @@ function getTalent() {
     card.setAttribute('id', '');
     card.style.display = 'block';
     
-    // get bookmarks data
-    fetch(getBookmarkURL+talent.id, bookmarkOptions)
-      .then(data => {return data.json()})
-      .then(res => {
-        console.log({res})
-        sessionStorage.setItem('bookmarked', res)
-      })
 
     // talentID
     const talentID = card.childNodes[0].childNodes[0].childNodes[1];
@@ -215,22 +220,52 @@ function getTalent() {
       const modalBookmark = document.getElementById('modal-bookmark')
       modalBookmark.addEventListener('click',function(){
         console.log('bookmarked')
-        const bookmarked = sessionStorage.getItem('bookmark')
-        if(sessionStorage.getItem('bookmark')) {}
-        modalBookmark.style.fontFamily = "'Fa solid 900'";
-        fetch(bookmarkURL, {  
-          method: 'POST',
-          headers: {
-            'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            data:{
-                clientId: String(sessionStorage.getItem('userId')),
-                talentId: talent.id,
-            }})
-        })
+
+        // check if there is no bookmarked talent id in session storage
+        const isBookmark = sessionStorage.getItem('bookmarked').filter((data)=> {
+          return data.talentId === talent.id
+        }).length === 0;
+
+        if(isBookmark) {
+          // set bookmark
+          modalBookmark.style.fontFamily = "'Fa solid 900'";
+          card.childNodes[0].childNodes[0].childNodes[1].style.fontFamily = "'Fa solid 900'";
+          fetch(bookmarkURL, {  
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              data:{
+                  clientId: String(sessionStorage.getItem('userId')),
+                  talentId: talent.id,
+              }})
+          })
+          .then((resBookmark)=> {
+            console.log({resBookmark})
+          })
+        } else {
+          // remove bookmark
+          modalBookmark.style.fontFamily = "'Fa 400'";
+          card.childNodes[0].childNodes[0].childNodes[1].style.fontFamily = "'Fa 400'";
+          const filteredBookmark = sessionStorage.getItem('bookmarked').filter((data)=>{
+            return data.talentId !== talent.id
+          })
+          const getDeletedBookmark = sessionStorage.getItem('bookmarked').filter((data)=>{
+            return data.talentId === talent.id
+          })
+          sessionStorage.setItem('bookmarked', filteredBookmark)
+          fetch(bookmarkURL+'/'+ getDeletedBookmark[0].id, {  
+            method: 'DELETE',
+            headers: {
+              'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            }
+          })
+        }
       })
 
       // experience tab
