@@ -198,6 +198,7 @@ function getTalent() {
       const modalBookmark = document.getElementById('modal-bookmark')
       modalBookmark.addEventListener('click',function(){
         console.log('bookmarked')
+        console.log(modalBookmark.style)
         modalBookmark.style.fontFamily = 'Fa solid 900,sans-serif'
         // fetch(bookmarkURL, {  
         //   method: 'POST',
