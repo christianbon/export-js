@@ -241,7 +241,7 @@ function getTalent() {
         if(!isBookmarked(talent.id)) {
           // set bookmark
           modalBookmark.style.fontFamily = "'Fa solid 900'";
-          card.childNodes[0].childNodes[1].style.fontFamily = "'Fa solid 900'";
+          card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa solid 900'";
           fetch(bookmarkURL, {  
             method: 'POST',
             headers: {
@@ -267,6 +267,7 @@ function getTalent() {
           const filteredBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
             return String(data.talentId) !== String(talent.id)
           })
+          console.log({filteredBookmark})
           const getDeletedBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
             return String(data.talentId) === String(talent.id)
           })
