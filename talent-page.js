@@ -21,9 +21,18 @@ function chechAuth() {
 let url = new URL('https://assessment-alta.as.r.appspot.com/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A');
 let trackingURL = new URL('https://assessment-alta.as.r.appspot.com/api/client-histories');
 let bookmarkURL = new URL('https://assessment-alta.as.r.appspot.com/api/bookmarks');
+let getBookmarkURL = new URL('https://assessment-alta.as.r.appspot.com/api/bookmarks?filters[clientId][$eq]=');
+
 
 function getTalent() {
   let options = {  
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+      'Content-Type': 'application/json',
+    },
+  };
+  let bookmarkOptions = {  
     method: 'GET',
     headers: {
       'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
@@ -34,13 +43,21 @@ function getTalent() {
   const cardContainerFE = document.getElementById("card-container-frontend")
   const cardContainerBE = document.getElementById("card-container-backend")
 
+
   function mappingData(talent, developerCategory){
     const style = document.getElementById('card-talent-ui')
     const card = style.cloneNode(true)
     card.setAttribute('id', '');
     card.style.display = 'block';
+    
+    // get bookmarks data
+    fetch(getBookmarkURL+talent.id, bookmarkOptions)
+      .then(data => {return data.json()})
+      .then(res => {
+        console.log({res})
+        sessionStorage.setItem('bookmarked', res)
+      })
 
-    console.log({card})
     // talentID
     const talentID = card.childNodes[0].childNodes[0].childNodes[1];
     talentID.innerHTML = 'ID - ' + talent.id;
@@ -198,22 +215,22 @@ function getTalent() {
       const modalBookmark = document.getElementById('modal-bookmark')
       modalBookmark.addEventListener('click',function(){
         console.log('bookmarked')
-        console.log(modalBookmark.style.fontFamily)
+        const bookmarked = sessionStorage.getItem('bookmark')
+        if(sessionStorage.getItem('bookmark')) {}
         modalBookmark.style.fontFamily = "'Fa solid 900'";
-        console.log(modalBookmark.style.fontFamily)
-        // fetch(bookmarkURL, {  
-        //   method: 'POST',
-        //   headers: {
-        //     'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify({
-        //     data:{
-        //         clientId: String(sessionStorage.getItem('userId')),
-        //         talentId: talent.id,
-        //     }})
-        // })
+        fetch(bookmarkURL, {  
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            data:{
+                clientId: String(sessionStorage.getItem('userId')),
+                talentId: talent.id,
+            }})
+        })
       })
 
       // experience tab
