@@ -20,6 +20,7 @@ function chechAuth() {
 
 let url = new URL('https://assessment-alta.as.r.appspot.com/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A');
 let trackingURL = new URL('https://assessment-alta.as.r.appspot.com/api/client-histories');
+let bookmarkURL = new URL('https://assessment-alta.as.r.appspot.com/api/bookmarks');
 
 function getTalent() {
   let options = {  
@@ -193,6 +194,26 @@ function getTalent() {
       '<p><strong>Other Skill</strong></p>' + 
       '<p>Soft Skill: ' + stringSoftSkill.join(', ') + '</p>';
 
+      // when #bookmark clicked
+      const modalBookmark = document.getElementById('modal-bookmark')
+      bookmark.addEventListener('click',function(){
+        console.log('bookmarked')
+        modalBookmark.style.fontFamily = 'fa solid 900'
+        // fetch(bookmarkURL, {  
+        //   method: 'POST',
+        //   headers: {
+        //     'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify({
+        //     data:{
+        //         clientId: String(sessionStorage.getItem('userId')),
+        //         talentId: talent.id,
+        //     }})
+        // })
+      })
+
       // experience tab
       const modalExperienceTab = document.getElementById('modal-experience-long')
       if(talent.talent_profile.experiences.length > 0) {
@@ -254,27 +275,9 @@ function getTalent() {
       $('#talent-modal-background').fadeIn();
     });
 
-    // when #bookmark clicked
-    const bookmark = card.childNodes[0].childNodes[1];
-    bookmark.addEventListener('click',function(){
-      console.log('bookmarked')
-      // fetch(bookmarkURL, {  
-      //   method: 'POST',
-      //   headers: {
-      //     'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-      //     'Accept': 'application/json',
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     data:{
-      //         clientId: String(sessionStorage.getItem('userId')),
-      //         clientIdentifier: sessionStorage.getItem("username"),
-      //         talentId: String(talent.id),
-      //         watchedPage: "Secondary",
-      //         talentName: talent.talent_profile.name
-      //     }})
-      // })
-    })
+    // when #bookmark changes notdone
+    const bookmark = card.childNodes[0].childNodes[0].childNodes[1];
+    
 
     if(developerCategory === 'FE') cardContainerFE.appendChild(card);
     if(developerCategory === 'BE') cardContainerBE.appendChild(card);
