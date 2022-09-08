@@ -196,7 +196,7 @@ function getTalent() {
 
       // when #bookmark clicked
       const modalBookmark = document.getElementById('modal-bookmark')
-      bookmark.addEventListener('click',function(){
+      modalBookmark.addEventListener('click',function(){
         console.log('bookmarked')
         modalBookmark.style.fontFamily = 'fa solid 900'
         // fetch(bookmarkURL, {  
