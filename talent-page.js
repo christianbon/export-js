@@ -268,7 +268,7 @@ function getTalent() {
             return String(data.talentId) !== String(talent.id)
           })
           const getDeletedBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
-            return String(data.talentId) !== String(talent.id)
+            return String(data.talentId) === String(talent.id)
           })
           sessionStorage.setItem('bookmarked', JSON.stringify(filteredBookmark))
           fetch(bookmarkURL+'/'+ getDeletedBookmark[0].id, {  
