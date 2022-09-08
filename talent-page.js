@@ -154,6 +154,7 @@ function getTalent() {
       const modalTalentCategory = document.getElementById('modal-talent-category')
       modalTalentCategory.innerHTML = talent.talent_profile.talentCategory + ' Developer';
 
+      const modalBookmark = document.getElementById('modal-bookmark')
       if(isBookmarked(talent.id)) modalBookmark.style.fontFamily = "'Fa solid 900'"; 
       
       const modalTalentLocation = document.getElementById('modal-talent-location')
@@ -233,7 +234,6 @@ function getTalent() {
       '<p>Soft Skill: ' + stringSoftSkill.join(', ') + '</p>';
 
       // when #bookmark clicked
-      const modalBookmark = document.getElementById('modal-bookmark')
       modalBookmark.addEventListener('click',function(){
         console.log('bookmarked')
 
