@@ -17,6 +17,11 @@ function chechAuth() {
   if(loginStatus === null) window.location.replace("https://alta-talent-dashboard.webflow.io/login");
 }
 
+function isBookmarked(id) {
+  ((sessionStorage.getItem('bookmarked')).filter((data)=> {
+    return data.talentId === id
+  })).length === 0
+}
 
 let url = new URL('https://assessment-alta.as.r.appspot.com/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A');
 let trackingURL = new URL('https://assessment-alta.as.r.appspot.com/api/client-histories');
@@ -44,7 +49,6 @@ function getTalent() {
   fetch(getBookmarkURL+String(sessionStorage.getItem('userId')), bookmarkOptions)
     .then(data => {return data.json()})
     .then(res => {
-      console.log({res})
       const bookmarkList = res.data.map((data)=>{
         return {id: data.id, talentId: data.attributes.talentId }
       })
@@ -70,6 +74,11 @@ function getTalent() {
     // alta graduates
     const altaGraduate = card.childNodes[0].childNodes[0].childNodes[2];
     altaGraduate.style.display = talent.talent_profile.altaGraduate ? 'block' : 'none'
+
+    // bookmark color
+    if(isBookmarked(talent.id)) {
+      card.childNodes[0].childNodes[0].childNodes[1].style.fontFamily = "'Fa solid 900'";
+    }
 
     // talent category
     const talentCategory = card.getElementsByTagName('H4')[0];
@@ -139,6 +148,8 @@ function getTalent() {
       
       const modalTalentCategory = document.getElementById('modal-talent-category')
       modalTalentCategory.innerHTML = talent.talent_profile.talentCategory + ' Developer';
+
+      if(isBookmarked(talent.id)) modalBookmark.style.fontFamily = "'Fa solid 900'"; 
       
       const modalTalentLocation = document.getElementById('modal-talent-location')
       modalTalentLocation.innerHTML = talent.talent_profile.currentCity + ', ' + talent.talent_profile.currentProvince;
@@ -221,12 +232,7 @@ function getTalent() {
       modalBookmark.addEventListener('click',function(){
         console.log('bookmarked')
 
-        // check if there is no bookmarked talent id in session storage
-        const isBookmark = sessionStorage.getItem('bookmarked').filter((data)=> {
-          return data.talentId === talent.id
-        }).length === 0;
-
-        if(isBookmark) {
+        if(isBookmarked(talent.id)) {
           // set bookmark
           modalBookmark.style.fontFamily = "'Fa solid 900'";
           card.childNodes[0].childNodes[0].childNodes[1].style.fontFamily = "'Fa solid 900'";
