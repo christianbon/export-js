@@ -55,6 +55,7 @@ function getTalent() {
         return {id: data.id, talentId: data.attributes.talentId }
       })
       console.log({bookmarkList})
+      console.log(JSON.stringify(bookmarkList))
       sessionStorage.setItem('bookmarked', JSON.stringify(bookmarkList))
     })
 
@@ -264,7 +265,7 @@ function getTalent() {
           const getDeletedBookmark = sessionStorage.getItem('bookmarked').filter((data)=>{
             return data.talentId === talent.id
           })
-          sessionStorage.setItem('bookmarked', filteredBookmark)
+          sessionStorage.setItem('bookmarked', JSON.stringify(filteredBookmark))
           fetch(bookmarkURL+'/'+ getDeletedBookmark[0].id, {  
             method: 'DELETE',
             headers: {
