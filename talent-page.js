@@ -236,6 +236,7 @@ function getTalent() {
       // when #bookmark clicked
       modalBookmark.addEventListener('click',function(){
         console.log('bookmarked')
+        console.log('')
 
         if(isBookmarked(talent.id)) {
           // set bookmark
