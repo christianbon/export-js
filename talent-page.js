@@ -21,7 +21,7 @@ function isBookmarked(id) {
   const bookmarkData = JSON.parse(sessionStorage.getItem('bookmarked'))
   console.log({bookmarkData, id})
   const filteredBookmark = bookmarkData.filter((data)=> {
-    return data.talentId === id
+    return String(data.talentId) === String(id)
   })
   console.log({filteredBookmark})
   return filteredBookmark.length !== 0
