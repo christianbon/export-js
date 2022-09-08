@@ -68,20 +68,20 @@ function getTalent() {
     const card = style.cloneNode(true)
     card.setAttribute('id', '');
     card.style.display = 'block';
-    
+    console.log({card})
 
     // talentID
     const talentID = card.childNodes[0].childNodes[0].childNodes[1];
     talentID.innerHTML = 'ID - ' + talent.id;
 
-    // alta graduates
-    const altaGraduate = card.childNodes[0].childNodes[0].childNodes[2];
-    altaGraduate.style.display = talent.talent_profile.altaGraduate ? 'block' : 'none'
-
     // bookmark color
     if(isBookmarked(talent.id)) {
       card.childNodes[0].childNodes[0].childNodes[3].style.fontFamily = "'Fa solid 900'";
     }
+
+    // alta graduates
+    const altaGraduate = card.childNodes[0].childNodes[0].childNodes[2];
+    altaGraduate.style.display = talent.talent_profile.altaGraduate ? 'block' : 'none'
 
     // talent category
     const talentCategory = card.getElementsByTagName('H4')[0];
