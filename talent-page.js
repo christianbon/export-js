@@ -237,7 +237,7 @@ function getTalent() {
 
       // when #bookmark clicked
       modalBookmark.addEventListener('click',function(){
-
+        console.log('isBookmarked: ', isBookmarked(talent.id))
         if(!isBookmarked(talent.id)) {
           // set bookmark
           modalBookmark.style.fontFamily = "'Fa solid 900'";
