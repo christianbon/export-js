@@ -19,11 +19,9 @@ function chechAuth() {
 
 function isBookmarked(id) {
   const bookmarkData = JSON.parse(sessionStorage.getItem('bookmarked'))
-  console.log({bookmarkData, id})
   const filteredBookmark = bookmarkData.filter((data)=> {
     return String(data.talentId) === String(id)
   })
-  console.log({filteredBookmark})
   return filteredBookmark.length !== 0
 }
 
@@ -56,8 +54,6 @@ function getTalent() {
       const bookmarkList = res.data.map((data)=>{
         return {id: data.id, talentId: data.attributes.talentId }
       })
-      console.log({bookmarkList})
-      console.log(JSON.stringify(bookmarkList))
       sessionStorage.setItem('bookmarked', JSON.stringify(bookmarkList))
     })
 
@@ -70,7 +66,6 @@ function getTalent() {
     const card = style.cloneNode(true)
     card.setAttribute('id', '');
     card.style.display = 'block';
-    console.log({card})
 
     // talentID
     const talentID = card.childNodes[0].childNodes[0].childNodes[1];
@@ -78,9 +73,8 @@ function getTalent() {
 
     // bookmark color
     if(isBookmarked(talent.id)) {
-      console.log('is bookmarked: ', isBookmarked(talent.id))
-      console.log(card.childNodes[0].childNodes[1])
       console.log(talent.id)
+      console.log({card})
       card.childNodes[0].childNodes[1].style.fontFamily = "'Fa solid 900'";
     }
 
@@ -163,7 +157,6 @@ function getTalent() {
       const modalBookmark = document.getElementById('modal-bookmark')
       if(isBookmarked(talent.id)) {
         modalBookmark.style.fontFamily = "'Fa solid 900'"; 
-        console.log('BOOKMARK CHANGE SOLID')
       } else {
         modalBookmark.style.fontFamily = "'Fa 400'"; 
       }
