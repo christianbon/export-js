@@ -78,7 +78,7 @@ function getTalent() {
     if(isBookmarked(talent.id)) {
       console.log(card.childNodes[0].childNodes[0])
       console.log(talent.id)
-      // card.childNodes[0].childNodes[0].childNodes[card.childNodes[0].childNodes[0].length-1].style.fontFamily = "'Fa solid 900'";
+      card.childNodes[0].childNodes[0].childNodes[card.childNodes[0].childNodes[0].childNodes.length-1].style.fontFamily = "'Fa solid 900'";
     }
 
     // alta graduates
@@ -153,6 +153,9 @@ function getTalent() {
       
       const modalTalentCategory = document.getElementById('modal-talent-category')
       modalTalentCategory.innerHTML = talent.talent_profile.talentCategory + ' Developer';
+
+      const modalAltaGraduates = document.getElementById('modal-alta-graduate')
+      modalAltaGraduates.style.display = talent.talent_profile.altaGraduate ? 'block' : 'none';
 
       const modalBookmark = document.getElementById('modal-bookmark')
       if(isBookmarked(talent.id)) modalBookmark.style.fontFamily = "'Fa solid 900'"; 
@@ -236,12 +239,11 @@ function getTalent() {
       // when #bookmark clicked
       modalBookmark.addEventListener('click',function(){
         console.log('bookmarked')
-        console.log('')
 
-        if(isBookmarked(talent.id)) {
+        if(!isBookmarked(talent.id)) {
           // set bookmark
           modalBookmark.style.fontFamily = "'Fa solid 900'";
-          card.childNodes[0].childNodes[0].childNodes[3].style.fontFamily = "'Fa solid 900'";
+          card.childNodes[0].childNodes[0].childNodes[card.childNodes[0].childNodes[0].childNodes.length - 1].style.fontFamily = "'Fa solid 900'";
           fetch(bookmarkURL, {  
             method: 'POST',
             headers: {
