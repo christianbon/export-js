@@ -73,8 +73,6 @@ function getTalent() {
 
     // bookmark color
     if(isBookmarked(talent.id)) {
-      console.log(talent.id)
-      console.log({card})
       card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa solid 900'";
     }
 
@@ -239,7 +237,6 @@ function getTalent() {
 
       // when #bookmark clicked
       modalBookmark.addEventListener('click',function(){
-        console.log('bookmarked')
 
         if(!isBookmarked(talent.id)) {
           // set bookmark
@@ -258,6 +255,7 @@ function getTalent() {
                   talentId: talent.id,
               }})
           })
+          .then(data => {return data.json()})
           .then((resBookmark)=> {
             console.log({resBookmark})
           })
