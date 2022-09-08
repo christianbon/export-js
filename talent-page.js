@@ -80,7 +80,7 @@ function getTalent() {
 
     // bookmark color
     if(isBookmarked(talent.id)) {
-      card.childNodes[0].childNodes[0].childNodes[1].style.fontFamily = "'Fa solid 900'";
+      card.childNodes[0].childNodes[0].childNodes[3].style.fontFamily = "'Fa solid 900'";
     }
 
     // talent category
@@ -238,7 +238,7 @@ function getTalent() {
         if(isBookmarked(talent.id)) {
           // set bookmark
           modalBookmark.style.fontFamily = "'Fa solid 900'";
-          card.childNodes[0].childNodes[0].childNodes[1].style.fontFamily = "'Fa solid 900'";
+          card.childNodes[0].childNodes[0].childNodes[3].style.fontFamily = "'Fa solid 900'";
           fetch(bookmarkURL, {  
             method: 'POST',
             headers: {
