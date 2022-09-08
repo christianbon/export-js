@@ -18,7 +18,7 @@ function chechAuth() {
 }
 
 function isBookmarked(id) {
-  const bookmarkData = sessionStorage.getItem('bookmarked')
+  const bookmarkData = JSON.parse(localStorage.getItem('bookmarked'))
   console.log({bookmarkData})
   return bookmarkData.filter((data)=> {
     return data.talentId === id
@@ -55,7 +55,7 @@ function getTalent() {
         return {id: data.id, talentId: data.attributes.talentId }
       })
       console.log({bookmarkList})
-      sessionStorage.setItem('bookmarked', bookmarkList)
+      sessionStorage.setItem('bookmarked', JSON.stringify(bookmarkList))
     })
 
   const cardContainerFE = document.getElementById("card-container-frontend")
