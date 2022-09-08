@@ -265,10 +265,10 @@ function getTalent() {
           modalBookmark.style.fontFamily = "'Fa 400'";
           card.childNodes[0].childNodes[0].childNodes[1].style.fontFamily = "'Fa 400'";
           const filteredBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
-            return data.talentId !== talent.id
+            return String(data.talentId) !== String(talent.id)
           })
           const getDeletedBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
-            return data.talentId === talent.id
+            return String(data.talentId) !== String(talent.id)
           })
           console.log({filteredBookmark, getDeletedBookmark})
           sessionStorage.setItem('bookmarked', JSON.stringify(filteredBookmark))
