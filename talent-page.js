@@ -75,7 +75,7 @@ function getTalent() {
     talentID.innerHTML = 'ID - ' + talent.id;
 
     // bookmark color
-    if(isBookmarked(talent.id)) 
+    if(isBookmarked(talent.id)) {
       console.log(card.childNodes[0].childNodes[0])
       console.log(talent.id)
       // card.childNodes[0].childNodes[0].childNodes[card.childNodes[0].childNodes[0].length-1].style.fontFamily = "'Fa solid 900'";
@@ -348,26 +348,27 @@ function getTalent() {
     if(developerCategory === 'BE') cardContainerBE.appendChild(card);
   }
 
-fetch(url, options)
-  .then(data => {return data.json()})
-  .then(res => {
-    if (res.length > 0) {
-      const dataDevBE = res.filter((data)=>{
-        return data.talent_profile.talentCategory === 'Back End'
-      })
-      const dataDevFE = res.filter((data)=>{
-        return data.talent_profile.talentCategory === 'Front End'
-      })
-      dataDevFE.forEach(talent => {
-        mappingData(talent,'FE')
-      })
-      dataDevBE.forEach(talent => {
-        mappingData(talent,'BE')
-      })
-      cardContainerFE.childNodes[0].remove();
-      cardContainerBE.childNodes[0].remove();
-    }
-  })
+  fetch(url, options)
+    .then(data => {return data.json()})
+    .then(res => {
+      if (res.length > 0) {
+        const dataDevBE = res.filter((data)=>{
+          return data.talent_profile.talentCategory === 'Back End'
+        })
+        const dataDevFE = res.filter((data)=>{
+          return data.talent_profile.talentCategory === 'Front End'
+        })
+        dataDevFE.forEach(talent => {
+          mappingData(talent,'FE')
+        })
+        dataDevBE.forEach(talent => {
+          mappingData(talent,'BE')
+        })
+        cardContainerFE.childNodes[0].remove();
+        cardContainerBE.childNodes[0].remove();
+      }
+    })
+}
 
 // This fires all of the defined functions when the document is "ready" or loaded
 (function() {
