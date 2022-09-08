@@ -18,9 +18,10 @@ function chechAuth() {
 }
 
 function isBookmarked(id) {
-  ((sessionStorage.getItem('bookmarked')).filter((data)=> {
+  const bookmarkData = sessionStorage.getItem('bookmarked')
+  return bookmarkData.filter((data)=> {
     return data.talentId === id
-  })).length === 0
+  }).length === 0
 }
 
 let url = new URL('https://assessment-alta.as.r.appspot.com/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A');
