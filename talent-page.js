@@ -75,7 +75,7 @@ function getTalent() {
     if(isBookmarked(talent.id)) {
       console.log(talent.id)
       console.log({card})
-      card.childNodes[0].childNodes[1].style.fontFamily = "'Fa solid 900'";
+      card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa solid 900'";
     }
 
     // alta graduates
