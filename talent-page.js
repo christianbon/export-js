@@ -22,7 +22,7 @@ function isBookmarked(id) {
   console.log({bookmarkData})
   return bookmarkData.filter((data)=> {
     return data.talentId === id
-  }).length === 0
+  }).length !== 0
 }
 
 let url = new URL('https://assessment-alta.as.r.appspot.com/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A');
@@ -76,7 +76,8 @@ function getTalent() {
 
     // bookmark color
     if(isBookmarked(talent.id)) {
-      console.log(card.childNodes[0].childNodes[0])
+      console.log('is bookmarked: ', isBookmarked(talent.id))
+      console.log(card.childNodes[0].childNodes[1])
       console.log(talent.id)
       card.childNodes[0].childNodes[1].style.fontFamily = "'Fa solid 900'";
     }
@@ -158,7 +159,12 @@ function getTalent() {
       modalAltaGraduates.style.display = talent.talent_profile.altaGraduate ? 'block' : 'none';
 
       const modalBookmark = document.getElementById('modal-bookmark')
-      if(isBookmarked(talent.id)) modalBookmark.style.fontFamily = "'Fa solid 900'"; 
+      if(isBookmarked(talent.id)) {
+        modalBookmark.style.fontFamily = "'Fa solid 900'"; 
+        console.log('BOOKMARK CHANGE SOLID')
+      } else {
+        modalBookmark.style.fontFamily = "'Fa 400'"; 
+      }
       
       const modalTalentLocation = document.getElementById('modal-talent-location')
       modalTalentLocation.innerHTML = talent.talent_profile.currentCity + ', ' + talent.talent_profile.currentProvince;
