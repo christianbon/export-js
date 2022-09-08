@@ -239,6 +239,7 @@ function getTalent() {
       modalBookmark.addEventListener('click',function(){
         console.log('isBookmarked: ', isBookmarked(talent.id))
         if(!isBookmarked(talent.id)) {
+          console.log('masuk post')
           // set bookmark
           modalBookmark.style.fontFamily = "'Fa solid 900'";
           card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa solid 900'";
@@ -261,6 +262,7 @@ function getTalent() {
             sessionStorage.setItem('bookmarked', JSON.stringify(newBookmark))
           })
         } else {
+          console.log('masuk delete')
           // remove bookmark
           modalBookmark.style.fontFamily = "'Fa 400'";
           card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa 400'";
