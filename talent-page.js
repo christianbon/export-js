@@ -256,17 +256,18 @@ function getTalent() {
               }})
           })
           .then(data => {return data.json()})
-          .then((resBookmark)=> {
-            console.log({resBookmark})
+          .then((res)=> {
+            const newBookmark = [...JSON.parse(sessionStorage.getItem('bookmarked')), {id: res.data.id, talentId: res.data.attributes.talentId }]
+            sessionStorage.setItem('bookmarked', JSON.stringify(newBookmark))
           })
         } else {
           // remove bookmark
           modalBookmark.style.fontFamily = "'Fa 400'";
           card.childNodes[0].childNodes[0].childNodes[1].style.fontFamily = "'Fa 400'";
-          const filteredBookmark = sessionStorage.getItem('bookmarked').filter((data)=>{
+          const filteredBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
             return data.talentId !== talent.id
           })
-          const getDeletedBookmark = sessionStorage.getItem('bookmarked').filter((data)=>{
+          const getDeletedBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
             return data.talentId === talent.id
           })
           sessionStorage.setItem('bookmarked', JSON.stringify(filteredBookmark))
