@@ -19,6 +19,7 @@ function chechAuth() {
 
 function isBookmarked(id) {
   const bookmarkData = sessionStorage.getItem('bookmarked')
+  console.log({bookmarkData})
   return bookmarkData.filter((data)=> {
     return data.talentId === id
   }).length === 0
