@@ -252,7 +252,7 @@ function getTalent() {
             body: JSON.stringify({
               data:{
                   clientId: String(sessionStorage.getItem('userId')),
-                  talentId: talent.id,
+                  talentId: String(talent.id),
               }})
           })
           .then(data => {return data.json()})
