@@ -60,6 +60,9 @@ function getTalent() {
   const cardContainerFE = document.getElementById("card-container-frontend")
   const cardContainerBE = document.getElementById("card-container-backend")
 
+  $('#talent-modal').on('dialogclose', function(event) {
+    alert('closed');
+  });
 
   function mappingData(talent, developerCategory){
     const style = document.getElementById('card-talent-ui')
@@ -340,15 +343,7 @@ function getTalent() {
       // open modal and background
       $('#talent-modal').fadeIn();
       $('#talent-modal-background').fadeIn();
-
-      $('#talent-modal').on('hidden.bs.modal', function () {
-        modalBookmark.removeEventListener("click", function(){}, false); 
-        console.log('removed')
-      })
-
-      
     });
-    
 
     if(developerCategory === 'FE') cardContainerFE.appendChild(card);
     if(developerCategory === 'BE') cardContainerBE.appendChild(card);
