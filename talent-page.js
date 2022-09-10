@@ -62,7 +62,7 @@ function getTalent() {
 
   $('#talent-modal').on('hidden.bs.modal', function () {
     alert('remove')
-    console.log({'remove'})
+    console.log('remove')
   })
   const talentModalStyle = document.getElementById('talent-modal').style.display
   talentModalStyle.addEventListener('change', (event) => {
