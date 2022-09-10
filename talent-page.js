@@ -25,6 +25,51 @@ function isBookmarked(id) {
   return filteredBookmark.length !== 0
 }
 
+function modalBookmarkClicked(){
+  if(!isBookmarked(talent.id)) {
+    // set bookmark
+    modalBookmark.style.fontFamily = "'Fa solid 900'";
+    card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa solid 900'";
+    fetch(bookmarkURL, {  
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        data:{
+            clientId: String(sessionStorage.getItem('userId')),
+            talentId: String(talent.id),
+        }})
+    })
+    .then(data => {return data.json()})
+    .then((res)=> {
+      const newBookmark = [...JSON.parse(sessionStorage.getItem('bookmarked')), {id: res.data.id, talentId: res.data.attributes.talentId }]
+      sessionStorage.setItem('bookmarked', JSON.stringify(newBookmark))
+    })
+  } else {
+    // remove bookmark
+    modalBookmark.style.fontFamily = "'Fa 400'";
+    card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa 400'";
+    const filteredBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
+      return String(data.talentId) !== String(talent.id)
+    })
+    const getDeletedBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
+      return String(data.talentId) === String(talent.id)
+    })
+    sessionStorage.setItem('bookmarked', JSON.stringify(filteredBookmark))
+    fetch(bookmarkURL+'/'+ getDeletedBookmark[0].id, {  
+      method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+  }
+}
+
 let url = new URL('https://assessment-alta.as.r.appspot.com/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A');
 let trackingURL = new URL('https://assessment-alta.as.r.appspot.com/api/client-histories');
 let bookmarkURL = new URL('https://assessment-alta.as.r.appspot.com/api/bookmarks');
@@ -236,54 +281,7 @@ function getTalent() {
       '<p>Soft Skill: ' + stringSoftSkill.join(', ') + '</p>';
 
       // when #bookmark clicked
-      modalBookmark.addEventListener('click',function(){
-        console.log('isBookmarked: ', isBookmarked(talent.id))
-        if(!isBookmarked(talent.id)) {
-          console.log('masuk post')
-          // set bookmark
-          modalBookmark.style.fontFamily = "'Fa solid 900'";
-          card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa solid 900'";
-          fetch(bookmarkURL, {  
-            method: 'POST',
-            headers: {
-              'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              data:{
-                  clientId: String(sessionStorage.getItem('userId')),
-                  talentId: String(talent.id),
-              }})
-          })
-          .then(data => {return data.json()})
-          .then((res)=> {
-            const newBookmark = [...JSON.parse(sessionStorage.getItem('bookmarked')), {id: res.data.id, talentId: res.data.attributes.talentId }]
-            sessionStorage.setItem('bookmarked', JSON.stringify(newBookmark))
-          })
-        } else {
-          console.log('masuk delete')
-          // remove bookmark
-          modalBookmark.style.fontFamily = "'Fa 400'";
-          card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa 400'";
-          const filteredBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
-            return String(data.talentId) !== String(talent.id)
-          })
-          console.log({filteredBookmark})
-          const getDeletedBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
-            return String(data.talentId) === String(talent.id)
-          })
-          sessionStorage.setItem('bookmarked', JSON.stringify(filteredBookmark))
-          fetch(bookmarkURL+'/'+ getDeletedBookmark[0].id, {  
-            method: 'DELETE',
-            headers: {
-              'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            }
-          })
-        }
-      })
+      modalBookmark.addEventListener('click', modalBookmarkClicked, true)
 
       // experience tab
       const modalExperienceTab = document.getElementById('modal-experience-long')
@@ -344,10 +342,14 @@ function getTalent() {
       // open modal and background
       $('#talent-modal').fadeIn();
       $('#talent-modal-background').fadeIn();
-    });
 
-    // when #bookmark changes notdone
-    const bookmark = card.childNodes[0].childNodes[0].childNodes[1];
+      $('#talent-modal').on('hidden.bs.modal', function () {
+        modalBookmark.removeEventListener("click", modalBookmarkClicked, false); 
+        console.log('removed')
+      })
+
+      
+    });
     
 
     if(developerCategory === 'FE') cardContainerFE.appendChild(card);
