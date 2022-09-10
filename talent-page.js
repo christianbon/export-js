@@ -64,7 +64,7 @@ function getTalent() {
     alert('remove')
     console.log('remove')
   })
-  const talentModalStyle = document.getElementById('talent-modal').style.display
+  const talentModalStyle = document.getElementById('talent-modal')
   talentModalStyle.addEventListener('change', (event) => {
     console.log({event})
     console.log('change')
