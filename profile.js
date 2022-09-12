@@ -48,7 +48,7 @@ function getSelfData() {
 
     document.getElementById("profile-company-name").innerHTML = res.client_profile?.companyName ? res.client_profile?.companyName : '-';
     document.getElementById("profile-about").innerHTML = res.client_profile?.about ? res.client_profile?.about : '-';
-    document.getElementById("profile-industry").innerHTML = res.client_profile?._types.length > 0 ? res.client_profile?._types.toString() : '-';
+    document.getElementById("profile-industry").innerHTML = res.client_profile?.industry_types.length > 0 ? res.client_profile?.industry_types.toString() : '-';
     document.getElementById("profile-address").innerHTML = res.client_profile?.address ? res.client_profile?.address : '-';
     document.getElementById("profile-website").innerHTML = res.client_profile?.companyWebsite ? res.client_profile?.companyWebsite : '-';
     document.getElementById("profile-instagram").innerHTML = res.client_profile?.instagram ? res.client_profile?.instagram : '-';
