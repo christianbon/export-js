@@ -138,7 +138,13 @@ function getTalent() {
       tools3.remove();
     }
 
-    ////////////////////////////////////////////////////////////////////////
+    const modalBookmark = document.getElementById('modal-bookmark')
+    // modal close
+    document.getElementById('modal-close').addEventListener('click', function(){
+      console.log('remove')
+      modalBookmark.removeEventListener('click')
+    })
+
     // when clicked
     card.addEventListener('click', function() {
       // set selected talent ID
@@ -154,7 +160,6 @@ function getTalent() {
       const modalAltaGraduates = document.getElementById('modal-alta-graduate')
       modalAltaGraduates.style.display = talent.talent_profile.altaGraduate ? 'block' : 'none';
 
-      const modalBookmark = document.getElementById('modal-bookmark')
       if(isBookmarked(talent.id)) {
         modalBookmark.style.fontFamily = "'Fa solid 900'"; 
       } else {
@@ -338,6 +343,7 @@ function getTalent() {
               talentName: talent.talent_profile.name
           }})
       })
+
 
       // open modal and background
       $('#talent-modal').fadeIn();
