@@ -43,8 +43,8 @@
       if(talent.talent_profile.experiences.length > 0) {
         const styleExperience = document.getElementById('experience-list')
         const cardExperience = styleExperience.cloneNode(true)
-        while (modalExperienceTab.hasChildNodes()) {
-          modalExperienceTab.removeChild(modalExperienceTab.firstChild);
+        while (container.hasChildNodes()) {
+          container.removeChild(container.firstChild);
         }
         talent.talent_profile.experiences.map((data)=>{
 
