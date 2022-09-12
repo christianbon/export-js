@@ -113,7 +113,9 @@ function getTalent() {
       .then(data => {return data.json()})
       .then(res => {
         if (res.length > 0) {
-          mappingData(res.talent)
+          res.forEach(talent => {
+            mappingData(talent)
+          })
           cardContainer.childNodes[0].remove();
           cardContainer.childNodes[0].remove();
           cardContainer.childNodes[0].remove();
