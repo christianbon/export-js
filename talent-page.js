@@ -60,18 +60,6 @@ function getTalent() {
   const cardContainerFE = document.getElementById("card-container-frontend")
   const cardContainerBE = document.getElementById("card-container-backend")
 
-  $('#talent-modal').on('hidden.bs.modal', function () {
-    alert('remove')
-    console.log('remove')
-  })
-  const talentModalStyle = document.getElementById('talent-modal')
-  talentModalStyle.addEventListener('change', (event) => {
-    console.log({event})
-    console.log('change')
-  });
-
-
-
   function mappingData(talent, developerCategory){
     const style = document.getElementById('card-talent-ui')
     const card = style.cloneNode(true)
@@ -153,6 +141,9 @@ function getTalent() {
     ////////////////////////////////////////////////////////////////////////
     // when clicked
     card.addEventListener('click', function() {
+      // set selected talent ID
+      sessionStorage.setItem('selectedTalent', talent.id)
+
       // about talent tab
       const modalTalentId = document.getElementById('modal-talent-id')
       modalTalentId.innerHTML = 'ID - ' + talent.id;

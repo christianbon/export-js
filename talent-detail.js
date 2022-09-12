@@ -18,7 +18,7 @@
   }
   
   
-  let url = new URL('https://assessment-alta.as.r.appspot.com/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A');
+  let url = 'https://assessment-alta.as.r.appspot.com/api/users/';
   let trackingURL = new URL('https://assessment-alta.as.r.appspot.com/api/client-histories');
   
   function getTalent() {
@@ -30,51 +30,56 @@
       },
     };
   
-    const container = document.getElementById("card-container-frontend")
+    const container = document.getElementById("cexperience-contailer-scroll")
   
-    function mappingData(talent, developerCategory){
-      const style = document.getElementById('card-talent-ui')
-      const card = style.cloneNode(true)
-      card.setAttribute('id', '');
-      card.style.display = 'block';
-  
-      // talentID
-      const talentID = card.childNodes[0].childNodes[0].childNodes[1];
-      talentID.innerHTML = 'ID - ' + talent.id;
-  
-      // talent category
-      const talentCategory = card.getElementsByTagName('H4')[0];
-      talentCategory.innerHTML = talent.talent_profile.talentCategory;
-      
-      // years of experience
-      const yearsExperience = card.childNodes[1].childNodes[1];
-      yearsExperience.innerHTML = talent.talent_profile.yearsOfExperience + ' Years Experience';
-  
-      // assessment score
-  
-  
-      if(developerCategory === 'FE') cardContainerFE.appendChild(card);
-      if(developerCategory === 'BE') cardContainerBE.appendChild(card);
+    function mappingData(talent){
+      console.log({talent})
+      document.getElementById("talent-name").innerHTML = talent.talent_profile?.fullName ? talent.talent_profile?.fullName : '-';
+      document.getElementById("field-email").innerHTML = talent.talent_profile?.email ? talent.talent_profile?.email : '-';
+      document.getElementById("field-phone").innerHTML = talent.talent_profile?.phoneNumber ? talent.talent_profile?.phoneNumber : '-';
+      document.getElementById("field-linkedin").innerHTML = talent.talent_profile?.linkedIn ? talent.talent_profile?.linkedIn : '-';
+      document.getElementById("field-github").innerHTML = talent.talent_profile?.github ? talent.talent_profile?.github : '-';
+
+      if(talent.talent_profile.experiences.length > 0) {
+        const styleExperience = document.getElementById('experience-list')
+        const cardExperience = styleExperience.cloneNode(true)
+        while (modalExperienceTab.hasChildNodes()) {
+          modalExperienceTab.removeChild(modalExperienceTab.firstChild);
+        }
+        talent.talent_profile.experiences.map((data)=>{
+
+          const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
+          experiencePosition.innerHTML = data?.position
+
+          const companyName =  cardExperience.childNodes[1];
+          companyName.innerHTML = data?.companyName
+
+          const yearsExperience =  cardExperience.childNodes[2];
+          let endyear, endmonth, startyear, startmonth
+          const startDate = new Date(data.dateStart)
+          startyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(startDate);
+          startmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(startDate);
+          if(!data.present) {
+            const endDate = new Date(data.dateStart)
+            endyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(endDate);
+            endmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(endDate);
+          }
+          yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : endmonth + ' ' + endyear)
+
+          const jobDescription =  cardExperience.childNodes[4];
+          jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'
+    
+          container.appendChild(cardExperience);
+        })
+      }
     }
   
-    fetch(url, options)
+    fetch(url+ sessionStorage.getItem('selectedTalent') +'?populate[talent_profile][populate]=%2A', options)
       .then(data => {return data.json()})
       .then(res => {
         if (res.length > 0) {
-          const dataDevBE = res.filter((data)=>{
-            return data.talent_profile.talentCategory === 'Back End'
-          })
-          const dataDevFE = res.filter((data)=>{
-            return data.talent_profile.talentCategory === 'Front End'
-          })
-          dataDevFE.forEach(talent => {
-            mappingData(talent,'FE')
-          })
-          dataDevBE.forEach(talent => {
-            mappingData(talent,'BE')
-          })
-          cardContainerFE.childNodes[0].remove();
-          cardContainerBE.childNodes[0].remove();
+          mappingData(res.talent)
+          // container.childNodes[0].remove();
         }
       })
   }
