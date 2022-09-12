@@ -26,6 +26,7 @@ function isBookmarked(id) {
 }
 
 const clickBookmark = function(talent){
+  const modalBookmark = document.getElementById('modal-bookmark')
   if(!isBookmarked(talent.id)) {
     // set bookmark
     modalBookmark.style.fontFamily = "'Fa solid 900'";
