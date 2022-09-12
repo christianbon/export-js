@@ -104,7 +104,7 @@ function getTalent() {
       })
       let filterString = ''
       bookmarkList.map((data,index)=>{
-        filterString = filterString + 'filters[id][$in][' + index + ']=' + data.talentId 
+        filterString = filterString + 'filters[id][$in][' + index + ']=' + data.talentId + '&'
       })
       sessionStorage.setItem('bookmarked', JSON.stringify(bookmarkList))
 
