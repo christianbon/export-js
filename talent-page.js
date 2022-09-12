@@ -281,8 +281,7 @@ function getTalent() {
           })
         }
         this.removeEventListener('click', handler);
-        document.getElementById('talent-modal').display = 'none'
-        document.getElementById('talent-modal-background').display = 'none'
+        $('#talent-modal-background').css("display", "none");
       })
 
       // experience tab
