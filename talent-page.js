@@ -138,7 +138,6 @@ function getTalent() {
       tools3.remove();
     }
 
-
     // when clicked
     card.addEventListener('click', function() {
       // set selected talent ID
@@ -148,19 +147,13 @@ function getTalent() {
       const modalTalentId = document.getElementById('modal-talent-id')
       modalTalentId.innerHTML = 'ID - ' + talent.id;
       
-      const modalBookmark = document.getElementById('modal-bookmark')
-      // modal close
-      document.getElementById('modal-close').addEventListener('click', function(){
-        console.log('remove')
-        modalBookmark.removeEventListener('click')
-      })
-      
       const modalTalentCategory = document.getElementById('modal-talent-category')
       modalTalentCategory.innerHTML = talent.talent_profile.talentCategory + ' Developer';
 
       const modalAltaGraduates = document.getElementById('modal-alta-graduate')
       modalAltaGraduates.style.display = talent.talent_profile.altaGraduate ? 'block' : 'none';
 
+      const modalBookmark = document.getElementById('modal-bookmark')
       if(isBookmarked(talent.id)) {
         modalBookmark.style.fontFamily = "'Fa solid 900'"; 
       } else {
@@ -359,6 +352,13 @@ function getTalent() {
     .then(data => {return data.json()})
     .then(res => {
       if (res.length > 0) {
+        
+        // modal close
+        document.getElementById('modal-close').addEventListener('click', function(){
+          console.log('remove')
+          document.getElementById('modal-bookmark').removeEventListener('click')
+        })
+        
         const dataDevBE = res.filter((data)=>{
           return data.talent_profile.talentCategory === 'Back End'
         })
