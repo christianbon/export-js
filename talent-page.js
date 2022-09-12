@@ -283,7 +283,7 @@ function getTalent() {
       '<p>Soft Skill: ' + stringSoftSkill.join(', ') + '</p>';
 
       // when #bookmark clicked
-      modalBookmark.addEventListener('click',clickBookmark(talent, card))
+      modalBookmark.addEventListener('click', (talent,card)=> { clickBookmark(talent, card) })
 
       // experience tab
       const modalExperienceTab = document.getElementById('modal-experience-long')
