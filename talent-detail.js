@@ -35,10 +35,10 @@
     function mappingData(talent){
       console.log({talent})
       document.getElementById("talent-name").innerHTML = talent.fullName ? talent.fullName : '-';
-      document.getElementById("field-email").innerHTML = talent.email ? talent.email : '-';
-      document.getElementById("field-phone").innerHTML = talent.phoneNumber ? talent.phoneNumber : '-';
-      document.getElementById("field-linkedin").innerHTML = talent.talent_profile?.linkedIn ? talent.talent_profile?.linkedIn : '-';
-      document.getElementById("field-github").innerHTML = talent.talent_profile?.github ? talent.talent_profile?.github : '-';
+      document.getElementById("talent-email").innerHTML = talent.email ? talent.email : '-';
+      document.getElementById("talent-phone").innerHTML = talent.phoneNumber ? talent.phoneNumber : '-';
+      document.getElementById("talent-linkedin").innerHTML = talent.talent_profile?.linkedIn ? talent.talent_profile?.linkedIn : '-';
+      document.getElementById("talent-github").innerHTML = talent.talent_profile?.github ? talent.talent_profile?.github : '-';
 
       if(talent.talent_profile.experiences.length > 0) {
         const styleExperience = document.getElementById('experience-list')
