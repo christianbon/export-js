@@ -19,6 +19,7 @@ function changeUsername() {
 
 
 const url = 'https://assessment-alta.as.r.appspot.com/api/users/' + sessionStorage.getItem("userId") + '?populate=*';
+const savedBookmarkUrl = 'https://assessment-alta.as.r.appspot.com/api/users?'
 const updateUrl = ''
 
 function getSelfData() {
@@ -76,9 +77,133 @@ function getSelfData() {
   });
 })();
 
+
+function getTalent() {
+  let options = {  
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+      'Content-Type': 'application/json',
+    },
+  };
+  let bookmarkOptions = {  
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+      'Content-Type': 'application/json',
+    },
+  };
+
+  // get bookmarks data
+  fetch(getBookmarkURL+String(sessionStorage.getItem('userId')), bookmarkOptions)
+    .then(data => {return data.json()})
+    .then(res => {
+      const bookmarkList = res.data.map((data)=>{
+        return {id: data.id, talentId: data.attributes.talentId }
+      })
+      let filterString = ''
+      bookmarkList.map((data,index)=>{
+        filterString = filterString + 'filters[id][$in][' + index + ']=' + data.talentId 
+      })
+      sessionStorage.setItem('bookmarked', JSON.stringify(bookmarkList))
+
+      // fetch bookmarked talent list
+      fetch(url, options)
+      .then(data => {return data.json()})
+      .then(res => {
+        if (res.length > 0) {
+          mappingData(res.talent)
+          cardContainer.childNodes[0].remove();
+          cardContainer.childNodes[0].remove();
+          cardContainer.childNodes[0].remove();
+        }
+      })
+
+    })
+
+  const cardContainer = document.getElementById("card-container");
+
+  function mappingData(talent){
+    const style = document.getElementById('card-talent-ui')
+    const card = style.cloneNode(true)
+    card.setAttribute('id', '');
+    card.style.display = 'block';
+
+    // talentID
+    const talentID = card.childNodes[0].childNodes[0].childNodes[1];
+    talentID.innerHTML = 'ID - ' + talent.id;
+
+    // alta graduates
+    const altaGraduate = card.childNodes[0].childNodes[0].childNodes[2];
+    altaGraduate.style.display = talent.talent_profile.altaGraduate ? 'block' : 'none'
+
+    // talent category
+    const talentCategory = card.getElementsByTagName('H4')[0];
+    talentCategory.innerHTML = talent.talent_profile.talentCategory;
+    
+    // years of experience
+    const yearsExperience = card.childNodes[1].childNodes[1];
+    yearsExperience.innerHTML = talent.talent_profile.yearsOfExperience + ' Years Experience';
+
+    // assessment score
+    const assessmentScore = card.childNodes[2].childNodes[1];
+    assessmentScore.innerHTML = talent.talent_profile.assessmentScore;
+
+    // programming language
+      const programming1 = card.childNodes[4].childNodes[0];
+      const programming2 = card.childNodes[4].childNodes[1];
+      const programming3 = card.childNodes[4].childNodes[2];
+
+    if(talent.talent_profile.programming_languages.length > 0) {
+      programming1.innerHTML = talent.talent_profile.programming_languages[0].name;
+    } else {
+      programming1.remove();
+    }
+    
+    if(talent.talent_profile.programming_languages.length > 1) {
+      programming2.innerHTML = talent.talent_profile.programming_languages[1].name;
+    } else {
+      programming2.remove();
+    }
+    
+    if(talent.talent_profile.programming_languages.length > 2) {
+      programming3.innerHTML = '...';
+    } else {
+      programming3.remove();
+    }
+
+    
+    // tools
+    const tools1 = card.childNodes[6].childNodes[0];
+    const tools2 = card.childNodes[6].childNodes[1];
+    const tools3 = card.childNodes[6].childNodes[2];
+
+    if(talent.talent_profile.tools.length > 0) {
+      tools1.innerHTML = talent.talent_profile.tools[0].name;
+    } else {
+      tools1.remove();
+    }
+    
+    if(talent.talent_profile.tools.length > 1) {
+      tools2.innerHTML = talent.talent_profile.tools[1].name;
+    } else {
+      tools2.remove();
+    }
+    
+    if(talent.talent_profile.tools.length > 2) {
+      tools3.innerHTML = '...';
+    } else {
+      tools3.remove();
+    }
+    cardContainer.appendChild(card);
+  }
+
+}
+
 // This fires all of the defined functions when the document is "ready" or loaded
 (function() {
-    chechAuth()
-    changeUsername()
-    getSelfData()
+    chechAuth();
+    changeUsername();
+    getSelfData();
+    getTalent();
 })();
