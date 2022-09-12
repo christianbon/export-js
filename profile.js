@@ -20,6 +20,7 @@ function changeUsername() {
 
 const url = 'https://assessment-alta.as.r.appspot.com/api/users/' + sessionStorage.getItem("userId") + '?populate=*';
 const savedBookmarkUrl = 'https://assessment-alta.as.r.appspot.com/api/users?'
+const getBookmarkURL = new URL('https://assessment-alta.as.r.appspot.com/api/bookmarks?filters[clientId][$eq]=');
 const updateUrl = ''
 
 function getSelfData() {
