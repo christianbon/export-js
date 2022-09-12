@@ -78,7 +78,7 @@
       .then(data => {return data.json()})
       .then(res => {
         if (res) {
-          mappingData(res.talent)
+          mappingData(res)
           // container.childNodes[0].remove();
         }
       })
