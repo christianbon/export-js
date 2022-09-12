@@ -18,7 +18,7 @@ function changeUsername() {
 }
 
 
-const url = 'https://assessment-alta.as.r.appspot.com/api/users/' + sessionStorage.getItem("userId") + '?populate=*';
+const url = 'https://assessment-alta.as.r.appspot.com/api/users/' + sessionStorage.getItem("userId") + '?populate[client_profile][populate]=%2A';
 const savedBookmarkUrl = 'https://assessment-alta.as.r.appspot.com/api/users?'
 const getBookmarkURL = new URL('https://assessment-alta.as.r.appspot.com/api/bookmarks?filters[clientId][$eq]=');
 const updateUrl = ''
@@ -48,7 +48,7 @@ function getSelfData() {
 
     document.getElementById("profile-company-name").innerHTML = res.client_profile?.companyName ? res.client_profile?.companyName : '-';
     document.getElementById("profile-about").innerHTML = res.client_profile?.about ? res.client_profile?.about : '-';
-    document.getElementById("profile-industry").innerHTML = res.client_profile?.industry ? res.client_profile?.industry.toString() : '-';
+    document.getElementById("profile-industry").innerHTML = res.client_profile?.industry.length > 0 ? res.client_profile?.industry.toString() : '-';
     document.getElementById("profile-address").innerHTML = res.client_profile?.address ? res.client_profile?.address : '-';
     document.getElementById("profile-website").innerHTML = res.client_profile?.companyWebsite ? res.client_profile?.companyWebsite : '-';
     document.getElementById("profile-instagram").innerHTML = res.client_profile?.instagram ? res.client_profile?.instagram : '-';
