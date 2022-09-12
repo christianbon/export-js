@@ -34,9 +34,9 @@
   
     function mappingData(talent){
       console.log({talent})
-      document.getElementById("talent-name").innerHTML = talent.talent_profile?.fullName ? talent.talent_profile?.fullName : '-';
-      document.getElementById("field-email").innerHTML = talent.talent_profile?.email ? talent.talent_profile?.email : '-';
-      document.getElementById("field-phone").innerHTML = talent.talent_profile?.phoneNumber ? talent.talent_profile?.phoneNumber : '-';
+      document.getElementById("talent-name").innerHTML = talent.fullName ? talent.fullName : '-';
+      document.getElementById("field-email").innerHTML = talent.email ? talent.email : '-';
+      document.getElementById("field-phone").innerHTML = talent.phoneNumber ? talent.phoneNumber : '-';
       document.getElementById("field-linkedin").innerHTML = talent.talent_profile?.linkedIn ? talent.talent_profile?.linkedIn : '-';
       document.getElementById("field-github").innerHTML = talent.talent_profile?.github ? talent.talent_profile?.github : '-';
 
@@ -77,7 +77,7 @@
     fetch(url+ sessionStorage.getItem('selectedTalent') +'?populate[talent_profile][populate]=%2A', options)
       .then(data => {return data.json()})
       .then(res => {
-        if (res.length > 0) {
+        if (res) {
           mappingData(res.talent)
           // container.childNodes[0].remove();
         }
