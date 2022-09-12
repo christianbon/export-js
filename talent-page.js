@@ -138,12 +138,6 @@ function getTalent() {
       tools3.remove();
     }
 
-    const modalBookmark = document.getElementById('modal-bookmark')
-    // modal close
-    document.getElementById('modal-close').addEventListener('click', function(){
-      console.log('remove')
-      modalBookmark.removeEventListener('click')
-    })
 
     // when clicked
     card.addEventListener('click', function() {
@@ -153,6 +147,13 @@ function getTalent() {
       // about talent tab
       const modalTalentId = document.getElementById('modal-talent-id')
       modalTalentId.innerHTML = 'ID - ' + talent.id;
+      
+      const modalBookmark = document.getElementById('modal-bookmark')
+      // modal close
+      document.getElementById('modal-close').addEventListener('click', function(){
+        console.log('remove')
+        modalBookmark.removeEventListener('click')
+      })
       
       const modalTalentCategory = document.getElementById('modal-talent-category')
       modalTalentCategory.innerHTML = talent.talent_profile.talentCategory + ' Developer';
