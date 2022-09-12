@@ -26,6 +26,7 @@ function isBookmarked(id) {
 }
 
 const clickBookmark = function(talent, card){
+  console.log({talent,card})
   const modalBookmark = document.getElementById('modal-bookmark')
   if(!isBookmarked(talent.id)) {
     // set bookmark
