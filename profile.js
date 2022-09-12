@@ -48,7 +48,7 @@ function getSelfData() {
 
     document.getElementById("profile-company-name").innerHTML = res.client_profile?.companyName ? res.client_profile?.companyName : '-';
     document.getElementById("profile-about").innerHTML = res.client_profile?.about ? res.client_profile?.about : '-';
-    document.getElementById("profile-industry").innerHTML = res.client_profile?.industry ? res.client_profile?.industry : '-';
+    document.getElementById("profile-industry").innerHTML = res.client_profile?.industry ? res.client_profile?.industry.toString() : '-';
     document.getElementById("profile-address").innerHTML = res.client_profile?.address ? res.client_profile?.address : '-';
     document.getElementById("profile-website").innerHTML = res.client_profile?.companyWebsite ? res.client_profile?.companyWebsite : '-';
     document.getElementById("profile-instagram").innerHTML = res.client_profile?.instagram ? res.client_profile?.instagram : '-';
@@ -77,7 +77,6 @@ function getSelfData() {
     })
   });
 })();
-
 
 function getTalent() {
   let options = {  
