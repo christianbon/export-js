@@ -109,7 +109,7 @@ function getTalent() {
       sessionStorage.setItem('bookmarked', JSON.stringify(bookmarkList))
 
       // fetch bookmarked talent list
-      fetch(savedBookmarkUrl+filterString, options)
+      fetch(savedBookmarkUrl+filterString+'populate[talent_profile][populate]=%2A', options)
       .then(data => {return data.json()})
       .then(res => {
         if (res.length > 0) {
