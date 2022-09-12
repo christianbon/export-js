@@ -30,7 +30,7 @@
       },
     };
   
-    const container = document.getElementById("cexperience-contailer-scroll")
+    const container = document.getElementById("experience-container-scroll")
   
     function mappingData(talent){
       console.log({talent})
