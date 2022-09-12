@@ -236,51 +236,6 @@ function getTalent() {
       '<p><strong>Other Skill</strong></p>' + 
       '<p>Soft Skill: ' + stringSoftSkill.join(', ') + '</p>';
 
-      // when #bookmark clicked
-      modalBookmark.addEventListener('click',function(){
-        if(!isBookmarked(talent.id)) {
-          // set bookmark
-          modalBookmark.style.fontFamily = "'Fa solid 900'";
-          card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa solid 900'";
-          fetch(bookmarkURL, {  
-            method: 'POST',
-            headers: {
-              'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              data:{
-                  clientId: String(sessionStorage.getItem('userId')),
-                  talentId: String(talent.id),
-              }})
-          })
-          .then(data => {return data.json()})
-          .then((res)=> {
-            const newBookmark = [...JSON.parse(sessionStorage.getItem('bookmarked')), {id: res.data.id, talentId: res.data.attributes.talentId }]
-            sessionStorage.setItem('bookmarked', JSON.stringify(newBookmark))
-          })
-        } else {
-          // remove bookmark
-          modalBookmark.style.fontFamily = "'Fa 400'";
-          card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa 400'";
-          const filteredBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
-            return String(data.talentId) !== String(talent.id)
-          })
-          const getDeletedBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
-            return String(data.talentId) === String(talent.id)
-          })
-          sessionStorage.setItem('bookmarked', JSON.stringify(filteredBookmark))
-          fetch(bookmarkURL+'/'+ getDeletedBookmark[0].id, {  
-            method: 'DELETE',
-            headers: {
-              'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            }
-          })
-        }
-      })
 
       // experience tab
       const modalExperienceTab = document.getElementById('modal-experience-long')
@@ -344,6 +299,53 @@ function getTalent() {
       $('#talent-modal-background').fadeIn();
     });
 
+    
+      // when #bookmark clicked
+      modalBookmark.addEventListener('click',function(){
+        if(!isBookmarked(talent.id)) {
+          // set bookmark
+          modalBookmark.style.fontFamily = "'Fa solid 900'";
+          card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa solid 900'";
+          fetch(bookmarkURL, {  
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              data:{
+                  clientId: String(sessionStorage.getItem('userId')),
+                  talentId: String(talent.id),
+              }})
+          })
+          .then(data => {return data.json()})
+          .then((res)=> {
+            const newBookmark = [...JSON.parse(sessionStorage.getItem('bookmarked')), {id: res.data.id, talentId: res.data.attributes.talentId }]
+            sessionStorage.setItem('bookmarked', JSON.stringify(newBookmark))
+          })
+        } else {
+          // remove bookmark
+          modalBookmark.style.fontFamily = "'Fa 400'";
+          card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa 400'";
+          const filteredBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
+            return String(data.talentId) !== String(talent.id)
+          })
+          const getDeletedBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
+            return String(data.talentId) === String(talent.id)
+          })
+          sessionStorage.setItem('bookmarked', JSON.stringify(filteredBookmark))
+          fetch(bookmarkURL+'/'+ getDeletedBookmark[0].id, {  
+            method: 'DELETE',
+            headers: {
+              'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            }
+          })
+        }
+      })
+
     if(developerCategory === 'FE') cardContainerFE.appendChild(card);
     if(developerCategory === 'BE') cardContainerBE.appendChild(card);
   }
@@ -354,11 +356,11 @@ function getTalent() {
       if (res.length > 0) {
         
         // modal close
-        document.getElementById('modal-close').addEventListener('click', function(){
-          console.log('remove')
-          document.getElementById('modal-bookmark').removeEventListener('click')
-        })
-        
+        // document.getElementById('modal-close').addEventListener('click', function(){
+        //   console.log('remove')
+        //   document.getElementById('modal-bookmark').removeEventListener('click', function(){})
+        // })
+
         const dataDevBE = res.filter((data)=>{
           return data.talent_profile.talentCategory === 'Back End'
         })
