@@ -33,7 +33,6 @@
     const container = document.getElementById("experience-container-scroll")
   
     function mappingData(talent){
-      console.log({talent})
       document.getElementById("talent-name").innerHTML = talent.fullName ? talent.fullName : '-';
       document.getElementById("talent-email").innerHTML = talent.email ? talent.email : '-';
       document.getElementById("talent-phone").innerHTML = talent.phoneNumber ? talent.phoneNumber : '-';
@@ -43,7 +42,6 @@
       if(talent.talent_profile.experiences.length > 0) {
         const styleExperience = document.getElementById('experience-list')
         const cardExperience = styleExperience.cloneNode(true)
-        console.log({styleExperience})
         
         talent.talent_profile.experiences.map((data)=>{
           const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
@@ -66,7 +64,6 @@
 
           const jobDescription =  cardExperience.childNodes[4];
           jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'
-          console.log({cardExperience})
           container.appendChild(cardExperience);
         })
       }
@@ -99,14 +96,9 @@
       '<p><strong>Other Skill</strong></p>' + 
       '<p>Soft Skill: ' + stringSoftSkill.join(', ') + '</p>';
 
-      const modalAchievement = document.getElementById('modal-achievement')
-      modalAchievement.innerHTML = talent.talent_profile.achievement;
-
-      const modalEducation = document.getElementById('modal-education')
-      modalEducation.innerHTML = '<pre style="font-family: poppins">' + talent.talent_profile.education + '</pre>';
-
-      const modalCertification = document.getElementById('modal-certification')
-      modalCertification.innerHTML = talent.talent_profile.certification;
+      document.getElementById('modal-achievement').innerHTML = talent.talent_profile.achievement ? talent.talent_profile.achievement : '-';
+      document.getElementById('modal-education').innerHTML = talent.talent_profile.education ? '<pre style="font-family: poppins">' + talent.talent_profile.education + '</pre>' : '-';
+      document.getElementById('modal-certification').innerHTML = talent.talent_profile.certification ? talent.talent_profile.certification : '-';
 
 
     }
