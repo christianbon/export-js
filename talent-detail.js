@@ -39,6 +39,7 @@
       document.getElementById("talent-phone").innerHTML = talent.phoneNumber ? talent.phoneNumber : '-';
       document.getElementById("talent-linkedin").innerHTML = talent.talent_profile?.linkedIn ? talent.talent_profile?.linkedIn : '-';
       document.getElementById("talent-github").innerHTML = talent.talent_profile?.github ? talent.talent_profile?.github : '-';
+      console.log([container])
 
       if(talent.talent_profile.experiences.length > 0) {
         const styleExperience = document.getElementById('experience-list')
