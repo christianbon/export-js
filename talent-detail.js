@@ -43,13 +43,11 @@
       if(talent.talent_profile.experiences.length > 0) {
         const styleExperience = document.getElementById('experience-list')
         const cardExperience = styleExperience.cloneNode(true)
-        while (container.hasChildNodes()) {
-          container.removeChild(container.firstChild);
-        }
+        console.log({styleExperience})
+        
         talent.talent_profile.experiences.map((data)=>{
-
           const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
-          experiencePosition.innerHTML = data?.position
+          experiencePosition.innerHTML = data?.position;
 
           const companyName =  cardExperience.childNodes[1];
           companyName.innerHTML = data?.companyName
@@ -68,10 +66,47 @@
 
           const jobDescription =  cardExperience.childNodes[4];
           jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'
-    
+          console.log({cardExperience})
           container.appendChild(cardExperience);
         })
       }
+
+      
+      const stringProgramming = talent.talent_profile.programming_languages.map((data) => {
+        return data.name
+      })
+      const stringTools = talent.talent_profile.tools.map((data) => {
+        return data.name
+      })
+      const stringDevMethod = talent.talent_profile.development_methods.map((data) => {
+        return data.name
+      })
+      const stringAddSkill = talent.talent_profile.additional_skills.map((data) => {
+        return data.name
+      })
+      const stringSoftSkill = talent.talent_profile.soft_skills.map((data) => {
+        return data.name
+      })
+      const modalSkill = document.getElementById('modal-skill')
+      modalSkill.innerHTML = 
+      '<p><strong>Technical Skill</strong></p>' + 
+      '<p>Programming: ' + stringProgramming.join(', ') + '</p>'+ 
+      '<p>Tools: ' + stringTools.join(', ') + '</p>'+ 
+      '<p>Development Method: ' + stringDevMethod.join(', ') + '</p>'+ 
+      '<p>Additional Skill: ' + stringAddSkill.join(', ') + '</p>'+ 
+      '<p><strong>Other Skill</strong></p>' + 
+      '<p>Soft Skill: ' + stringSoftSkill.join(', ') + '</p>';
+
+      const modalAchievement = document.getElementById('modal-achievement')
+      modalAchievement.innerHTML = talent.talent_profile.achievement;
+
+      const modalEducation = document.getElementById('modal-education')
+      modalEducation.innerHTML = '<pre style="font-family: poppins">' + talent.talent_profile.education + '</pre>';
+
+      const modalCertification = document.getElementById('modal-certification')
+      modalCertification.innerHTML = talent.talent_profile.certification;
+
+
     }
   
     fetch(url+ sessionStorage.getItem('selectedTalent') +'?populate[talent_profile][populate]=%2A', options)
