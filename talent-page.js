@@ -25,7 +25,7 @@ function isBookmarked(id) {
   return filteredBookmark.length !== 0
 }
 
-const clickBookmark = function(talent){
+const clickBookmark = function(talent, card){
   const modalBookmark = document.getElementById('modal-bookmark')
   if(!isBookmarked(talent.id)) {
     // set bookmark
@@ -283,7 +283,7 @@ function getTalent() {
       '<p>Soft Skill: ' + stringSoftSkill.join(', ') + '</p>';
 
       // when #bookmark clicked
-      modalBookmark.addEventListener('click',clickBookmark(talent))
+      modalBookmark.addEventListener('click',clickBookmark(talent, card))
 
       // experience tab
       const modalExperienceTab = document.getElementById('modal-experience-long')
