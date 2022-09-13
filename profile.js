@@ -112,6 +112,7 @@ function getSavedTalent() {
 
       if(bookmarkList.length === 0) {
         document.getElementById('profile-notalent').style.display = 'flex'
+        document.getElementById('profile-notalent').style.justifyContent = 'center'
         document.getElementById('card-container').style.display = 'none'
       }else{
         document.getElementById('profile-notalent').style.display = 'none'
