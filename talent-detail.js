@@ -64,7 +64,9 @@
 
           const jobDescription =  cardExperience.childNodes[4];
           jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'
-          container.appendChild(cardExperience);
+          console.log({cardExperience})
+          container.insertBefore(cardExperience, container.children[3]);
+          // container.appendChild(cardExperience);
         })
       }
 
@@ -99,8 +101,6 @@
       document.getElementById('modal-achievement').innerHTML = talent.talent_profile.achievement ? talent.talent_profile.achievement : '-';
       document.getElementById('modal-education').innerHTML = talent.talent_profile.education ? '<pre style="font-family: poppins">' + talent.talent_profile.education + '</pre>' : '-';
       document.getElementById('modal-certification').innerHTML = talent.talent_profile.certification ? talent.talent_profile.certification : '-';
-
-
     }
   
     fetch(url+ sessionStorage.getItem('selectedTalent') +'?populate[talent_profile][populate]=%2A', options)
