@@ -44,9 +44,6 @@
         talent.talent_profile.experiences.map((data,index)=>{
           const styleExperience = document.getElementById('experience-list')
           const cardExperience = styleExperience.cloneNode(true)
-          console.log(index)
-          console.log({cardExperience})
-          console.log({data})
           const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
           experiencePosition.innerHTML = data?.position;
 
