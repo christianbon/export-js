@@ -68,12 +68,11 @@
           const jobDescription =  cardExperience.childNodes[4];
           jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'
           container.insertBefore(cardExperience, container.children[2+index]);
-          // container.appendChild(cardExperience);
         })
         
-        // container.childNodes[4].remove();
-        // container.childNodes[3].remove();
-        // container.childNodes[2].remove();
+        container.childNodes[4+talent.talent_profile.experiences.length].remove();
+        container.childNodes[3+talent.talent_profile.experiences.length].remove();
+        container.childNodes[2+talent.talent_profile.experiences.length].remove();
       }
 
       const stringProgramming = talent.talent_profile.programming_languages.map((data) => {
