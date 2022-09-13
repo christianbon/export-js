@@ -47,7 +47,9 @@
         container.childNodes[3].remove();
         container.childNodes[2].remove();
         
-        talent.talent_profile.experiences.map((data)=>{
+        talent.talent_profile.experiences.map((data,index)=>{
+          console.log(index)
+          console.log({cardExperience})
           console.log({data})
           const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
           experiencePosition.innerHTML = data?.position;
@@ -70,7 +72,7 @@
           const jobDescription =  cardExperience.childNodes[4];
           jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'
           console.log({cardExperience})
-          container.insertBefore(cardExperience, container.children[3]);
+          container.insertBefore(cardExperience, container.children[1+index]);
           // container.appendChild(cardExperience);
         })
       }
