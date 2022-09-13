@@ -43,6 +43,10 @@
         const styleExperience = document.getElementById('experience-list')
         const cardExperience = styleExperience.cloneNode(true)
         
+        container.childNodes[4].remove();
+        container.childNodes[3].remove();
+        container.childNodes[2].remove();
+        
         talent.talent_profile.experiences.map((data)=>{
           console.log({data})
           const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
@@ -71,9 +75,6 @@
         })
       }
 
-      container.childNodes[4].remove();
-      container.childNodes[3].remove();
-      container.childNodes[2].remove();
       const stringProgramming = talent.talent_profile.programming_languages.map((data) => {
         return data.name
       })
