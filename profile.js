@@ -81,7 +81,7 @@ function getSelfData() {
   });
 })();
 
-function getTalent() {
+function getSavedTalent() {
   let options = {  
     method: 'GET',
     headers: {
@@ -110,20 +110,26 @@ function getTalent() {
       })
       sessionStorage.setItem('bookmarked', JSON.stringify(bookmarkList))
 
-      // fetch bookmarked talent list
-      fetch(savedBookmarkUrl+filterString+'populate[talent_profile][populate]=%2A', options)
-      .then(data => {return data.json()})
-      .then(res => {
-        if (res.length > 0) {
-          res.forEach(talent => {
-            mappingData(talent)
-          })
-          cardContainer.childNodes[0].remove();
-          cardContainer.childNodes[0].remove();
-          cardContainer.childNodes[0].remove();
-        }
-      })
-
+      if(bookmarkList.length === 0) {
+        document.getElementById('profile-notalent').display = 'block'
+        document.getElementById('card-container').display = 'none'
+      }else{
+        document.getElementById('profile-notalent').display = 'none'
+        document.getElementById('card-container').display = 'block'
+        // fetch bookmarked talent list
+        fetch(savedBookmarkUrl+filterString+'populate[talent_profile][populate]=%2A', options)
+        .then(data => {return data.json()})
+        .then(res => {
+          if (res.length > 0) {
+            res.forEach(talent => {
+              mappingData(talent)
+            })
+            cardContainer.childNodes[0].remove();
+            cardContainer.childNodes[0].remove();
+            cardContainer.childNodes[0].remove();
+          }
+        })
+      }
     })
 
   const cardContainer = document.getElementById("card-container");
@@ -210,5 +216,5 @@ function getTalent() {
     chechAuth();
     changeUsername();
     getSelfData();
-    getTalent();
+    getSavedTalent();
 })();
