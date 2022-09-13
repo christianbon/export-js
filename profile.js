@@ -111,11 +111,11 @@ function getSavedTalent() {
       sessionStorage.setItem('bookmarked', JSON.stringify(bookmarkList))
 
       if(bookmarkList.length === 0) {
-        document.getElementById('profile-notalent').display = 'block'
-        document.getElementById('card-container').display = 'none'
+        document.getElementById('profile-notalent').style.display = 'block'
+        document.getElementById('card-container').style.display = 'none'
       }else{
-        document.getElementById('profile-notalent').display = 'none'
-        document.getElementById('card-container').display = 'block'
+        document.getElementById('profile-notalent').style.display = 'none'
+        document.getElementById('card-container').style.display = 'block'
         // fetch bookmarked talent list
         fetch(savedBookmarkUrl+filterString+'populate[talent_profile][populate]=%2A', options)
         .then(data => {return data.json()})
