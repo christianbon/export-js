@@ -140,6 +140,7 @@ function getSavedTalent() {
     const card = style.cloneNode(true)
     card.setAttribute('id', '');
     card.style.display = 'block';
+    card.style.marginBottom = '19px'
 
     // talentID
     const talentID = card.childNodes[0].childNodes[0].childNodes[1];
