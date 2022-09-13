@@ -40,14 +40,10 @@
       document.getElementById("talent-github").innerHTML = talent.talent_profile?.github ? talent.talent_profile?.github : '-';
 
       if(talent.talent_profile.experiences.length > 0) {
-        const styleExperience = document.getElementById('experience-list')
-        const cardExperience = styleExperience.cloneNode(true)
-        
-        container.childNodes[4].remove();
-        container.childNodes[3].remove();
-        container.childNodes[2].remove();
         
         talent.talent_profile.experiences.map((data,index)=>{
+          const styleExperience = document.getElementById('experience-list')
+          const cardExperience = styleExperience.cloneNode(true)
           console.log(index)
           console.log({cardExperience})
           console.log({data})
@@ -71,10 +67,13 @@
 
           const jobDescription =  cardExperience.childNodes[4];
           jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'
-          console.log({cardExperience})
-          container.insertBefore(cardExperience, container.children[1+index]);
+          container.insertBefore(cardExperience, container.children[2+index]);
           // container.appendChild(cardExperience);
         })
+        
+        // container.childNodes[4].remove();
+        // container.childNodes[3].remove();
+        // container.childNodes[2].remove();
       }
 
       const stringProgramming = talent.talent_profile.programming_languages.map((data) => {
