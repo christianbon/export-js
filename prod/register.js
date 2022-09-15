@@ -1,0 +1,49 @@
+let form = document.getElementById('register-form');
+form.addEventListener('submit', handlerCallback, true);
+const url = 'https://assessment-alta-prod.as.r.appspot.com/api/auth/local/register';
+
+function handlerCallback(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  if(document.querySelector('#Password-2').value !== document.querySelector('#Konfirmasi-Password').value) {
+    alert('password does not match');
+  }else{
+    if(document.querySelector('#Nama').value !== '' &&
+      document.querySelector('#Nama-Institusi').value !== '' &&
+      document.querySelector('#No-Hp').value !== '' &&
+      document.querySelector('#Email-4').value !== '' &&
+      document.querySelector('#Password-2').value !== '' &&
+      document.querySelector('#Konfirmasi-Password').value !== '' ){
+
+      let formData = new FormData();
+      
+      const companyData = JSON.stringify({
+      companyName: document.querySelector('#Nama-Institusi').value,
+      })
+      
+      formData.append("username", document.querySelector('#Nama').value);
+      formData.append("clientProfile", companyData);
+      formData.append("phoneNumber", document.querySelector('#No-Hp').value);
+      formData.append("email", document.querySelector('#Email-4').value);
+      formData.append("password", document.querySelector('#Password-2').value);
+      fetch(url,{
+        method : 'POST',
+        body : formData         
+      })
+      .then(data => {return data.json()})
+      .then(res => {
+        if(res.error?.status === 400) throw res.error
+          sessionStorage.setItem("username", res.user.username);
+          sessionStorage.setItem("authToken", res.jwt);
+          sessionStorage.setItem("userId", res.user.id);
+        window.location.replace("https://talent.alta.id/");
+      })
+      .catch(err => {
+        alert(err.message);
+      });
+    } else {
+      alert('please fill all required field')
+    }
+  }
+}
+
