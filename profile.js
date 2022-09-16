@@ -129,7 +129,7 @@ function getSelfData() {
     document.getElementById("profile-address").innerHTML = document.getElementById('field-address').value;
     document.getElementById("profile-website").innerHTML = document.getElementById('field-website').value;
     document.getElementById("profile-instagram").innerHTML = document.getElementById('field-instagram').value;
-    document.getElementById("profile-company-size").innerHTML = ocument.getElementById('field-company-size').valu;
+    document.getElementById("profile-company-size").innerHTML = document.getElementById('field-company-size').value;
     $('#modal-update-company').css("display", "none");
   });
 })();
