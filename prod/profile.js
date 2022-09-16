@@ -95,6 +95,8 @@ function getSelfData() {
         }
       })
     })
+    document.getElementById("profile-role").innerHTML = document.getElementById('field-role').value;
+    document.getElementById("profile-department").innerHTML = document.getElementById('field-department').value;
     $('#modal-update-user').css("display", "none");
   });
 })();
@@ -121,7 +123,13 @@ function getSelfData() {
         }
       })
     })
-    
+    document.getElementById("profile-company-name").innerHTML = document.getElementById('field-company-name').value;
+    document.getElementById("profile-about").innerHTML = document.getElementById('field-about').value;
+    document.getElementById("profile-industry").innerHTML = document.getElementById('field-industry').value ;
+    document.getElementById("profile-address").innerHTML = document.getElementById('field-address').value;
+    document.getElementById("profile-website").innerHTML = document.getElementById('field-website').value;
+    document.getElementById("profile-instagram").innerHTML = document.getElementById('field-instagram').value;
+    document.getElementById("profile-company-size").innerHTML = ocument.getElementById('field-company-size').valu;
     $('#modal-update-company').css("display", "none");
   });
 })();
