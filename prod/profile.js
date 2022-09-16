@@ -40,6 +40,28 @@ function getSelfData() {
     document.getElementById("field-role").value = res.client_profile?.userPosition ? res.client_profile?.userPosition : '';
     document.getElementById("field-department").value = res.client_profile?.department ? res.client_profile?.department : '';
     
+    document.getElementById("field-fullname").disabled = true;
+    document.getElementById("field-email").disabled = true;
+    document.getElementById("field-whatsapp").disabled = true;
+    document.getElementById("field-role").style.color = '#000000';
+    document.getElementById("field-department").style.color = '#000000';
+
+    document.getElementById("field-company-name").value = res.client_profile?.companyName ? res.client_profile?.companyName : '';
+    document.getElementById("field-about").value = res.client_profile?.about ? res.client_profile?.about : '';
+    document.getElementById("field-industry").value = res.client_profile?.industry_types ? res.client_profile?.industry_types : '';
+    document.getElementById("field-address").value = res.client_profile?.address ? res.client_profile?.address : '';
+    document.getElementById("field-website").value = res.client_profile?.companyWebsite ? res.client_profile?.companyWebsite : '';
+    document.getElementById("field-instagram").value = res.client_profile?.instagram ? res.client_profile?.instagram : '';
+    document.getElementById("field-company-size").value = res.client_profile?.size ? res.client_profile?.size : '';
+    
+    document.getElementById("field-company-name").style.color = '#000000';
+    document.getElementById("field-about").style.color = '#000000';
+    document.getElementById("field-industry").style.color = '#000000';
+    document.getElementById("field-address").style.color = '#000000';
+    document.getElementById("field-website").style.color = '#000000';
+    document.getElementById("field-instagram").style.color = '#000000';
+    document.getElementById("field-company-size").style.color = '#000000';
+    
     document.getElementById("profile-fullname").innerHTML = res.fullName ? res.fullName : '-';
     document.getElementById("profile-email").innerHTML = res.email ? res.email : '-';
     document.getElementById("profile-whatsapp").innerHTML = res.phoneNumber ? res.phoneNumber : '-';
@@ -56,10 +78,10 @@ function getSelfData() {
   })
 }
 
-(function updateData() {
-  const button = document.getElementById("update-button");
+(function updateDataUser() {
+  const button = document.getElementById("update-button-user");
   button.addEventListener("click", event => {
-    fetch(updateUrl, {  
+    fetch(updateUrl+sessionStorage.getItem('userId'), {  
       method: 'PUT',
       headers: {
         'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
@@ -67,13 +89,36 @@ function getSelfData() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        data:{
-            clientId: String(sessionStorage.getItem('userId')),
-            clientIdentifier: sessionStorage.getItem("username"),
-            talentId: String(talent.id),
-            watchedPage: "Secondary",
-            talentName: talent.talent_profile.name
-        }})
+        client_profile: {
+          userPosition: document.getElementById('field-role'),
+          department:  document.getElementById('field-department')
+        }
+      })
+    })
+  });
+})();
+
+(function updateDataCompany() {
+  const button = document.getElementById("update-button-company");
+  button.addEventListener("click", event => {
+    fetch(updateUrl+sessionStorage.getItem('userId'), {  
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        client_profile: {
+          companyName: document.getElementById('field-company-name'),
+          companyWebsite:  document.getElementById('field-website'),
+          about:  document.getElementById('field-about'),
+          address:  document.getElementById('field-address'),
+          instagram:  document.getElementById('field-instagram'),
+          size:  document.getElementById('field-company-size'),
+          industryTypes:  document.getElementById('field-industry'),
+        }
+      })
     })
   });
 })();
