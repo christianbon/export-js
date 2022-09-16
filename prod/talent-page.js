@@ -59,12 +59,14 @@ function getTalent() {
 
   const cardContainerFE = document.getElementById("card-container-frontend")
   const cardContainerBE = document.getElementById("card-container-backend")
+  const style = document.getElementById('card-talent-ui')
+  const card = style.cloneNode(true)
+  const emptyCard = style.cloneNode(true)
+  emptyCard.style.opacity = 0;
+  card.setAttribute('id', '');
+  card.style.display = 'block';
 
   function mappingData(talent, developerCategory){
-    const style = document.getElementById('card-talent-ui')
-    const card = style.cloneNode(true)
-    card.setAttribute('id', '');
-    card.style.display = 'block';
 
     // talentID
     const talentID = card.childNodes[0].childNodes[0].childNodes[1];
@@ -371,6 +373,7 @@ function getTalent() {
         })
         dataDevFE.forEach(talent => {
           mappingData(talent,'FE')
+          cardContainerFE.appendChild(emptyCard)
         })
         dataDevBE.forEach(talent => {
           mappingData(talent,'BE')
