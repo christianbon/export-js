@@ -48,7 +48,7 @@ function getSelfData() {
 
     document.getElementById("field-company-name").value = res.client_profile?.companyName ? res.client_profile?.companyName : '';
     document.getElementById("field-about").value = res.client_profile?.about ? res.client_profile?.about : '';
-    document.getElementById("field-industry").value = res.client_profile?.industry_types ? res.client_profile?.industry_types : '';
+    document.getElementById("field-industry").value = res.client_profile?.industryTypes ? res.client_profile?.industryTypes : '';
     document.getElementById("field-address").value = res.client_profile?.address ? res.client_profile?.address : '';
     document.getElementById("field-website").value = res.client_profile?.companyWebsite ? res.client_profile?.companyWebsite : '';
     document.getElementById("field-instagram").value = res.client_profile?.instagram ? res.client_profile?.instagram : '';
@@ -66,11 +66,11 @@ function getSelfData() {
     document.getElementById("profile-email").innerHTML = res.email ? res.email : '-';
     document.getElementById("profile-whatsapp").innerHTML = res.phoneNumber ? res.phoneNumber : '-';
     document.getElementById("profile-role").innerHTML = res.client_profile?.userPosition ? res.client_profile?.userPosition : '-';
-    document.getElementById("field-department").innerHTML = res.client_profile?.department ? res.client_profile?.department : '-';
+    document.getElementById("profile-department").innerHTML = res.client_profile?.department ? res.client_profile?.department : '-';
 
     document.getElementById("profile-company-name").innerHTML = res.client_profile?.companyName ? res.client_profile?.companyName : '-';
     document.getElementById("profile-about").innerHTML = res.client_profile?.about ? res.client_profile?.about : '-';
-    document.getElementById("profile-industry").innerHTML = res.client_profile?.industry_types ? res.client_profile?.industry_types : '-';
+    document.getElementById("profile-industry").innerHTML = res.client_profile?.industryTypes ? res.client_profile?.industryTypes : '-';
     document.getElementById("profile-address").innerHTML = res.client_profile?.address ? res.client_profile?.address : '-';
     document.getElementById("profile-website").innerHTML = res.client_profile?.companyWebsite ? res.client_profile?.companyWebsite : '-';
     document.getElementById("profile-instagram").innerHTML = res.client_profile?.instagram ? res.client_profile?.instagram : '-';
