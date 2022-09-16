@@ -373,7 +373,6 @@ function getTalent() {
         })
         dataDevFE.forEach(talent => {
           mappingData(talent,'FE')
-          cardContainerFE.appendChild(emptyCard)
         })
         dataDevBE.forEach(talent => {
           mappingData(talent,'BE')
