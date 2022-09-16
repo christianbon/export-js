@@ -383,15 +383,15 @@ function getTalent() {
           mappingData(talent,'FE')
         })
         const lastRowFe = dataDevFE.length % 3
-        for(let i = 0; i < 3-lastRowFe;i++){
-          addEmptyCard('FE')
+        for(let i = 0; i < (3-lastRowFe);i++){
+          addEmptyCard('FE');
         }
         dataDevBE.forEach(talent => {
           mappingData(talent,'BE')
         })
         const lastRowBe = dataDevBE.length % 3
-        for(let i = 0; i < 3-lastRowBe;i++){
-          addEmptyCard('BE')
+        for(let i = 0; i < (3-lastRowBe);i++){
+          addEmptyCard('BE');
         }
         cardContainerFE.childNodes[0].remove();
         cardContainerBE.childNodes[0].remove();
