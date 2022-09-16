@@ -354,10 +354,11 @@ function getTalent() {
     .then(data => {return data.json()})
     .then(res => {
       if (res.length > 0) {
-        
+        document.getElementById('no-data-label').style.display = 'none';
+        document.getElementById('sub-no-data-label').style.display = 'none';
+
         // modal close
         document.getElementById('modal-close').addEventListener('click', function(){
-          console.log('remove')
           document.getElementById('modal-bookmark').removeEventListener('click', function(){})
         })
 
