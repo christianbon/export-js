@@ -354,6 +354,7 @@ function getTalent() {
     .then(data => {return data.json()})
     .then(res => {
       if (res.length > 0) {
+        document.getElementById('no-data').style.display = 'none';
         document.getElementById('no-data-label').style.display = 'none';
         document.getElementById('sub-no-data-label').style.display = 'none';
 
