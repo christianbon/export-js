@@ -90,11 +90,12 @@ function getSelfData() {
       },
       body: JSON.stringify({
         client_profile: {
-          userPosition: document.getElementById('field-role'),
-          department:  document.getElementById('field-department')
+          userPosition: document.getElementById('field-role').value,
+          department:  document.getElementById('field-department').value
         }
       })
     })
+    $('#modal-update-user').css("display", "none");
   });
 })();
 
@@ -110,16 +111,18 @@ function getSelfData() {
       },
       body: JSON.stringify({
         client_profile: {
-          companyName: document.getElementById('field-company-name'),
-          companyWebsite:  document.getElementById('field-website'),
-          about:  document.getElementById('field-about'),
-          address:  document.getElementById('field-address'),
-          instagram:  document.getElementById('field-instagram'),
-          size:  document.getElementById('field-company-size'),
-          industryTypes:  document.getElementById('field-industry'),
+          companyName: document.getElementById('field-company-name').value,
+          companyWebsite:  document.getElementById('field-website').value,
+          about:  document.getElementById('field-about').value,
+          address:  document.getElementById('field-address').value,
+          instagram:  document.getElementById('field-instagram').value,
+          size:  document.getElementById('field-company-size').value,
+          industryTypes:  document.getElementById('field-industry').value,
         }
       })
     })
+    
+    $('#modal-update-company').css("display", "none");
   });
 })();
 
