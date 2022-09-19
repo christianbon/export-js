@@ -1,9 +1,13 @@
+// const webflowUrl = 'https://alta-talent-dashboard.webflow.io/';
+// const beUrl = 'https://assessment-alta.as.r.appspot.com';
+const webflowUrl = 'https://talent.alta.id/';
+const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
 
 (function logout() {
     const button = document.getElementById("confirm-logout");
     button.addEventListener("click", event => {
       sessionStorage.setItem("authToken", null);
-      window.location.replace("https://talent.alta.id/login");
+      window.location.replace(webflowUrl + "login");
     });
   })();
   
@@ -14,12 +18,12 @@
   
   function chechAuth() {
     const loginStatus = sessionStorage.getItem("userId");
-    if(loginStatus === null) window.location.replace("https://talent.alta.id/login");
+    if(loginStatus === null) window.location.replace(webflowUrl + "login");
   }
   
   
-  let url = 'https://assessment-alta-prod.as.r.appspot.com/api/users/';
-  let trackingURL = new URL('https://assessment-alta-prod.as.r.appspot.com/api/client-histories');
+  let url = beUrl + '/api/users/';
+  let trackingURL = new URL(beUrl + '/api/client-histories');
   
   function getTalent() {
     let options = {  

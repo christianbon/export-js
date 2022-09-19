@@ -1,9 +1,13 @@
+const webflowUrl = 'https://alta-talent-dashboard.webflow.io/';
+const beUrl = 'https://assessment-alta.as.r.appspot.com';
+// const webflowUrl = 'https://talent.alta.id/';
+// const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
 
 (function logout() {
   const button = document.getElementById("confirm-logout");
   button.addEventListener("click", event => {
     sessionStorage.setItem("authToken", null);
-    window.location.replace("https://alta-talent-dashboard.webflow.io/login");
+    window.location.replace(webflowUrl + "login");
   });
 })();
 
@@ -14,7 +18,7 @@ function changeUsername() {
 
 function chechAuth() {
   const loginStatus = sessionStorage.getItem("userId");
-  if(loginStatus === null) window.location.replace("https://alta-talent-dashboard.webflow.io/login");
+  if(loginStatus === null) window.location.replace(webflowUrl + "login");
 }
 
 function isBookmarked(id) {
@@ -25,10 +29,10 @@ function isBookmarked(id) {
   return filteredBookmark.length !== 0
 }
 
-let url = new URL('https://assessment-alta.as.r.appspot.com/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A');
-let trackingURL = new URL('https://assessment-alta.as.r.appspot.com/api/client-histories');
-let bookmarkURL = new URL('https://assessment-alta.as.r.appspot.com/api/bookmarks');
-let getBookmarkURL = new URL('https://assessment-alta.as.r.appspot.com/api/bookmarks?filters[clientId][$eq]=');
+let url = new URL(beUrl + '/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A');
+let trackingURL = new URL(beUrl + '/api/client-histories');
+let bookmarkURL = new URL(beUrl + '/api/bookmarks');
+let getBookmarkURL = new URL(beUrl + '/api/bookmarks?filters[clientId][$eq]=');
 
 
 function getTalent() {
@@ -350,14 +354,26 @@ function getTalent() {
     if(developerCategory === 'BE') cardContainerBE.appendChild(card);
   }
 
+  function addEmptyCard(developerCategory){
+    const style = document.getElementById('card-talent-ui')
+    const card = style.cloneNode(true)
+    card.setAttribute('id', '');
+    card.style.display = 'block';
+    card.style.opacity = 0;
+    if(developerCategory === 'FE') cardContainerFE.appendChild(card);
+    if(developerCategory === 'BE') cardContainerBE.appendChild(card);
+  }
+
   fetch(url, options)
     .then(data => {return data.json()})
     .then(res => {
       if (res.length > 0) {
-        
+        document.getElementById('no-data').style.display = 'none';
+        document.getElementById('no-data-label').style.display = 'none';
+        document.getElementById('sub-no-data-label').style.display = 'none';
+
         // modal close
         document.getElementById('modal-close').addEventListener('click', function(){
-          console.log('remove')
           document.getElementById('modal-bookmark').removeEventListener('click', function(){})
         })
 
@@ -370,9 +386,17 @@ function getTalent() {
         dataDevFE.forEach(talent => {
           mappingData(talent,'FE')
         })
+        const lastRowFe = dataDevFE.length % 3
+        for(let i = 0; i < (3-lastRowFe);i++){
+          addEmptyCard('FE');
+        }
         dataDevBE.forEach(talent => {
           mappingData(talent,'BE')
         })
+        const lastRowBe = dataDevBE.length % 3
+        for(let i = 0; i < (3-lastRowBe);i++){
+          addEmptyCard('BE');
+        }
         cardContainerFE.childNodes[0].remove();
         cardContainerBE.childNodes[0].remove();
       }

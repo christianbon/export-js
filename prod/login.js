@@ -1,6 +1,10 @@
+// const webflowUrl = 'https://alta-talent-dashboard.webflow.io/';
+// const beUrl = 'https://assessment-alta.as.r.appspot.com';
+const webflowUrl = 'https://talent.alta.id/';
+const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
 
 let form = document.getElementById('login-form');
-const url = 'https://assessment-alta-prod.as.r.appspot.com/api/auth/local/';
+const url = beUrl + '/api/auth/local/';
 form.addEventListener('submit', handlerCallback, true);
 
 function handlerCallback(event) {
@@ -23,7 +27,7 @@ function handlerCallback(event) {
           sessionStorage.setItem("authToken", res.jwt);
           sessionStorage.setItem("username", res.user.username);
           sessionStorage.setItem("userId", res.user.id);
-          window.location.replace("https://talent.alta.id/");
+          window.location.replace(webflowUrl);
       })
       .catch(err => {
       	alert(err.message);

@@ -1,6 +1,11 @@
+const webflowUrl = 'https://alta-talent-dashboard.webflow.io/';
+const beUrl = 'https://assessment-alta.as.r.appspot.com';
+// const webflowUrl = 'https://talent.alta.id/';
+// const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
+
 let form = document.getElementById('register-form');
 form.addEventListener('submit', handlerCallback, true);
-const url = 'https://assessment-alta.as.r.appspot.com/api/auth/local/register';
+const url = beUrl + '/api/auth/local/register';
 
 function handlerCallback(event) {
   event.preventDefault();
@@ -36,7 +41,7 @@ function handlerCallback(event) {
           sessionStorage.setItem("username", res.user.username);
           sessionStorage.setItem("authToken", res.jwt);
           sessionStorage.setItem("userId", res.user.id);
-        window.location.replace("https://alta-talent-dashboard.webflow.io/");
+        window.location.replace(webflowUrl);
       })
       .catch(err => {
         alert(err.message);
@@ -46,43 +51,4 @@ function handlerCallback(event) {
     }
   }
 }
-
-
-// (function register() {
-//   const button = document.getElementById("register-button");
-//   const url = 'https://assessment-alta.as.r.appspot.com/api/auth/local/register';
-//   button.addEventListener("click", event => {
-
-//     if(document.querySelector('#Nama').value !== '' &&
-//       document.querySelector('#Nama-Institusi').value !== '' &&
-//       document.querySelector('#No-Hp').value !== '' &&
-//       document.querySelector('#Email-4').value !== '' &&
-//       document.querySelector('#Password-2').value !== '' &&
-//       document.querySelector('#Konfirmasi-Password').value !== '' ){
-
-//       let formData = new FormData();
-      
-//       const companyData = JSON.stringify({
-//       companyName: document.querySelector('#Nama-Institusi').value,
-//       })
-      
-//       formData.append("username", document.querySelector('#Nama').value);
-//       formData.append("clientProfile", companyData);
-//       formData.append("phoneNumber", document.querySelector('#No-Hp').value);
-//       formData.append("email", document.querySelector('#Email-4').value);
-//       formData.append("password", document.querySelector('#Password-2').value);
-//       fetch(url,{
-//         method : 'POST',
-//         body : formData         
-//       })
-//       .then(data => {return data.json()})
-//       .then(res => {
-//         sessionStorage.setItem("authToken", res.jwt);
-//       })
-//       .catch(err => {
-//           document.getElementById('my-form-error-message').style.display = "block"
-//       });
-//     }
-//   });
-// })();
 

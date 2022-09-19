@@ -1,9 +1,13 @@
+// const webflowUrl = 'https://alta-talent-dashboard.webflow.io/';
+// const beUrl = 'https://assessment-alta.as.r.appspot.com';
+const webflowUrl = 'https://talent.alta.id/';
+const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
 
 (function logout() {
   const button = document.getElementById("confirm-logout");
   button.addEventListener("click", event => {
     sessionStorage.setItem("authToken", null);
-    window.location.replace("https://talent.alta.id/login");
+    window.location.replace(webflowUrl + "login");
   });
 })();
 
@@ -14,7 +18,7 @@ function changeUsername() {
 
 function chechAuth() {
   const loginStatus = sessionStorage.getItem("userId");
-  if(loginStatus === null) window.location.replace("https://talent.alta.id/login");
+  if(loginStatus === null) window.location.replace(webflowUrl + "login");
 }
 
 function isBookmarked(id) {
@@ -25,10 +29,10 @@ function isBookmarked(id) {
   return filteredBookmark.length !== 0
 }
 
-let url = new URL('https://assessment-alta-prod.as.r.appspot.com/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A');
-let trackingURL = new URL('https://assessment-alta-prod.as.r.appspot.com/api/client-histories');
-let bookmarkURL = new URL('https://assessment-alta-prod.as.r.appspot.com/api/bookmarks');
-let getBookmarkURL = new URL('https://assessment-alta-prod.as.r.appspot.com/api/bookmarks?filters[clientId][$eq]=');
+let url = new URL(beUrl + '/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A');
+let trackingURL = new URL(beUrl + '/api/client-histories');
+let bookmarkURL = new URL(beUrl + '/api/bookmarks');
+let getBookmarkURL = new URL(beUrl + '/api/bookmarks?filters[clientId][$eq]=');
 
 
 function getTalent() {
