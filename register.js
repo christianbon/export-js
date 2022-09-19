@@ -23,12 +23,12 @@ function handlerCallback(event) {
       let formData = new FormData();
       
       const companyData = JSON.stringify({
-      companyName: document.querySelector('#Nama-Institusi').value,
+        companyName: document.querySelector('#Nama-Institusi').value,
+        phoneNumber: document.querySelector('#No-Hp').value,
       })
       
       formData.append("username", document.querySelector('#Nama').value);
       formData.append("clientProfile", companyData);
-      formData.append("phoneNumber", document.querySelector('#No-Hp').value);
       formData.append("email", document.querySelector('#Email-4').value);
       formData.append("password", document.querySelector('#Password-2').value);
       fetch(url,{
@@ -51,4 +51,3 @@ function handlerCallback(event) {
     }
   }
 }
-

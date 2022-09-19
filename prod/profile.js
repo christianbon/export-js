@@ -39,15 +39,15 @@ function getSelfData() {
   fetch(url, options)
   .then(data => {return data.json()})
   .then(res => {
-    document.getElementById("field-fullname").value = res.fullName ? res.fullName : '';
+    document.getElementById("field-fullname").value = res.client_profile?.fullName ? res.client_profile?.fullName : '';
     document.getElementById("field-email").value = res.email ? res.email : '';
-    document.getElementById("field-whatsapp").value = res.phoneNumber ? res.phoneNumber : '';
+    document.getElementById("field-whatsapp").value = res.client_profile?.phoneNumber ? res.client_profile?.phoneNumber : '';
     document.getElementById("field-role").value = res.client_profile?.userPosition ? res.client_profile?.userPosition : '';
     document.getElementById("field-department").value = res.client_profile?.department ? res.client_profile?.department : '';
     
-    document.getElementById("field-fullname").disabled = true;
     document.getElementById("field-email").disabled = true;
-    document.getElementById("field-whatsapp").disabled = true;
+    document.getElementById("field-fullname").style.color = '#000000';
+    document.getElementById("field-whatsapp").style.color = '#000000';
     document.getElementById("field-role").style.color = '#000000';
     document.getElementById("field-department").style.color = '#000000';
 
@@ -67,9 +67,9 @@ function getSelfData() {
     document.getElementById("field-instagram").style.color = '#000000';
     document.getElementById("field-company-size").style.color = '#000000';
     
-    document.getElementById("profile-fullname").innerHTML = res.fullName ? res.fullName : '-';
+    document.getElementById("profile-fullname").innerHTML = res.client_profile?.fullName ? res.client_profile?.fullName : '-';
     document.getElementById("profile-email").innerHTML = res.email ? res.email : '-';
-    document.getElementById("profile-whatsapp").innerHTML = res.phoneNumber ? res.phoneNumber : '-';
+    document.getElementById("profile-whatsapp").innerHTML = res.client_profile?.phoneNumber ? res.client_profile?.phoneNumber : '-';
     document.getElementById("profile-role").innerHTML = res.client_profile?.userPosition ? res.client_profile?.userPosition : '-';
     document.getElementById("profile-department").innerHTML = res.client_profile?.department ? res.client_profile?.department : '-';
 
@@ -95,11 +95,15 @@ function getSelfData() {
       },
       body: JSON.stringify({
         client_profile: {
+          fullName: document.getElementById('field-fullname').value,
+          phoneNumber:  document.getElementById('field-whatsapp').value,
           userPosition: document.getElementById('field-role').value,
           department:  document.getElementById('field-department').value
         }
       })
     })
+    document.getElementById("profile-fullname").innerHTML = document.getElementById('field-fullname').value;
+    document.getElementById("profile-whatsapp").innerHTML = document.getElementById('field-whatsapp').value;
     document.getElementById("profile-role").innerHTML = document.getElementById('field-role').value;
     document.getElementById("profile-department").innerHTML = document.getElementById('field-department').value;
     $('#modal-update-user').css("display", "none");
