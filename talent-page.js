@@ -403,7 +403,6 @@ function getTalent() {
         }
         cardContainerFE.childNodes[0].remove();
         cardContainerBE.childNodes[0].remove();
-
       }
     })
     .then(res =>{
