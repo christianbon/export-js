@@ -368,6 +368,8 @@ function getTalent() {
     .then(data => {return data.json()})
     .then(res => {
       if (res.length > 0) {
+        document.getElementById('loading-animation').style.display = 'block';
+        
         document.getElementById('no-data').style.display = 'none';
         document.getElementById('no-data-label').style.display = 'none';
         document.getElementById('sub-no-data-label').style.display = 'none';
@@ -399,6 +401,8 @@ function getTalent() {
         }
         cardContainerFE.childNodes[0].remove();
         cardContainerBE.childNodes[0].remove();
+        document.getElementById('loading-animation').style.display = 'none';
+
       }
     })
 }
