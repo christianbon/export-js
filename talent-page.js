@@ -365,10 +365,12 @@ function getTalent() {
   }
 
   fetch(url, options)
-    .then(data => {return data.json()})
+    .then(data => {
+      document.getElementById('loading-animation').style.display = 'block';
+      return data.json()
+    })
     .then(res => {
       if (res.length > 0) {
-        document.getElementById('loading-animation').style.display = 'block';
         
         document.getElementById('no-data').style.display = 'none';
         document.getElementById('no-data-label').style.display = 'none';
@@ -401,9 +403,11 @@ function getTalent() {
         }
         cardContainerFE.childNodes[0].remove();
         cardContainerBE.childNodes[0].remove();
-        document.getElementById('loading-animation').style.display = 'none';
 
       }
+    })
+    .then(res => {
+      document.getElementById('loading-animation').style.display = 'none';
     })
 }
 
