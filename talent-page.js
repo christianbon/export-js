@@ -365,10 +365,7 @@ function getTalent() {
   }
 
   fetch(url, options)
-    .then(data => {
-      document.getElementById('loading-animation').style.display = 'block';
-      return data.json()
-    })
+    .then(data => { return data.json() })
     .then(res => {
       if (res.length > 0) {
         
@@ -405,9 +402,6 @@ function getTalent() {
         cardContainerBE.childNodes[0].remove();
 
       }
-    })
-    .then(res => {
-      document.getElementById('loading-animation').style.display = 'none';
     })
 }
 
