@@ -217,7 +217,7 @@ function getTalent() {
       modalPortfolio.innerHTML = talent.talent_profile.portofolio ? '<ocde style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.portofolio + '</code>' : '-';
 
       const modalProject = document.getElementById('modal-project')
-      modalProject.innerHTML = talent.talent_profile?.project ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile?.project + '</pre>' : '-';
+      modalProject.innerHTML = talent.talent_profile?.project ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile?.project + '</code>' : '-';
 
       const modalExpectedSalary = document.getElementById('modal-expected-salary')
       modalExpectedSalary.innerHTML = talent.talent_profile.expectedSalary ? 'Rp. ' + Number(talent.talent_profile.expectedSalary).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') : 'Rp. -';
@@ -331,7 +331,7 @@ function getTalent() {
           yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : endmonth + ' ' + endyear)
 
           const jobDescription =  cardExperience.childNodes[4];
-          jobDescription.innerHTML = '<pre style="font-size: 16px; font-family: poppins">' + data.jobDescription + '</pre>'
+          jobDescription.innerHTML = '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + data.jobDescription + '</code>'
     
           modalExperienceTab.appendChild(cardExperience);
         })

@@ -67,7 +67,7 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
           yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : endmonth + ' ' + endyear)
 
           const jobDescription =  cardExperience.childNodes[4];
-          jobDescription.innerHTML = '<pre style="font-size: 16px; font-family: poppins">' + data.jobDescription + '</pre>'
+          jobDescription.innerHTML = '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + data.jobDescription + '</code>'
           container.insertBefore(cardExperience, container.children[2+index]);
         })
         
@@ -102,11 +102,11 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
       '<p style="font-size: 16px; font-family: poppins">Soft Skill: ' + stringSoftSkill ? stringSoftSkill.join(', ') : '-' + '</p>';
 
       document.getElementById('modal-achievement').innerHTML = talent.talent_profile.achievement ? talent.talent_profile.achievement : '-';
-      document.getElementById('modal-education').innerHTML = talent.talent_profile.education ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile.education + '</pre>' : '-';
-      document.getElementById('modal-course').innerHTML = talent.talent_profile.course ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile.course + '</pre>' : '-';
+      document.getElementById('modal-education').innerHTML = talent.talent_profile.education ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.education + '</code>' : '-';
+      document.getElementById('modal-course').innerHTML = talent.talent_profile.course ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.course + '</code>' : '-';
       document.getElementById('modal-certification').innerHTML = talent.talent_profile.certification ? talent.talent_profile.certification : '-';
-      document.getElementById('modal-portfolio').innerHTML = talent.talent_profile.portofolio ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile.portofolio + '</pre>' : '-';
-      document.getElementById('modal-project').innerHTML = talent.talent_profile.project ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile.project + '</pre>' : '-';
+      document.getElementById('modal-portfolio').innerHTML = talent.talent_profile.portofolio ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.portofolio + '</code>' : '-';
+      document.getElementById('modal-project').innerHTML = talent.talent_profile.project ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.project + '</code>' : '-';
       const arrLanguage = talent.talent_profile.language.map((data) => {
         return data.name
       })
