@@ -5,7 +5,16 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
 
 let form = document.getElementById('login-form');
 const url = beUrl + '/api/auth/local/';
+const urlGetUser = beurl + '/api/users/'
 form.addEventListener('submit', handlerCallback, true);
+
+let options = {  
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+    'Content-Type': 'application/json',
+  },
+};
 
 function handlerCallback(event) {
   event.preventDefault();
@@ -24,8 +33,16 @@ function handlerCallback(event) {
       .then(data => {return data.json()})
       .then(res => {
       		if(res.error?.status === 400) throw res.error
+          
+          fetch(urlGetUser+ res.user.id + '?populate=*')
+          .then(data => {return data.json()})
+          .then(res => {
+            if(res.client_profile === null) throw 'User is not a client'
+            if (res) {
+              sessionStorage.setItem("username", res.client_profile.fullName);
+            }
+          })
           sessionStorage.setItem("authToken", res.jwt);
-          sessionStorage.setItem("username", res.user.username);
           sessionStorage.setItem("userId", res.user.id);
           window.location.replace(webflowUrl);
       })

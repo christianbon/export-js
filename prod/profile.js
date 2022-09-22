@@ -102,11 +102,13 @@ function getSelfData() {
         }
       })
     })
+    sessionStorage.setItem('username', document.getElementById('field-fullname').value);
     document.getElementById("profile-fullname").innerHTML = document.getElementById('field-fullname').value;
     document.getElementById("profile-whatsapp").innerHTML = document.getElementById('field-whatsapp').value;
     document.getElementById("profile-role").innerHTML = document.getElementById('field-role').value;
     document.getElementById("profile-department").innerHTML = document.getElementById('field-department').value;
     $('#modal-update-user').css("display", "none");
+    changeUsername();
   });
 })();
 
