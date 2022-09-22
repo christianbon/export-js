@@ -86,8 +86,8 @@ function getTalent() {
     } else {
       altaGraduate.style.display = 'block'
     }
-    if(talent.talent_profile.altaGraduate === 'graduate') altaGraduate.innerHTML = ''
-    if(talent.talent_profile.altaGraduate === 'on training') altaGraduate.innerHTML = ''
+    if(talent.talent_profile.altaGraduate === 'graduate') altaGraduate.innerHTML = 'Alta Graduate'
+    if(talent.talent_profile.altaGraduate === 'on training') altaGraduate.innerHTML = 'Alta On Training'
      
 
     // talent category
@@ -96,7 +96,7 @@ function getTalent() {
     
     // years of experience
     const yearsExperience = card.childNodes[1].childNodes[1];
-    yearsExperience.innerHTML = talent.talent_profile.yearsOfExperience ? talent.talent_profile.yearsOfExperience : '-' + ' Years Experience';
+    yearsExperience.innerHTML = talent.talent_profile.yearsOfExperience ? talent.talent_profile.yearsOfExperience  + ' Years Experience' : '- Years Experience';
 
     // assessment score
     const assessmentScore = card.childNodes[2].childNodes[1];
@@ -167,8 +167,8 @@ function getTalent() {
       } else {
         modalAltaGraduates.style.display = 'block'
       }
-      if(talent.talent_profile.altaGraduate === 'graduate') modalAltaGraduates.innerHTML = ''
-      if(talent.talent_profile.altaGraduate === 'on training') modalAltaGraduates.innerHTML = ''
+      if(talent.talent_profile.altaGraduate === 'graduate') modalAltaGraduates.innerHTML = 'Alta Graduate'
+      if(talent.talent_profile.altaGraduate === 'on training') modalAltaGraduates.innerHTML = 'Alta On Training'
 
       const modalBookmark = document.getElementById('modal-bookmark')
       if(isBookmarked(talent.id)) {
@@ -208,13 +208,13 @@ function getTalent() {
       modalAchievement.innerHTML = talent.talent_profile.achievement ? talent.talent_profile.achievement : '-';
 
       const modalEducation = document.getElementById('modal-education')
-      modalEducation.innerHTML = talent.talent_profile.education ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile.education + '</pre>' : '-';
+      modalEducation.innerHTML = talent.talent_profile.education ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.education + '</code>' : '-';
 
       const modalCertification = document.getElementById('modal-certification')
       modalCertification.innerHTML = talent.talent_profile.certification ? talent.talent_profile.certification : '-';
 
       const modalPortfolio = document.getElementById('modal-portfolio')
-      modalPortfolio.innerHTML = talent.talent_profile.portofolio ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile.portofolio + '</pre>' : '-';
+      modalPortfolio.innerHTML = talent.talent_profile.portofolio ? '<ocde style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.portofolio + '</code>' : '-';
 
       const modalProject = document.getElementById('modal-project')
       modalProject.innerHTML = talent.talent_profile?.project ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile?.project + '</pre>' : '-';
