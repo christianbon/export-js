@@ -6,7 +6,7 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
 let form = document.getElementById('register-form');
 form.addEventListener('submit', handlerCallback, true);
 const url = beUrl + '/api/auth/local/register';
-const urlGetUser = beurl + '/api/users/'
+const urlGetUser = beUrl + '/api/users/'
 
 let options = {  
   method: 'GET',
