@@ -67,7 +67,7 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
           yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : endmonth + ' ' + endyear)
 
           const jobDescription =  cardExperience.childNodes[4];
-          jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'
+          jobDescription.innerHTML = '<pre style="font-size: 16px; font-family: poppins">' + data.jobDescription + '</pre>'
           container.insertBefore(cardExperience, container.children[2+index]);
         })
         
@@ -93,17 +93,24 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
       })
       const modalSkill = document.getElementById('modal-skill')
       modalSkill.innerHTML = 
-      '<p><strong>Technical Skill</strong></p>' + 
-      '<p>Programming: ' + stringProgramming.join(', ') + '</p>'+ 
-      '<p>Tools: ' + stringTools.join(', ') + '</p>'+ 
-      '<p>Development Method: ' + stringDevMethod.join(', ') + '</p>'+ 
-      '<p>Additional Skill: ' + stringAddSkill.join(', ') + '</p>'+ 
-      '<p><strong>Other Skill</strong></p>' + 
-      '<p>Soft Skill: ' + stringSoftSkill.join(', ') + '</p>';
+      '<p style="font-size: 16px; font-family: poppins"><strong>Technical Skill</strong></p>' + 
+      '<p style="font-size: 16px; font-family: poppins">Programming: ' + stringProgramming ? stringProgramming.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 16px; font-family: poppins">Tools: ' + stringTools ? stringTools.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 16px; font-family: poppins">Development Method: ' + stringDevMethod ? stringDevMethod.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 16px; font-family: poppins">Additional Skill: ' + stringAddSkill ? stringAddSkill.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 16px; font-family: poppins"><strong>Other Skill</strong></p>' + 
+      '<p style="font-size: 16px; font-family: poppins">Soft Skill: ' + stringSoftSkill ? stringSoftSkill.join(', ') : '-' + '</p>';
 
       document.getElementById('modal-achievement').innerHTML = talent.talent_profile.achievement ? talent.talent_profile.achievement : '-';
-      document.getElementById('modal-education').innerHTML = talent.talent_profile.education ? '<pre style="font-family: poppins">' + talent.talent_profile.education + '</pre>' : '-';
+      document.getElementById('modal-education').innerHTML = talent.talent_profile.education ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile.education + '</pre>' : '-';
+      document.getElementById('modal-course').innerHTML = talent.talent_profile.course ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile.course + '</pre>' : '-';
       document.getElementById('modal-certification').innerHTML = talent.talent_profile.certification ? talent.talent_profile.certification : '-';
+      document.getElementById('modal-portfolio').innerHTML = talent.talent_profile.portofolio ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile.portofolio + '</pre>' : '-';
+      document.getElementById('modal-project').innerHTML = talent.talent_profile.project ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile.project + '</pre>' : '-';
+      const arrLanguage = talent.talent_profile.language.map((data) => {
+        return data.name
+      })
+      document.getElementById('modal-language').innerHTML = talent.talent_profile.arrLanguage.length > 0 ? arrLanguage.join(', ') + talent.talent_profile.education : '-';
     }
   
     fetch(url+ sessionStorage.getItem('selectedTalent') +'?populate[talent_profile][populate]=%2A', options)

@@ -81,7 +81,14 @@ function getTalent() {
 
     // alta graduates
     const altaGraduate = card.childNodes[0].childNodes[0].childNodes[2];
-    altaGraduate.style.display = talent.talent_profile.altaGraduate ? 'block' : 'none'
+    if(talent.talent_profile.altaGraduate === 'none' || !talent.talent_profile.altaGraduate || talent.talent_profile.altaGraduate === null) {
+      altaGraduate.style.display = 'none'
+    } else {
+      altaGraduate.style.display = 'block'
+    }
+    if(talent.talent_profile.altaGraduate === 'graduate') altaGraduate.innerHTML = ''
+    if(talent.talent_profile.altaGraduate === 'on training') altaGraduate.innerHTML = ''
+     
 
     // talent category
     const talentCategory = card.getElementsByTagName('H4')[0];
@@ -89,11 +96,11 @@ function getTalent() {
     
     // years of experience
     const yearsExperience = card.childNodes[1].childNodes[1];
-    yearsExperience.innerHTML = talent.talent_profile.yearsOfExperience + ' Years Experience';
+    yearsExperience.innerHTML = talent.talent_profile.yearsOfExperience ? talent.talent_profile.yearsOfExperience : '-' + ' Years Experience';
 
     // assessment score
     const assessmentScore = card.childNodes[2].childNodes[1];
-    assessmentScore.innerHTML = talent.talent_profile.assessmentScore;
+    assessmentScore.innerHTML = talent.talent_profile.assessmentScore ? talent.talent_profile.assessmentScore : '-';
 
     // programming language
       const programming1 = card.childNodes[4].childNodes[0];
@@ -103,7 +110,7 @@ function getTalent() {
     if(talent.talent_profile.programming_languages.length > 0) {
       programming1.innerHTML = talent.talent_profile.programming_languages[0].name;
     } else {
-      programming1.remove();
+      programming1.innerHTML = 'none';
     }
     
     if(talent.talent_profile.programming_languages.length > 1) {
@@ -127,7 +134,7 @@ function getTalent() {
     if(talent.talent_profile.tools.length > 0) {
       tools1.innerHTML = talent.talent_profile.tools[0].name;
     } else {
-      tools1.remove();
+      tools1.innerHTML = 'none';
     }
     
     if(talent.talent_profile.tools.length > 1) {
@@ -155,7 +162,13 @@ function getTalent() {
       modalTalentCategory.innerHTML = talent.talent_profile.talentCategory + ' Developer';
 
       const modalAltaGraduates = document.getElementById('modal-alta-graduate')
-      modalAltaGraduates.style.display = talent.talent_profile.altaGraduate ? 'block' : 'none';
+      if(talent.talent_profile.altaGraduate === 'none' || !talent.talent_profile.altaGraduate || talent.talent_profile.altaGraduate === null) {
+        modalAltaGraduates.style.display = 'none'
+      } else {
+        modalAltaGraduates.style.display = 'block'
+      }
+      if(talent.talent_profile.altaGraduate === 'graduate') modalAltaGraduates.innerHTML = ''
+      if(talent.talent_profile.altaGraduate === 'on training') modalAltaGraduates.innerHTML = ''
 
       const modalBookmark = document.getElementById('modal-bookmark')
       if(isBookmarked(talent.id)) {
@@ -165,7 +178,7 @@ function getTalent() {
       }
       
       const modalTalentLocation = document.getElementById('modal-talent-location')
-      modalTalentLocation.innerHTML = talent.talent_profile.currentCity + ', ' + talent.talent_profile.currentProvince;
+      modalTalentLocation.innerHTML =  talent.talent_profile.currentCity ? talent.talent_profile.currentCity : '-' + ', ' + talent.talent_profile.currentProvince ? talent.talent_profile.currentProvince : '-';
       
       const modalAssessmentScore = document.getElementById('modal-assessment-score')
       modalAssessmentScore.innerHTML = talent.talent_profile.assessmentScore ? talent.talent_profile.assessmentScore : '-';
@@ -180,7 +193,7 @@ function getTalent() {
       modalStatus.innerHTML = talent.talent_profile.status ? talent.talent_profile.status : '-';
       
       const modalYearsExperience = document.getElementById('modal-years-experience')
-      modalYearsExperience.innerHTML = talent.talent_profile.yearsOfExperience + ' Years';
+      modalYearsExperience.innerHTML = talent.talent_profile.yearsOfExperience ? talent.talent_profile.yearsOfExperience + ' Years' : '-';
       
       const modalGender = document.getElementById('modal-gender')
       modalGender.innerHTML = talent.talent_profile.gender ? talent.talent_profile.gender : '-';
@@ -189,31 +202,31 @@ function getTalent() {
       modalTalentAge.innerHTML = talent.talent_profile.age ? talent.talent_profile.age : '-';
 
       const modalProfileSummary = document.getElementById('modal-profile-summary')
-      modalProfileSummary.innerHTML = talent.talent_profile.profileSummary;
+      modalProfileSummary.innerHTML = talent.talent_profile.profileSummary ? talent.talent_profile.profileSummary : '-';
 
       const modalAchievement = document.getElementById('modal-achievement')
-      modalAchievement.innerHTML = talent.talent_profile.achievement;
+      modalAchievement.innerHTML = talent.talent_profile.achievement ? talent.talent_profile.achievement : '-';
 
       const modalEducation = document.getElementById('modal-education')
-      modalEducation.innerHTML = '<pre style="font-family: poppins">' + talent.talent_profile.education + '</pre>';
+      modalEducation.innerHTML = talent.talent_profile.education ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile.education + '</pre>' : '-';
 
       const modalCertification = document.getElementById('modal-certification')
-      modalCertification.innerHTML = talent.talent_profile.certification;
+      modalCertification.innerHTML = talent.talent_profile.certification ? talent.talent_profile.certification : '-';
 
       const modalPortfolio = document.getElementById('modal-portfolio')
-      modalPortfolio.innerHTML = '<pre style="font-family: poppins">' + talent.talent_profile.portofolio + '</pre>';
+      modalPortfolio.innerHTML = talent.talent_profile.portofolio ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile.portofolio + '</pre>' : '-';
 
       const modalProject = document.getElementById('modal-project')
-      modalProject.innerHTML = '<pre style="font-family: poppins">' + talent.talent_profile?.project + '</pre>';
+      modalProject.innerHTML = talent.talent_profile?.project ? '<pre style="font-size: 16px; font-family: poppins">' + talent.talent_profile?.project + '</pre>' : '-';
 
       const modalExpectedSalary = document.getElementById('modal-expected-salary')
-      modalExpectedSalary.innerHTML = 'Rp. ' + Number(talent.talent_profile.expectedSalary).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+      modalExpectedSalary.innerHTML = talent.talent_profile.expectedSalary ? 'Rp. ' + Number(talent.talent_profile.expectedSalary).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') : 'Rp. -';
 
       const modalPreferedLocation = document.getElementById('modal-work-location')
-      modalPreferedLocation.innerHTML = talent.talent_profile.preferredWorkLocation;
+      modalPreferedLocation.innerHTML = talent.talent_profile.preferredWorkLocation ? talent.talent_profile.preferredWorkLocation : '-';
 
       const modalSpecialization = document.getElementById('modal-specialization')
-      modalSpecialization.innerHTML = talent.talent_profile.preferredSpecialization;
+      modalSpecialization.innerHTML = talent.talent_profile.preferredSpecialization ? talent.talent_profile.preferredSpecialization : '-';
 
       const stringProgramming = talent.talent_profile.programming_languages.map((data) => {
         return data.name
@@ -232,13 +245,13 @@ function getTalent() {
       })
       const modalSkill = document.getElementById('modal-skill')
       modalSkill.innerHTML = 
-      '<p><strong>Technical Skill</strong></p>' + 
-      '<p>Programming: ' + stringProgramming.join(', ') + '</p>'+ 
-      '<p>Tools: ' + stringTools.join(', ') + '</p>'+ 
-      '<p>Development Method: ' + stringDevMethod.join(', ') + '</p>'+ 
-      '<p>Additional Skill: ' + stringAddSkill.join(', ') + '</p>'+ 
-      '<p><strong>Other Skill</strong></p>' + 
-      '<p>Soft Skill: ' + stringSoftSkill.join(', ') + '</p>';
+      '<p style="font-size: 16px; font-family: poppins"><strong>Technical Skill</strong></p>' + 
+      '<p style="font-size: 16px; font-family: poppins">Programming: ' + stringProgramming ? stringProgramming.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 16px; font-family: poppins">Tools: ' + stringTools ? stringTools.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 16px; font-family: poppins">Development Method: ' + stringDevMethod ? stringDevMethod.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 16px; font-family: poppins">Additional Skill: ' + stringAddSkill ? stringAddSkill.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 16px; font-family: poppins"><strong>Other Skill</strong></p>' + 
+      '<p style="font-size: 16px; font-family: poppins">Soft Skill: ' + stringSoftSkill ? stringSoftSkill.join(', ') : '-' + '</p>';
 
       // when #bookmark clicked
       modalBookmark.addEventListener('click',function handler(){
@@ -318,7 +331,7 @@ function getTalent() {
           yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : endmonth + ' ' + endyear)
 
           const jobDescription =  cardExperience.childNodes[4];
-          jobDescription.innerHTML = '<pre style="font-family: poppins">' + data.jobDescription + '</pre>'
+          jobDescription.innerHTML = '<pre style="font-size: 16px; font-family: poppins">' + data.jobDescription + '</pre>'
     
           modalExperienceTab.appendChild(cardExperience);
         })
