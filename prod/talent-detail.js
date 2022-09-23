@@ -38,6 +38,7 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
   
     function mappingData(talent){
       document.getElementById("talent-name").innerHTML = talent.talent_profile?.name ? talent.talent_profile.name : '-';
+      document.getElementById("talent-city").innerHTML = talent.talent_profile.currentCity ? talent.talent_profile.currentCity : '-';
       document.getElementById("talent-email").innerHTML = talent.email ? talent.email : '-';
       document.getElementById("talent-phone").innerHTML = talent.talent_profile.phoneNumber ? talent.talent_profile.phoneNumber : '-';
       document.getElementById("talent-linkedin").innerHTML = talent.talent_profile?.linkedIn ? talent.talent_profile?.linkedIn : '-';
