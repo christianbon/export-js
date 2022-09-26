@@ -312,7 +312,7 @@ function getTalent() {
         }
         talent.talent_profile.experiences.map((data)=>{
           console.log({data})
-          const copyStyle = {...cardExperience}
+          const copyStyle = cardExperience
           const experiencePosition = copyStyle.getElementsByTagName('H4')[0];
           experiencePosition.innerHTML = data?.position
 
