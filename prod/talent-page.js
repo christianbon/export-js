@@ -311,14 +311,15 @@ function getTalent() {
           modalExperienceTab.removeChild(modalExperienceTab.firstChild);
         }
         talent.talent_profile.experiences.map((data)=>{
-          console.log({cardExperience})
-          const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
+          console.log({data})
+          const copyStyle = {...cardExperience}
+          const experiencePosition = copyStyle.getElementsByTagName('H4')[0];
           experiencePosition.innerHTML = data?.position
 
-          const companyName =  cardExperience.childNodes[1];
+          const companyName =  copyStyle.childNodes[1];
           companyName.innerHTML = data?.companyName
 
-          const yearsExperience =  cardExperience.childNodes[2];
+          const yearsExperience =  copyStyle.childNodes[2];
           let endyear, endmonth, startyear, startmonth
           const startDate = new Date(data.dateStart)
           startyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(startDate);
@@ -330,13 +331,10 @@ function getTalent() {
           }
           yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : endmonth + ' ' + endyear)
 
-          const jobDescription =  cardExperience.childNodes[4];
+          const jobDescription =  copyStyle.childNodes[4];
           jobDescription.innerHTML = data.jobDescription ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + data.jobDescription + '</code>' : '-'
-          console.log({cardExperience})
     
-          modalExperienceTab.appendChild(cardExperience);
-          console.log({modalExperienceTab})
-
+          modalExperienceTab.appendChild(copyStyle);
         })
       } else {
         modalExperienceTab.style.display = 'none'
