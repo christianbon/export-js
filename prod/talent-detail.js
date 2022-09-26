@@ -57,13 +57,21 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
 
           const yearsExperience =  cardExperience.childNodes[2];
           let endyear, endmonth, startyear, startmonth
-          const startDate = new Date(data.dateStart)
-          startyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(startDate);
-          startmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(startDate);
+          if(data.dateStart) {
+            const startDate = new Date(data.dateStart)
+            startyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(startDate);
+            startmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(startDate);
+          }else{
+            startyear = 'not specified'
+          }
           if(!data.present) {
-            const endDate = new Date(data.dateStart)
-            endyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(endDate);
-            endmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(endDate);
+            if(data.dateEnd) {
+              const endDate = new Date(data.dateEnd)
+              endyear = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(endDate);
+              endmonth = new Intl.DateTimeFormat('en', { month: 'short' }).format(endDate);
+            }else{
+              endyear = 'not specified'
+            }
           }
           yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : endmonth + ' ' + endyear)
 
