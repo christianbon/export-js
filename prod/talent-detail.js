@@ -113,7 +113,7 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
       document.getElementById('modal-achievement').innerHTML = talent.talent_profile.achievement ? talent.talent_profile.achievement : '-';
       document.getElementById('modal-education').innerHTML = talent.talent_profile.education ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.education + '</code>' : '-';
       document.getElementById('modal-course').innerHTML = talent.talent_profile.course ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.course + '</code>' : '-';
-      document.getElementById('modal-certification').innerHTML = talent.talent_profile.certification ? talent.talent_profile.certification : '-';
+      document.getElementById('modal-certification').innerHTML = talent.talent_profile.certification ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.certification + '</code>' : '-';
       document.getElementById('modal-portfolio').innerHTML = talent.talent_profile.portofolio ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.portofolio + '</code>' : '-';
       document.getElementById('modal-project').innerHTML = talent.talent_profile.project ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.project + '</code>' : '-';
       const arrLanguage = talent.talent_profile.language.map((data) => {

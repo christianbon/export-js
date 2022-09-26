@@ -211,7 +211,7 @@ function getTalent() {
       modalEducation.innerHTML = talent.talent_profile.education ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.education + '</code>' : '-';
 
       const modalCertification = document.getElementById('modal-certification')
-      modalCertification.innerHTML = talent.talent_profile.certification ? talent.talent_profile.certification : '-';
+      modalCertification.innerHTML = talent.talent_profile.certification ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.certification + '</code>' : '-';
 
       const modalPortfolio = document.getElementById('modal-portfolio')
       modalPortfolio.innerHTML = talent.talent_profile.portofolio ? '<ocde style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.portofolio + '</code>' : '-';
