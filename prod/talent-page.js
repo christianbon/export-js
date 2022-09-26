@@ -331,7 +331,7 @@ function getTalent() {
           yearsExperience.innerHTML = startmonth + ' ' + startyear + ' - ' + (data.present ? 'Present' : endmonth + ' ' + endyear)
 
           const jobDescription =  cardExperience.childNodes[4];
-          jobDescription.innerHTML = data.jobDescription ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + data.jobDescription + '</code>' : '-'
+          jobDescription.innerHTML = data.jobDescription ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + data.jobDescription + '</code>' : '-'
     
           modalExperienceTab.appendChild(cardExperience);
         })
