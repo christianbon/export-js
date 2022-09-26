@@ -311,7 +311,7 @@ function getTalent() {
           modalExperienceTab.removeChild(modalExperienceTab.firstChild);
         }
         talent.talent_profile.experiences.map((data)=>{
-
+          console.log({cardExperience})
           const experiencePosition = cardExperience.getElementsByTagName('H4')[0];
           experiencePosition.innerHTML = data?.position
 
@@ -332,8 +332,11 @@ function getTalent() {
 
           const jobDescription =  cardExperience.childNodes[4];
           jobDescription.innerHTML = data.jobDescription ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + data.jobDescription + '</code>' : '-'
+          console.log({cardExperience})
     
           modalExperienceTab.appendChild(cardExperience);
+          console.log({modalExperienceTab})
+
         })
       } else {
         modalExperienceTab.style.display = 'none'
