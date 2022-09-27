@@ -12,8 +12,15 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
 })();
 
 function changeUsername() {
+  let options = {  
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+      'Content-Type': 'application/json',
+    },
+  };
   const urlGetUser = beUrl + '/api/users/'
-  fetch(urlGetUser+ sessionStorage.getItem('userId') + '?populate=*')
+  fetch(urlGetUser+ sessionStorage.getItem('userId') + '?populate=*', options)
   .then(data => {return data.json()})
   .then(res => {
     if(res.client_profile === null) throw 'User is not a client'
