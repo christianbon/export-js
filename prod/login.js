@@ -34,14 +34,6 @@ function handlerCallback(event) {
       .then(res => {
       		if(res.error?.status === 400) throw res.error
 
-          fetch(urlGetUser+ res.user.id + '?populate=*')
-          .then(data => {return data.json()})
-          .then(res => {
-            if(res.client_profile === null) throw 'User is not a client'
-            if (res) {
-              sessionStorage.setItem("username", res.client_profile.fullName);
-            }
-          })
           sessionStorage.setItem("authToken", res.jwt);
           sessionStorage.setItem("userId", res.user.id);
           window.location.replace(webflowUrl);
