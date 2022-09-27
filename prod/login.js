@@ -44,7 +44,8 @@ function handlerCallback(event) {
           })
           sessionStorage.setItem("authToken", res.jwt);
           sessionStorage.setItem("userId", res.user.id);
-          window.location.replace(webflowUrl);
+      }).then(res => {
+        window.location.replace(webflowUrl);
       })
       .catch(err => {
       	alert(err.message);
