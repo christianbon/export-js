@@ -12,17 +12,8 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
   })();
   
   function changeUsername() {
-    const urlGetUser = beUrl + '/api/users/'
-    fetch(urlGetUser+ sessionStorage.getItem('userId') + '?populate=*')
-    .then(data => {return data.json()})
-    .then(res => {
-      if(res.client_profile === null) throw 'User is not a client'
-      if (res) {
-        sessionStorage.setItem("username", res.client_profile.fullName);
-        username.innerHTML =  res.client_profile.fullName ?  res.client_profile.fullName : '-'
-      }
-    })
     const username = document.getElementById('profile-name');
+    username.innerHTML = sessionStorage.getItem("username");
   }
   
   function chechAuth() {
