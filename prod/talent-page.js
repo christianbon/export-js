@@ -19,7 +19,6 @@ function changeUsername() {
       'Content-Type': 'application/json',
     },
   };
-  console.log( sessionStorage.getItem('authToken'))
   const urlGetUser = beUrl + '/api/users/'
   fetch(urlGetUser+ sessionStorage.getItem('userId') + '?populate=*', options)
   .then(data => {return data.json()})
