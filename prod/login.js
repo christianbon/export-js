@@ -40,12 +40,11 @@ function handlerCallback(event) {
             if(res.client_profile === null) throw 'User is not a client'
             if (res) {
               sessionStorage.setItem("username", res.client_profile.fullName);
+              sessionStorage.setItem("authToken", res.jwt);
+              sessionStorage.setItem("userId", res.user.id);
+              window.location.replace(webflowUrl);
             }
           })
-          sessionStorage.setItem("authToken", res.jwt);
-          sessionStorage.setItem("userId", res.user.id);
-      }).then(res => {
-        window.location.replace(webflowUrl);
       })
       .catch(err => {
       	alert(err.message);
