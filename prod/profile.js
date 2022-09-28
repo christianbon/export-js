@@ -231,7 +231,7 @@ function getSavedTalent() {
     assessmentScore.innerHTML = talent.talent_profile.assessmentScore;
 
     // programming language
-    const programming = card.childNodes[4].childNodes[0];
+    const programming = card.childNodes[3].childNodes[1];
     if(talent.talent_profile.programming_languages.length > 0) {
       programming.innerHTML = makeCardListText(talent.talent_profile.programming_languages);
     } else {
@@ -239,7 +239,7 @@ function getSavedTalent() {
     }
 
     // tools
-    const tools = card.childNodes[6].childNodes[0];
+    const tools = card.childNodes[4].childNodes[1];
     if(talent.talent_profile.tools.length > 0) {
       tools.innerHTML = makeCardListText(talent.talent_profile.tools);
     } else {
