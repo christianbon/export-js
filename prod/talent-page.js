@@ -121,7 +121,7 @@ function getTalent() {
     // assessment score
     const assessmentScore = card.childNodes[2].childNodes[1];
     assessmentScore.innerHTML = talent.talent_profile.assessmentScore ? talent.talent_profile.assessmentScore : '-';
-
+    console.log(card.childNodes)
     // programming language
     const programming = card.childNodes[4].childNodes[0];
     if(talent.talent_profile.programming_languages.length > 0) {
