@@ -81,7 +81,7 @@ function getTalent() {
 
     // alta graduates
     const altaGraduate = card.childNodes[0].childNodes[0].childNodes[2];
-    altaGraduate.style.display = talent.talent_profile.altaGraduate ? 'block' : 'none'
+    altaGraduate.style.display = talent.talent_profile.altaGraduate ? 'flex' : 'none'
 
     // talent category
     const talentCategory = card.getElementsByTagName('H4')[0];

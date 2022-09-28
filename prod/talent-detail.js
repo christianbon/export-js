@@ -102,24 +102,24 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
       })
       const modalSkill = document.getElementById('modal-skill')
       modalSkill.innerHTML = 
-      '<p style="font-size: 16px; font-family: poppins"><strong>Technical Skill</strong></p>' + 
-      '<p style="font-size: 16px; font-family: poppins">Programming: ' + stringProgramming ? stringProgramming.join(', ') : '-' + '</p>'+ 
-      '<p style="font-size: 16px; font-family: poppins">Tools: ' + stringTools ? stringTools.join(', ') : '-' + '</p>'+ 
-      '<p style="font-size: 16px; font-family: poppins">Development Method: ' + stringDevMethod ? stringDevMethod.join(', ') : '-' + '</p>'+ 
-      '<p style="font-size: 16px; font-family: poppins">Additional Skill: ' + stringAddSkill ? stringAddSkill.join(', ') : '-' + '</p>'+ 
-      '<p style="font-size: 16px; font-family: poppins"><strong>Other Skill</strong></p>' + 
-      '<p style="font-size: 16px; font-family: poppins">Soft Skill: ' + stringSoftSkill ? stringSoftSkill.join(', ') : '-' + '</p>';
+      '<p style="font-size: 14px; font-family: poppins"><strong>Technical Skill</strong></p>' + 
+      '<p style="font-size: 14px; font-family: poppins">Programming: ' + stringProgramming ? stringProgramming.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins">Tools: ' + stringTools ? stringTools.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins">Development Method: ' + stringDevMethod ? stringDevMethod.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins">Additional Skill: ' + stringAddSkill ? stringAddSkill.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins"><strong>Other Skill</strong></p>' + 
+      '<p style="font-size: 14px; font-family: poppins">Soft Skill: ' + stringSoftSkill ? stringSoftSkill.join(', ') : '-' + '</p>';
 
       document.getElementById('modal-achievement').innerHTML = talent.talent_profile.achievement ? talent.talent_profile.achievement : '-';
-      document.getElementById('modal-education').innerHTML = talent.talent_profile.education ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.education + '</code>' : '-';
-      document.getElementById('modal-course').innerHTML = talent.talent_profile.course ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.course + '</code>' : '-';
+      document.getElementById('modal-education').innerHTML = talent.talent_profile.education ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.education + '</code>' : '-';
+      document.getElementById('modal-course').innerHTML = talent.talent_profile.course ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.course + '</code>' : '-';
       document.getElementById('modal-certification').innerHTML = talent.talent_profile.certification ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.certification + '</code>' : '-';
-      document.getElementById('modal-portfolio').innerHTML = talent.talent_profile.portofolio ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.portofolio + '</code>' : '-';
-      document.getElementById('modal-project').innerHTML = talent.talent_profile.project ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.project + '</code>' : '-';
+      document.getElementById('modal-portfolio').innerHTML = talent.talent_profile.portofolio ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.portofolio + '</code>' : '-';
+      document.getElementById('modal-project').innerHTML = talent.talent_profile.project ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.project + '</code>' : '-';
       const arrLanguage = talent.talent_profile.language.map((data) => {
         return data.name
       })
-      document.getElementById('modal-language').innerHTML = talent.talent_profile.arrLanguage.length > 0 ? arrLanguage.join(', ') + talent.talent_profile.education : '-';
+      document.getElementById('modal-language').innerHTML = talent.talent_profile.arrLanguage.length > 0 ? arrLanguage.join(', ') : '-';
     }
   
     fetch(url+ sessionStorage.getItem('selectedTalent') +'?populate[talent_profile][populate]=%2A', options)

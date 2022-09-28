@@ -104,7 +104,7 @@ function getTalent() {
     if(talent.talent_profile.altaGraduate === 'none' || !talent.talent_profile.altaGraduate || talent.talent_profile.altaGraduate === null) {
       altaGraduate.style.display = 'none'
     } else {
-      altaGraduate.style.display = 'block'
+      altaGraduate.style.display = 'flex'
     }
     if(talent.talent_profile.altaGraduate === 'graduate') altaGraduate.innerHTML = 'Alta Graduate'
     if(talent.talent_profile.altaGraduate === 'on training') altaGraduate.innerHTML = 'Alta On Training'
@@ -197,16 +197,16 @@ function getTalent() {
       modalAchievement.innerHTML = talent.talent_profile.achievement ? talent.talent_profile.achievement : '-';
 
       const modalEducation = document.getElementById('modal-education')
-      modalEducation.innerHTML = talent.talent_profile.education ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.education + '</code>' : '-';
+      modalEducation.innerHTML = talent.talent_profile.education ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.education + '</code>' : '-';
 
       const modalCertification = document.getElementById('modal-certification')
       modalCertification.innerHTML = talent.talent_profile.certification ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.certification + '</code>' : '-';
 
       const modalPortfolio = document.getElementById('modal-portfolio')
-      modalPortfolio.innerHTML = talent.talent_profile.portofolio ? '<ocde style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.portofolio + '</code>' : '-';
+      modalPortfolio.innerHTML = talent.talent_profile.portofolio ? '<ocde style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.portofolio + '</code>' : '-';
 
       const modalProject = document.getElementById('modal-project')
-      modalProject.innerHTML = talent.talent_profile?.project ? '<code style="font-size: 16px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile?.project + '</code>' : '-';
+      modalProject.innerHTML = talent.talent_profile?.project ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile?.project + '</code>' : '-';
 
       const modalExpectedSalary = document.getElementById('modal-expected-salary')
       modalExpectedSalary.innerHTML = talent.talent_profile.expectedSalary ? 'Rp. ' + Number(talent.talent_profile.expectedSalary).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') : 'Rp. -';
@@ -234,13 +234,13 @@ function getTalent() {
       })
       const modalSkill = document.getElementById('modal-skill')
       modalSkill.innerHTML = 
-      '<p style="font-size: 16px; font-family: poppins"><strong>Technical Skill</strong></p>' + 
-      '<p style="font-size: 16px; font-family: poppins">Programming: ' + stringProgramming ? stringProgramming.join(', ') : '-' + '</p>'+ 
-      '<p style="font-size: 16px; font-family: poppins">Tools: ' + stringTools ? stringTools.join(', ') : '-' + '</p>'+ 
-      '<p style="font-size: 16px; font-family: poppins">Development Method: ' + stringDevMethod ? stringDevMethod.join(', ') : '-' + '</p>'+ 
-      '<p style="font-size: 16px; font-family: poppins">Additional Skill: ' + stringAddSkill ? stringAddSkill.join(', ') : '-' + '</p>'+ 
-      '<p style="font-size: 16px; font-family: poppins"><strong>Other Skill</strong></p>' + 
-      '<p style="font-size: 16px; font-family: poppins">Soft Skill: ' + stringSoftSkill ? stringSoftSkill.join(', ') : '-' + '</p>';
+      '<p style="font-size: 14px; font-family: poppins"><strong>Technical Skill</strong></p>' + 
+      '<p style="font-size: 14px; font-family: poppins">Programming: ' + stringProgramming ? stringProgramming.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins">Tools: ' + stringTools ? stringTools.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins">Development Method: ' + stringDevMethod ? stringDevMethod.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins">Additional Skill: ' + stringAddSkill ? stringAddSkill.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins"><strong>Other Skill</strong></p>' + 
+      '<p style="font-size: 14px; font-family: poppins">Soft Skill: ' + stringSoftSkill ? stringSoftSkill.join(', ') : '-' + '</p>';
 
       // when #bookmark clicked
       modalBookmark.addEventListener('click',function handler(){
