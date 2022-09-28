@@ -22,6 +22,10 @@ function changeUsername() {
   username.innerHTML = sessionStorage.getItem("username");
 }
 
+function makeCardListText(data) {
+  return data.length > 3 ? data[0].name + ',' + data[1].name + data[2].name + ', ..' : data.map((data)=>{return data.name}).join(', ')
+}
+
 
 const url = beUrl + '/api/users/' + sessionStorage.getItem("userId") + '?populate[client_profile][populate]=%2A';
 const savedBookmarkUrl = beUrl + '/api/users?'
@@ -227,50 +231,19 @@ function getSavedTalent() {
     assessmentScore.innerHTML = talent.talent_profile.assessmentScore;
 
     // programming language
-      const programming1 = card.childNodes[4].childNodes[0];
-      const programming2 = card.childNodes[4].childNodes[1];
-      const programming3 = card.childNodes[4].childNodes[2];
-
+    const programming = card.childNodes[4].childNodes[0];
     if(talent.talent_profile.programming_languages.length > 0) {
-      programming1.innerHTML = talent.talent_profile.programming_languages[0].name;
+      programming.innerHTML = makeCardListText(talent.talent_profile.programming_languages);
     } else {
-      programming1.remove();
-    }
-    
-    if(talent.talent_profile.programming_languages.length > 1) {
-      programming2.innerHTML = talent.talent_profile.programming_languages[1].name;
-    } else {
-      programming2.remove();
-    }
-    
-    if(talent.talent_profile.programming_languages.length > 2) {
-      programming3.innerHTML = '...';
-    } else {
-      programming3.remove();
+      programming.innerHTML = 'none';
     }
 
-    
     // tools
-    const tools1 = card.childNodes[6].childNodes[0];
-    const tools2 = card.childNodes[6].childNodes[1];
-    const tools3 = card.childNodes[6].childNodes[2];
-
+    const tools = card.childNodes[6].childNodes[0];
     if(talent.talent_profile.tools.length > 0) {
-      tools1.innerHTML = talent.talent_profile.tools[0].name;
+      tools.innerHTML = makeCardListText(talent.talent_profile.tools);
     } else {
-      tools1.remove();
-    }
-    
-    if(talent.talent_profile.tools.length > 1) {
-      tools2.innerHTML = talent.talent_profile.tools[1].name;
-    } else {
-      tools2.remove();
-    }
-    
-    if(talent.talent_profile.tools.length > 2) {
-      tools3.innerHTML = '...';
-    } else {
-      tools3.remove();
+      tools.innerHTML = 'none';
     }
     cardContainer.appendChild(card);
   }
