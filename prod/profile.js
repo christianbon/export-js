@@ -23,7 +23,7 @@ function changeUsername() {
 }
 
 function makeCardListText(data) {
-  return data.length > 3 ? data[0].name + ',' + data[1].name + data[2].name + ', ..' : data.map((data)=>{return data.name}).join(', ')
+  return data.length > 3 ? data[0].name + ', ' + data[1].name + ', ' + data[2].name + ', ..' : data.map((data)=>{return data.name}).join(', ')
 }
 
 

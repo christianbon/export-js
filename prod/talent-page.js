@@ -46,7 +46,7 @@ function isBookmarked(id) {
 }
 
 function makeCardListText(data) {
-  return data.length > 3 ? data[0].name + ',' + data[1].name + data[2].name + ', ..' : data.map((data)=>{return data.name}).join(', ')
+  return data.length > 3 ? data[0].name + ', ' + data[1].name + ', ' + data[2].name + ', ..' : data.map((data)=>{return data.name}).join(', ')
 }
 
 let url = new URL(beUrl + '/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A');
@@ -121,7 +121,7 @@ function getTalent() {
     // assessment score
     const assessmentScore = card.childNodes[2].childNodes[1];
     assessmentScore.innerHTML = talent.talent_profile.assessmentScore ? talent.talent_profile.assessmentScore : '-';
-    
+
     // programming language
     const programming = card.childNodes[3].childNodes[1];
     if(talent.talent_profile.programming_languages.length > 0) {
