@@ -113,7 +113,7 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
       document.getElementById('modal-certification').innerHTML = talent.talent_profile.certification ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.certification + '</code>' : '-';
       document.getElementById('modal-portfolio').innerHTML = talent.talent_profile.portofolio ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.portofolio + '</code>' : '-';
       document.getElementById('modal-project').innerHTML = talent.talent_profile.project ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.project + '</code>' : '-';
-      const arrLanguage = talent.talent_profile.language.map((data) => {
+      const arrLanguage = talent.talent_profile.languages.map((data) => {
         return data.name
       })
       document.getElementById('modal-language').innerHTML = talent.talent_profile.arrLanguage.length > 0 ? arrLanguage.join(', ') : '-';
