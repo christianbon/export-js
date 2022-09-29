@@ -79,10 +79,7 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
           jobDescription.innerHTML = data.jobDescription ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + data.jobDescription + '</code>' : '-'
           container.insertBefore(cardExperience, container.children[3+index]);
         })
-        console.log(container.childNodes)
-        // container.childNodes[5+talent.talent_profile.experiences.length].remove();
-        // container.childNodes[4+talent.talent_profile.experiences.length].remove();
-        // container.childNodes[3+talent.talent_profile.experiences.length].remove();
+        container.childNodes[2].remove();
       }
 
       const stringProgramming = talent.talent_profile.programming_languages.map((data) => {
