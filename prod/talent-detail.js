@@ -77,7 +77,7 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
 
           const jobDescription =  cardExperience.childNodes[4];
           jobDescription.innerHTML = data.jobDescription ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + data.jobDescription + '</code>' : '-'
-          container.insertBefore(cardExperience, container.children[2+index]);
+          container.insertBefore(cardExperience, container.children[3+index]);
         })
         
         container.childNodes[5+talent.talent_profile.experiences.length].remove();
