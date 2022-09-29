@@ -110,7 +110,7 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
       '<p style="font-size: 14px; font-family: poppins"><strong>Other Skill</strong></p>' + 
       '<p style="font-size: 14px; font-family: poppins">Soft Skill: ' + stringSoftSkill ? stringSoftSkill.join(', ') : '-' + '</p>';
 
-      document.getElementById('modal-achievement').innerHTML = talent.talent_profile.achievement ? talent.talent_profile.achievement : '-';
+      document.getElementById('modal-achievement').innerHTML = talent.talent_profile.achievement ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.achievement + '</code>'  : '-';
       document.getElementById('modal-education').innerHTML = talent.talent_profile.education ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.education + '</code>' : '-';
       document.getElementById('modal-course').innerHTML = talent.talent_profile.course ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.course + '</code>' : '-';
       document.getElementById('modal-certification').innerHTML = talent.talent_profile.certification ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.certification + '</code>' : '-';

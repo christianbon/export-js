@@ -191,10 +191,10 @@ function getTalent() {
       modalTalentAge.innerHTML = talent.talent_profile.age ? talent.talent_profile.age : '-';
 
       const modalProfileSummary = document.getElementById('modal-profile-summary')
-      modalProfileSummary.innerHTML = talent.talent_profile.profileSummary ? talent.talent_profile.profileSummary : '-';
+      modalProfileSummary.innerHTML = talent.talent_profile.profileSummary ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.profileSummary + '</code>'  : '-';
 
       const modalAchievement = document.getElementById('modal-achievement')
-      modalAchievement.innerHTML = talent.talent_profile.achievement ? talent.talent_profile.achievement : '-';
+      modalAchievement.innerHTML = talent.talent_profile.achievement ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.achievement + '</code>'  : '-';
 
       const modalEducation = document.getElementById('modal-education')
       modalEducation.innerHTML = talent.talent_profile.education ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.education + '</code>' : '-';
