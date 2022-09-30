@@ -124,7 +124,6 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
       .then(res => {
         if (res) {
           mappingData(res)
-          // container.childNodes[0].remove();
         }
       })
   }
