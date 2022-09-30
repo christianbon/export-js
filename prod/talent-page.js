@@ -234,13 +234,13 @@ function getTalent() {
       })
       const modalSkill = document.getElementById('modal-skill')
       modalSkill.innerHTML = 
-      '<p><strong>Technical Skill</strong></p>' + 
-      '<p>Programming: ' + stringProgramming ? stringProgramming.join(', ') : '-' + '</p>'+ 
-      '<p>Tools: ' + stringTools ? stringTools.join(', ') : '-' + '</p>'+ 
-      '<p>Development Method: ' + stringDevMethod ? stringDevMethod.join(', ') : '-' + '</p>'+ 
-      '<p>Additional Skill: ' + stringAddSkill ? stringAddSkill.join(', ') : '-' + '</p>'+ 
-      '<p><strong>Other Skill</strong></p>' + 
-      '<p>Soft Skill: ' + stringSoftSkill ? stringSoftSkill.join(', ') : '-' + '</p>';
+      '<p style="font-size: 14px; font-family: poppins"><strong>Technical Skill</strong></p>' + 
+      '<p style="font-size: 14px; font-family: poppins">Programming: ' + (stringProgramming ? stringProgramming.join(', ') : '-') + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins">Tools: ' + (stringTools ? stringTools.join(', ') : '-') + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins">Development Method: ' + (stringDevMethod ? stringDevMethod.join(', ') : '-') + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins">Additional Skill: ' + (stringAddSkill ? stringAddSkill.join(', ') : '-') + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins"><strong>Other Skill</strong></p>' + 
+      '<p style="font-size: 14px; font-family: poppins">Soft Skill: ' + (stringSoftSkill ? stringSoftSkill.join(', ') : '-') + '</p>';
 
       // when #bookmark clicked
       modalBookmark.addEventListener('click',function handler(){
