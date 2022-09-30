@@ -116,6 +116,7 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
       const arrLanguage = talent.talent_profile.languages.map((data) => {
         return data.name
       })
+      console.log({arrLanguage})
       document.getElementById('modal-language').innerHTML = talent.talent_profile.arrLanguage.length > 0 ? arrLanguage.join(', ') : '-';
     }
   
