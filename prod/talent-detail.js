@@ -100,12 +100,12 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
       const modalSkill = document.getElementById('modal-skill')
       modalSkill.innerHTML = 
       '<p style="font-size: 14px; font-family: poppins"><strong>Technical Skill</strong></p>' + 
-      '<p style="font-size: 14px; font-family: poppins">Programming: ' + stringProgramming ? stringProgramming.join(', ') : '-' + '</p>'+ 
-      '<p style="font-size: 14px; font-family: poppins">Tools: ' + stringTools ? stringTools.join(', ') : '-' + '</p>'+ 
-      '<p style="font-size: 14px; font-family: poppins">Development Method: ' + stringDevMethod ? stringDevMethod.join(', ') : '-' + '</p>'+ 
-      '<p style="font-size: 14px; font-family: poppins">Additional Skill: ' + stringAddSkill ? stringAddSkill.join(', ') : '-' + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins">Programming: ' + (stringProgramming ? stringProgramming.join(', ') : '-') + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins">Tools: ' + (stringTools ? stringTools.join(', ') : '-') + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins">Development Method: ' + (stringDevMethod ? stringDevMethod.join(', ') : '-') + '</p>'+ 
+      '<p style="font-size: 14px; font-family: poppins">Additional Skill: ' + (stringAddSkill ? stringAddSkill.join(', ') : '-') + '</p>'+ 
       '<p style="font-size: 14px; font-family: poppins"><strong>Other Skill</strong></p>' + 
-      '<p style="font-size: 14px; font-family: poppins">Soft Skill: ' + stringSoftSkill ? stringSoftSkill.join(', ') : '-' + '</p>';
+      '<p style="font-size: 14px; font-family: poppins">Soft Skill: ' + (stringSoftSkill ? stringSoftSkill.join(', ') : '-') + '</p>';
 
       document.getElementById('modal-achievement').innerHTML = talent.talent_profile.achievement ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.achievement + '</code>'  : '-';
       document.getElementById('modal-education').innerHTML = talent.talent_profile.education ? '<code style="font-size: 14px; font-family: poppins; white-space:pre-wrap">' + talent.talent_profile.education + '</code>' : '-';
