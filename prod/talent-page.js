@@ -154,7 +154,7 @@ function getTalent() {
       if(talent.talent_profile.altaGraduate === 'none' || !talent.talent_profile.altaGraduate || talent.talent_profile.altaGraduate === null) {
         modalAltaGraduates.style.display = 'none'
       } else {
-        modalAltaGraduates.style.display = 'block'
+        modalAltaGraduates.style.display = 'flex'
       }
       if(talent.talent_profile.altaGraduate === 'graduate') modalAltaGraduates.innerHTML = 'Alta Graduate'
       if(talent.talent_profile.altaGraduate === 'on training') modalAltaGraduates.innerHTML = 'Alta On Training'
