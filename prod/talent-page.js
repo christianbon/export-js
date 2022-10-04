@@ -426,5 +426,5 @@ function getTalent() {
 (function() {
   chechAuth()
   changeUsername()
-  getTalent();
+  // getTalent();
 })();
