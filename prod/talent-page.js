@@ -89,8 +89,6 @@ function getTalent() {
     const card = style.cloneNode(true)
     card.setAttribute('id', '');
     card.style.display = 'block';
-    console.log(card.childNodes)
-    console.log(card.childNodes[1])
 
     // talentID
     const talentID = card.childNodes[0].childNodes[0].childNodes[1];
@@ -121,11 +119,15 @@ function getTalent() {
     yearsExperience.innerHTML = talent.talent_profile.yearsOfExperience ? talent.talent_profile.yearsOfExperience  + ' Years Experience' : '- Years Experience';
 
     // assessment score
-    // const assessmentScore = card.childNodes[2].childNodes[1];
-    // assessmentScore.innerHTML = talent.talent_profile.assessmentScore ? talent.talent_profile.assessmentScore : '-';
+    const level = card.childNodes[2].childNodes[0].childNodes[1].childNodes[0];
+    level.innerHTML = talent.talent_profile.assessmentLevel ? talent.talent_profile.assessmentLevel : '-';
+    const score = card.childNodes[2].childNodes[1].childNodes[1].childNodes[0];
+    score.innerHTML = talent.talent_profile.assessmentScore ? talent.talent_profile.assessmentScore : '-';
+    const hackerrank = card.childNodes[2].childNodes[2].childNodes[1].childNodes[0];
+    hackerrank.innerHTML = talent.talent_profile.assessmentLevel ? talent.talent_profile.assessmentLevel : '-';
 
     // programming language
-    const programming = card.childNodes[3].childNodes[1];
+    const programming = card.childNodes[4].childNodes[1];
     if(talent.talent_profile.programming_languages.length > 0) {
       programming.innerHTML = makeCardListText(talent.talent_profile.programming_languages);
     } else {
@@ -133,7 +135,7 @@ function getTalent() {
     }
 
     // tools
-    const tools = card.childNodes[4].childNodes[1];
+    const tools = card.childNodes[5].childNodes[1];
     if(talent.talent_profile.tools.length > 0) {
       tools.innerHTML = makeCardListText(talent.talent_profile.tools);
     } else {
@@ -426,5 +428,5 @@ function getTalent() {
 (function() {
   chechAuth()
   changeUsername()
-  // getTalent();
+  getTalent();
 })();
