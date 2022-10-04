@@ -49,7 +49,7 @@ function makeCardListText(data) {
   return data.length > 3 ? data[0].name + ', ' + data[1].name + ', ' + data[2].name + ', ..' : data.map((data)=>{return data.name}).join(', ')
 }
 
-let url = new URL(beUrl + '/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A&sort[0]=talent_profile[assessmentLevel]&sort[1]=talent_profile[assessmentScore]&sort[2]=talent_profile[hackerrankScore]&sort[3]=talent_profile[yearsOfExperience]');
+let url = new URL(beUrl + '/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A&sort[0]=talent_profile[assessmentLevel]%3Adesc&sort[1]=talent_profile[assessmentScore]%3Adesc&sort[2]=talent_profile[hackerrankScore]%3Adesc&sort[3]=talent_profile[yearsOfExperience]%3Adesc');
 let trackingURL = new URL(beUrl + '/api/client-histories');
 let bookmarkURL = new URL(beUrl + '/api/bookmarks');
 let getBookmarkURL = new URL(beUrl + '/api/bookmarks?filters[clientId][$eq]=');
