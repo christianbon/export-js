@@ -121,8 +121,8 @@ function getTalent() {
     yearsExperience.innerHTML = talent.talent_profile.yearsOfExperience ? talent.talent_profile.yearsOfExperience  + ' Years Experience' : '- Years Experience';
 
     // assessment score
-    const assessmentScore = card.childNodes[2].childNodes[1];
-    assessmentScore.innerHTML = talent.talent_profile.assessmentScore ? talent.talent_profile.assessmentScore : '-';
+    // const assessmentScore = card.childNodes[2].childNodes[1];
+    // assessmentScore.innerHTML = talent.talent_profile.assessmentScore ? talent.talent_profile.assessmentScore : '-';
 
     // programming language
     const programming = card.childNodes[3].childNodes[1];
