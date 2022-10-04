@@ -89,6 +89,8 @@ function getTalent() {
     const card = style.cloneNode(true)
     card.setAttribute('id', '');
     card.style.display = 'block';
+    console.log(card.childNodes)
+    console.log(card.childNodes[1])
 
     // talentID
     const talentID = card.childNodes[0].childNodes[0].childNodes[1];
