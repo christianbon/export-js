@@ -90,8 +90,6 @@ function getTalent() {
     card.setAttribute('id', '');
     card.style.display = 'block';
 
-    console.log(card.childNodes)
-
     // talentID
     const talentID = card.childNodes[0].childNodes[0].childNodes[1];
     talentID.innerHTML = 'ID - ' + talent.id;
@@ -145,7 +143,7 @@ function getTalent() {
     }
 
     // when clicked
-    card.addEventListener('click', function() {
+    card.childNodes[1].addEventListener('click', function() {
       // set selected talent ID
       sessionStorage.setItem('selectedTalent', talent.id)
 
