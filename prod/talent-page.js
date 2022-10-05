@@ -96,7 +96,7 @@ function getTalent() {
 
     // bookmark color
     if(isBookmarked(talent.id)) {
-      card.childNodes[0].childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa solid 900'";
+      card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa solid 900'";
     }
 
     // alta graduates
