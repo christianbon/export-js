@@ -113,23 +113,23 @@ function getTalent() {
      
 
     // talent category
-    const talentCategory = card.getElementsByTagName('H4')[0];
+    const talentCategory = card.childNodes[1].getElementsByTagName('H4')[0];
     talentCategory.innerHTML = talent.talent_profile.talentCategory;
     
     // years of experience
-    const yearsExperience = card.childNodes[1].childNodes[1];
+    const yearsExperience = card.childNodes[1].childNodes[0].childNodes[1];
     yearsExperience.innerHTML = talent.talent_profile.yearsOfExperience ? talent.talent_profile.yearsOfExperience  + ' Years Experience' : '- Years Experience';
 
     // assessment score
-    const level = card.childNodes[2].childNodes[0].childNodes[1].childNodes[0];
+    const level = card.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[0];
     level.innerHTML = talent.talent_profile.assessmentLevel ? (talent.talent_profile.assessmentLevel === 0 ? '-' : talent.talent_profile.assessmentLevel) : '-';
-    const score = card.childNodes[2].childNodes[1].childNodes[1].childNodes[0];
+    const score = card.childNodes[1].childNodes[1].childNodes[1].childNodes[1].childNodes[0];
     score.innerHTML = talent.talent_profile.assessmentScore ? (talent.talent_profile.assessmentScore === 0 ? '-' : talent.talent_profile.assessmentScore) : '-';
-    const hackerrank = card.childNodes[2].childNodes[2].childNodes[1].childNodes[0];
+    const hackerrank = card.childNodes[1].childNodes[1].childNodes[2].childNodes[1].childNodes[0];
     hackerrank.innerHTML = talent.talent_profile.hackerrankScore ? (talent.talent_profile.hackerrankScore === 0 ? '-' : talent.talent_profile.hackerrankScore) : '-';
 
     // programming language
-    const programming = card.childNodes[4].childNodes[1];
+    const programming = card.childNodes[1].childNodes[2].childNodes[1];
     if(talent.talent_profile.programming_languages.length > 0) {
       programming.innerHTML = makeCardListText(talent.talent_profile.programming_languages);
     } else {
@@ -137,7 +137,7 @@ function getTalent() {
     }
 
     // tools
-    const tools = card.childNodes[5].childNodes[1];
+    const tools = card.childNodes[1].childNodes[3].childNodes[1];
     if(talent.talent_profile.tools.length > 0) {
       tools.innerHTML = makeCardListText(talent.talent_profile.tools);
     } else {
