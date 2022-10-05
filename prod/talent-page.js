@@ -120,11 +120,11 @@ function getTalent() {
 
     // assessment score
     const level = card.childNodes[2].childNodes[0].childNodes[1].childNodes[0];
-    level.innerHTML = talent.talent_profile.assessmentLevel ? talent.talent_profile.assessmentLevel : '-';
+    level.innerHTML = talent.talent_profile.assessmentLevel ? (talent.talent_profile.assessmentLevel === 0 ? '-' : talent.talent_profile.assessmentLevel) : '-';
     const score = card.childNodes[2].childNodes[1].childNodes[1].childNodes[0];
-    score.innerHTML = talent.talent_profile.assessmentScore ? talent.talent_profile.assessmentScore : '-';
+    score.innerHTML = talent.talent_profile.assessmentScore ? (talent.talent_profile.assessmentScore === 0 ? '-' : talent.talent_profile.assessmentScore) : '-';
     const hackerrank = card.childNodes[2].childNodes[2].childNodes[1].childNodes[0];
-    hackerrank.innerHTML = talent.talent_profile.hackerrankScore ? talent.talent_profile.hackerrankScore : '-';
+    hackerrank.innerHTML = talent.talent_profile.hackerrankScore ? (talent.talent_profile.hackerrankScore === 0 ? '-' : talent.talent_profile.hackerrankScore) : '-';
 
     // programming language
     const programming = card.childNodes[4].childNodes[1];
