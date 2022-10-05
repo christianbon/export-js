@@ -90,17 +90,19 @@ function getTalent() {
     card.setAttribute('id', '');
     card.style.display = 'block';
 
+    console.log(card.childNodes)
+
     // talentID
     const talentID = card.childNodes[0].childNodes[0].childNodes[1];
     talentID.innerHTML = 'ID - ' + talent.id;
 
     // bookmark color
     if(isBookmarked(talent.id)) {
-      card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa solid 900'";
+      card.childNodes[0].childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa solid 900'";
     }
 
     // alta graduates
-    const altaGraduate = card.childNodes[0].childNodes[0].childNodes[2];
+    const altaGraduate = card.childNodes[0].childNodes[0].childNodes[0].childNodes[2];
     if(talent.talent_profile.altaGraduate === 'none' || !talent.talent_profile.altaGraduate || talent.talent_profile.altaGraduate === null) {
       altaGraduate.style.display = 'none'
     } else {
