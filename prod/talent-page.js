@@ -124,7 +124,7 @@ function getTalent() {
     const score = card.childNodes[2].childNodes[1].childNodes[1].childNodes[0];
     score.innerHTML = talent.talent_profile.assessmentScore ? talent.talent_profile.assessmentScore : '-';
     const hackerrank = card.childNodes[2].childNodes[2].childNodes[1].childNodes[0];
-    hackerrank.innerHTML = talent.talent_profile.assessmentLevel ? talent.talent_profile.assessmentLevel : '-';
+    hackerrank.innerHTML = talent.talent_profile.hackerrankScore ? talent.talent_profile.hackerrankScore : '-';
 
     // programming language
     const programming = card.childNodes[4].childNodes[1];
