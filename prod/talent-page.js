@@ -102,7 +102,7 @@ function getTalent() {
     }
 
     // alta graduates
-    const altaGraduate = card.childNodes[0].childNodes[0].childNodes[0].childNodes[2];
+    const altaGraduate = card.childNodes[0].childNodes[0].childNodes[2];
     if(talent.talent_profile.altaGraduate === 'none' || !talent.talent_profile.altaGraduate || talent.talent_profile.altaGraduate === null) {
       altaGraduate.style.display = 'none'
     } else {
