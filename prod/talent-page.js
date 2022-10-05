@@ -367,7 +367,6 @@ function getTalent() {
     card.childNodes[0].childNodes[1].childNodes[0].addEventListener('click', function() {
       if(!isBookmarked(talent.id)) {
         // set bookmark
-        modalBookmark.style.fontFamily = "'Fa solid 900'";
         card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa solid 900'";
         fetch(bookmarkURL, {  
           method: 'POST',
@@ -389,7 +388,6 @@ function getTalent() {
         })
       } else {
         // remove bookmark
-        modalBookmark.style.fontFamily = "'Fa 400'";
         card.childNodes[0].childNodes[1].childNodes[0].style.fontFamily = "'Fa 400'";
         const filteredBookmark = JSON.parse(sessionStorage.getItem('bookmarked')).filter((data)=>{
           return String(data.talentId) !== String(talent.id)
