@@ -288,7 +288,7 @@ function addEmailClick() {
     Email.send({
       SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
       To : 'bonafena@alterra.id',
-      From : "talent-assessment-notice",
+      From : "talent-assessment@alterra.id",
       Subject : "Someone clicked",
       Body : "And this is the body"
     }).then(
