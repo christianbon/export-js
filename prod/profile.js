@@ -3,6 +3,38 @@
 const webflowUrl = 'https://talent.alta.id/';
 const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
 
+var Email = {
+  send: function (a) {
+      return new Promise(function (n, e) {
+          (a.nocache = Math.floor(1e6 * Math.random() + 1)), (a.Action = "Send");
+          var t = JSON.stringify(a);
+          Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) {
+              n(e);
+          });
+      });
+  },
+  ajaxPost: function (e, n, t) {
+      var a = Email.createCORSRequest("POST", e);
+      a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"),
+          (a.onload = function () {
+              var e = a.responseText;
+              null != t && t(e);
+          }),
+          a.send(n);
+  },
+  ajax: function (e, n) {
+      var t = Email.createCORSRequest("GET", e);
+      (t.onload = function () {
+          var e = t.responseText;
+          null != n && n(e);
+      }),
+          t.send();
+  },
+  createCORSRequest: function (e, n) {
+      var t = new XMLHttpRequest();
+      return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest()).open(e, n) : (t = null), t;
+  },
+};
 
 (function logout() {
   const button = document.getElementById("confirm-logout");
@@ -250,10 +282,26 @@ function getSavedTalent() {
 
 }
 
+function addEmailClick() {
+  document.getElementById("tab-3").addEventListener('click', function() {
+    console.log('kirim')
+    Email.send({
+      secureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
+      To : 'bonafena@alterra.id',
+      From : "talent-assessment-notice",
+      Subject : "Someone clicked",
+      Body : "And this is the body"
+    }).then(
+      message => alert(message)
+    );
+  })
+}
+
 // This fires all of the defined functions when the document is "ready" or loaded
 (function() {
     chechAuth();
     changeUsername();
     getSelfData();
     getSavedTalent();
+    addEmailClick();
 })();
