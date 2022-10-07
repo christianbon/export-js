@@ -72,6 +72,7 @@ const url = beUrl + '/api/users/' + sessionStorage.getItem("userId") + '?populat
 const savedBookmarkUrl = beUrl + '/api/users?'
 const getBookmarkURL = new URL(beUrl + '/api/bookmarks?filters[clientId][$eq]=');
 const updateUrl = beUrl + '/api/users/'
+let bookmarkURL = new URL(beUrl + '/api/bookmarks');
 
 function getSelfData() {
   let options = {  
