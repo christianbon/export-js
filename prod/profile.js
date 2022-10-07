@@ -73,6 +73,7 @@ const savedBookmarkUrl = beUrl + '/api/users?'
 const getBookmarkURL = new URL(beUrl + '/api/bookmarks?filters[clientId][$eq]=');
 const updateUrl = beUrl + '/api/users/'
 let bookmarkURL = new URL(beUrl + '/api/bookmarks');
+let trackingURL = new URL(beUrl + '/api/client-histories');
 
 function getSelfData() {
   let options = {  
