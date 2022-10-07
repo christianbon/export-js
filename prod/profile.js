@@ -58,6 +58,15 @@ function makeCardListText(data) {
   return data.length > 3 ? data[0].name + ', ' + data[1].name + ', ' + data[2].name + ', ..' : data.map((data)=>{return data.name}).join(', ')
 }
 
+function isBookmarked(id) {
+  const bookmarkData = JSON.parse(sessionStorage.getItem('bookmarked'))
+  const filteredBookmark = bookmarkData.filter((data)=> {
+    return String(data.talentId) === String(id)
+  })
+  return filteredBookmark.length !== 0
+}
+
+
 
 const url = beUrl + '/api/users/' + sessionStorage.getItem("userId") + '?populate[client_profile][populate]=%2A';
 const savedBookmarkUrl = beUrl + '/api/users?'
