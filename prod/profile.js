@@ -286,7 +286,7 @@ function addEmailClick() {
   document.getElementById("tab-3").addEventListener('click', function() {
     console.log('kirim')
     Email.send({
-      secureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
+      SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
       To : 'bonafena@alterra.id',
       From : "talent-assessment-notice",
       Subject : "Someone clicked",
