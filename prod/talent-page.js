@@ -146,13 +146,14 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
             clientIdentifier: sessionStorage.getItem("username"),
             talentId: String(talent.id),
             watchedPage: "Detail",
-            talentName: talent.talent_profile.name
+            talentName: currentTalent
         }})
+    }).then((_)=>{
+      window.location.replace(webflowUrl+'hubungi-talent');
     })
-
   } else {
-    alert('Mohon lengkapi data diri terlebih dahulu')
-    window.location.replace(webflowUrl+'profile');
+    alert('Please complete account profile before proceeding')
+    window.location.replace(webflowUrl+'profil');
   }
 })
 
