@@ -122,9 +122,9 @@ function selfDataComplete() {
 }
 
 
-document.getElementById("contact-talent-button-2check").addEventListener('click', function() {
+document.getElementById("contact-talent-button-2check").addEventListener('click', async function() {
   console.log(selfDataComplete())
-  if(selfDataComplete()) {
+  if(await selfDataComplete()) {
     // post email notif
     Email.send({
       SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
