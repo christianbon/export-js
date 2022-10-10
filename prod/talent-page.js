@@ -91,68 +91,83 @@ const urlGetSelf = beUrl + '/api/users/' + sessionStorage.getItem("userId") + '?
 // var
 let currentTalent = ''
 let currentTalentId = ''
+let checkbox1 = false
+let checkbox2 = false
 
+function resetData() {
+  checkbox1 = false
+  checkbox2 = false
+}
+
+document.getElementById("checkbox").addEventListener('click', function() {
+  checkbox1 = !checkbox1
+})
+
+document.getElementById("checkbox-2").addEventListener('click', function() {
+  checkbox2 = !checkbox2
+})
 
 document.getElementById("contact-talent-button-2check").addEventListener('click', function() {
-  const checkbox1 = document.getElementById("checkbox")
-  const checkbox2 = document.getElementById("checkbox-2")
-  console.log(checkbox1.innerHTML)
-  console.log(checkbox1.value)
-  const options = {  
-    method: 'GET',
-    headers: {
-      'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-      'Content-Type': 'application/json',
-    },
-  };
-  fetch(urlGetSelf, options)
-  .then(data => {return data.json()})
-  .then(res => {
-    if(!res.client_profile?.fullName ||
-      !res.email ||
-      !res.client_profile?.phoneNumber ||
-      !res.client_profile?.userPosition ||
-      !res.client_profile?.department ||
-      !res.client_profile?.companyName ||
-      !res.client_profile?.about ||
-      !res.client_profile?.industryTypes ||
-      !res.client_profile?.companyWebsite ||
-      !res.client_profile?.instagram ||
-      !res.client_profile?.size ||
-      !res.client_profile?.address){
-        alert('Please complete account profile before proceeding')
-        window.location.replace(webflowUrl+'profil');
-      } else {
-      // post email notif
-      Email.send({
-        SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
-        To : 'christianbonafena7@gmail.com',
-        From : "bonafena@alterra.id",
-        Subject : "A Company clicked a talent",
-        Body : "user " + sessionStorage.getItem("userId") + "-" + sessionStorage.getItem("username") + " telah mengklik talent: " + currentTalent + " dengan user id-" + currentTalentId
-      }).then((res)=> {
-        // post tracking
-        fetch(trackingURL, {  
-          method: 'POST',
-          headers: {
-            'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            data:{
-                clientId: String(sessionStorage.getItem('userId')),
-                clientIdentifier: sessionStorage.getItem("username"),
-                talentId: String(currentTalentId),
-                watchedPage: "Detail",
-                talentName: currentTalent
-            }})
-        }).then((data)=>{
-          window.location.replace(webflowUrl+'hubungi-talent');
+  if(checkbox1 && checkbox2) {
+
+    const options = {  
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+        'Content-Type': 'application/json',
+      },
+    };
+    fetch(urlGetSelf, options)
+    .then(data => {return data.json()})
+    .then(res => {
+      if(!res.client_profile?.fullName ||
+        !res.email ||
+        !res.client_profile?.phoneNumber ||
+        !res.client_profile?.userPosition ||
+        !res.client_profile?.department ||
+        !res.client_profile?.companyName ||
+        !res.client_profile?.about ||
+        !res.client_profile?.industryTypes ||
+        !res.client_profile?.companyWebsite ||
+        !res.client_profile?.instagram ||
+        !res.client_profile?.size ||
+        !res.client_profile?.address){
+          alert('Please complete account profile before proceeding')
+          window.location.replace(webflowUrl+'profil');
+        } else {
+        // post email notif
+        Email.send({
+          SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
+          To : 'christianbonafena7@gmail.com',
+          From : "bonafena@alterra.id",
+          Subject : "A Company clicked a talent",
+          Body : "user " + sessionStorage.getItem("userId") + "-" + sessionStorage.getItem("username") + " telah mengklik talent: " + currentTalent + " dengan user id-" + currentTalentId
+        }).then((res)=> {
+          // post tracking
+          fetch(trackingURL, {  
+            method: 'POST',
+            headers: {
+              'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              data:{
+                  clientId: String(sessionStorage.getItem('userId')),
+                  clientIdentifier: sessionStorage.getItem("username"),
+                  talentId: String(currentTalentId),
+                  watchedPage: "Detail",
+                  talentName: currentTalent
+              }})
+          }).then((data)=>{
+            window.location.replace(webflowUrl+'hubungi-talent');
+          })
         })
-      })
-    }
-  })
+      }
+    })
+  }else{
+    alert("Please agree to our terms and condition before contacting our talent")
+  }
 
 })
 
@@ -245,6 +260,7 @@ function getTalent() {
 
     // when clicked
     card.childNodes[1].addEventListener('click', function() {
+      resetData()
       currentTalent = talent.talent_profile?.name
       currentTalentId = talent.id
       // set selected talent ID
