@@ -155,7 +155,7 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
     })
   } else {
     alert('Please complete account profile before proceeding')
-    window.location.replace(webflowUrl+'profil');
+    // window.location.replace(webflowUrl+'profil');
   }
 })
 
