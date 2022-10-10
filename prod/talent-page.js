@@ -118,35 +118,34 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
         alert('Please complete account profile before proceeding')
         window.location.replace(webflowUrl+'profil');
       } else {
-       // post email notif
-      Email.send({
-        SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
-        To : 'christianbonafena7@gmail.com',
-        From : "bonafena@alterra.id",
-        Subject : "Someone clicked",
-        Body : sessionStorage.getItem("username") + " telah mengklik profile " + currentTalent
-      }).then((res) => {
-        // post tracking
-        fetch(trackingURL, {  
-          method: 'POST',
-          headers: {
-            'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            data:{
-                clientId: String(sessionStorage.getItem('userId')),
-                clientIdentifier: sessionStorage.getItem("username"),
-                talentId: String(talent.id),
-                watchedPage: "Detail",
-                talentName: currentTalent
-            }})
-        }).then((data)=>{
-          window.location.replace(webflowUrl+'hubungi-talent');
-        })
-      })
   
+      // post tracking
+      fetch(trackingURL, {  
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data:{
+              clientId: String(sessionStorage.getItem('userId')),
+              clientIdentifier: sessionStorage.getItem("username"),
+              talentId: String(talent.id),
+              watchedPage: "Detail",
+              talentName: currentTalent
+          }})
+      }).then((data)=>{
+       // post email notif
+        Email.send({
+          SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
+          To : 'christianbonafena7@gmail.com',
+          From : "bonafena@alterra.id",
+          Subject : "Someone clicked",
+          Body : sessionStorage.getItem("username") + " telah mengklik profile " + currentTalent
+        })
+        window.location.replace(webflowUrl+'hubungi-talent');
+      })
     }
   })
 
