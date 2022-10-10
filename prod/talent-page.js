@@ -125,7 +125,7 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
         To : 'christianbonafena7@gmail.com',
         From : "bonafena@alterra.id",
         Subject : "A Company clicked a talent",
-        Body : "user " + sessionStorage.getItem("userId") + "-" + sessionStorage.getItem("username") + " telah mengklik profile " + currentTalent + " dengan user id-" + currentTalentId
+        Body : "user " + sessionStorage.getItem("userId") + "-" + sessionStorage.getItem("username") + " telah mengklik talent: " + currentTalent + " dengan user id-" + currentTalentId
       }).then((res)=> {
         // post tracking
         fetch(trackingURL, {  
@@ -241,7 +241,7 @@ function getTalent() {
 
     // when clicked
     card.childNodes[1].addEventListener('click', function() {
-      currentTalent = talent.name
+      currentTalent = talent.talent_profile?.name
       currentTalentId = talent.id
       // set selected talent ID
       sessionStorage.setItem('selectedTalent', talent.id)
