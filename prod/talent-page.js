@@ -94,6 +94,10 @@ let currentTalentId = ''
 
 
 document.getElementById("contact-talent-button-2check").addEventListener('click', function() {
+  const checkbox1 = document.getElementById("checkbox")
+  const checkbox2 = document.getElementById("checkbox-2")
+  console.log(checkbox1.innerHTML)
+  console.log(checkbox1.value)
   const options = {  
     method: 'GET',
     headers: {
