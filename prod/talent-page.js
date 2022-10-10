@@ -102,6 +102,7 @@ function selfDataComplete() {
   fetch(urlGetSelf, options)
   .then(data => {return data.json()})
   .then(res => {
+    console.log({res})
     if(!res.client_profile?.fullName ||
       !res.email ||
       !res.client_profile?.phoneNumber ||
