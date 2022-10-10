@@ -136,7 +136,7 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
             clientId: String(sessionStorage.getItem('userId')),
             clientIdentifier: sessionStorage.getItem("username"),
             talentId: String(talent.id),
-            watchedPage: "Secondary",
+            watchedPage: "Detail",
             talentName: talent.talent_profile.name
         }})
     })
