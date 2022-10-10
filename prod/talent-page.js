@@ -118,8 +118,8 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
         alert('Please complete account profile before proceeding')
         window.location.replace(webflowUrl+'profil');
       } else {
-  
       // post tracking
+      console.log('tracking')
       fetch(trackingURL, {  
         method: 'POST',
         headers: {
@@ -136,6 +136,8 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
               talentName: currentTalent
           }})
       }).then((data)=>{
+      console.log('tracking2')
+
        // post email notif
         Email.send({
           SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
