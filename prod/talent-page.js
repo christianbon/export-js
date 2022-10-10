@@ -115,11 +115,11 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
       !res.client_profile?.instagram ||
       !res.client_profile?.size ||
       !res.client_profile?.address){
-      alert('Please complete account profile before proceeding')
-      window.location.replace(webflowUrl+'profil');
-    }else {
+        alert('Please complete account profile before proceeding')
+        window.location.replace(webflowUrl+'profil');
+      } else {
        // post email notif
-       Email.send({
+      Email.send({
         SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
         To : 'christianbonafena7@gmail.com',
         From : "bonafena@alterra.id",
@@ -143,7 +143,7 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
               watchedPage: "Detail",
               talentName: currentTalent
           }})
-      }).then((_)=>{
+      }).then((data)=>{
         window.location.replace(webflowUrl+'hubungi-talent');
       })
     }
