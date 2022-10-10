@@ -120,7 +120,6 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
         window.location.replace(webflowUrl+'profil');
       } else {
       // post tracking
-      console.log('tracking')
       fetch(trackingURL, {  
         method: 'POST',
         headers: {
@@ -137,15 +136,14 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
               talentName: currentTalent
           }})
       }).then((data)=>{
-      console.log('tracking2')
 
        // post email notif
         Email.send({
           SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
           To : 'christianbonafena7@gmail.com',
           From : "bonafena@alterra.id",
-          Subject : "Someone clicked",
-          Body : sessionStorage.getItem("username") + " telah mengklik profile " + currentTalent
+          Subject : "A Company clicked a talent",
+          Body : "user " + sessionStorage.getItem("userId") + sessionStorage.getItem("username") + " telah mengklik profile " + currentTalent + " dengan user id-" + currentTalentId
         })
         window.location.replace(webflowUrl+'hubungi-talent');
       })
