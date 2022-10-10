@@ -3,6 +3,39 @@
 const webflowUrl = 'https://talent.alta.id/';
 const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
 
+var Email = {
+  send: function (a) {
+      return new Promise(function (n, e) {
+          (a.nocache = Math.floor(1e6 * Math.random() + 1)), (a.Action = "Send");
+          var t = JSON.stringify(a);
+          Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) {
+              n(e);
+          });
+      });
+  },
+  ajaxPost: function (e, n, t) {
+      var a = Email.createCORSRequest("POST", e);
+      a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"),
+          (a.onload = function () {
+              var e = a.responseText;
+              null != t && t(e);
+          }),
+          a.send(n);
+  },
+  ajax: function (e, n) {
+      var t = Email.createCORSRequest("GET", e);
+      (t.onload = function () {
+          var e = t.responseText;
+          null != n && n(e);
+      }),
+          t.send();
+  },
+  createCORSRequest: function (e, n) {
+      var t = new XMLHttpRequest();
+      return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest()).open(e, n) : (t = null), t;
+  },
+};
+
 (function logout() {
   const button = document.getElementById("confirm-logout");
   button.addEventListener("click", event => {
@@ -49,21 +82,88 @@ function makeCardListText(data) {
   return data.length > 3 ? data[0].name + ', ' + data[1].name + ', ' + data[2].name + ', ..' : data.map((data)=>{return data.name}).join(', ')
 }
 
-let url = new URL(beUrl + '/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A&sort[0]=talent_profile[assessmentLevel]%3Adesc&sort[1]=talent_profile[assessmentScore]%3Adesc&sort[2]=talent_profile[hackerrankScore]%3Adesc&sort[3]=talent_profile[yearsOfExperience]%3Adesc');
-let trackingURL = new URL(beUrl + '/api/client-histories');
-let bookmarkURL = new URL(beUrl + '/api/bookmarks');
-let getBookmarkURL = new URL(beUrl + '/api/bookmarks?filters[clientId][$eq]=');
+const url = new URL(beUrl + '/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A&sort[0]=talent_profile[assessmentLevel]%3Adesc&sort[1]=talent_profile[assessmentScore]%3Adesc&sort[2]=talent_profile[hackerrankScore]%3Adesc&sort[3]=talent_profile[yearsOfExperience]%3Adesc');
+const trackingURL = new URL(beUrl + '/api/client-histories');
+const bookmarkURL = new URL(beUrl + '/api/bookmarks');
+const getBookmarkURL = new URL(beUrl + '/api/bookmarks?filters[clientId][$eq]=');
+const urlGetSelf = beUrl + '/api/users/' + sessionStorage.getItem("userId") + '?populate[client_profile][populate]=%2A';
 
-
-function getTalent() {
-  let options = {  
+// var
+let currentTalent = ''
+  
+function selfDataComplete() {
+  const options = {  
     method: 'GET',
     headers: {
       'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
       'Content-Type': 'application/json',
     },
   };
-  let bookmarkOptions = {  
+  fetch(urlGetSelf, options)
+  .then(data => {return data.json()})
+  .then(res => {
+    if(!res.client_profile?.fullName ||
+      !res.email ||
+      !res.client_profile?.phoneNumber ||
+      !res.client_profile?.userPosition ||
+      !res.client_profile?.department ||
+      !res.client_profile?.companyName ||
+      !res.client_profile?.about ||
+      !res.client_profile?.industryTypes ||
+      !res.client_profile?.companyWebsite ||
+      !res.client_profile?.instagram ||
+      !res.client_profile?.size ||
+      !res.client_profile?.address){
+        return false
+    }
+    return true
+  })
+}
+
+
+document.getElementById("contact-talent-button-2check").addEventListener('click', function() {
+  if(selfDataComplete()) {
+    // post tracking
+    fetch(trackingURL, {  
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        data:{
+            clientId: String(sessionStorage.getItem('userId')),
+            clientIdentifier: sessionStorage.getItem("username"),
+            talentId: String(talent.id),
+            watchedPage: "Secondary",
+            talentName: talent.talent_profile.name
+        }})
+    })
+
+    // post email notif
+    Email.send({
+      SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
+      To : 'christianbonafena7@gmail.com',
+      From : "bonafena@alterra.id",
+      Subject : "Someone clicked",
+      Body : sessionStorage.getItem("username") + " telah mengklik profile " + currentTalent
+    })
+  } else {
+    alert('Mohon lengkapi data diri terlebih dahulu')
+    window.location.replace(webflowUrl+'profile');
+  }
+})
+
+function getTalent() {
+  const options = {  
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+      'Content-Type': 'application/json',
+    },
+  };
+  const bookmarkOptions = {  
     method: 'GET',
     headers: {
       'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),

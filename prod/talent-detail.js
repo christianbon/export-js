@@ -22,8 +22,8 @@ const beUrl = 'https://assessment-alta-prod.as.r.appspot.com';
   }
   
   
-  let url = beUrl + '/api/users/';
-  let trackingURL = new URL(beUrl + '/api/client-histories');
+  const url = beUrl + '/api/users/';
+  const trackingURL = new URL(beUrl + '/api/client-histories');
   
   function getTalent() {
     let options = {  
