@@ -126,26 +126,26 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
         From : "bonafena@alterra.id",
         Subject : "A Company clicked a talent",
         Body : "user " + sessionStorage.getItem("userId") + "-" + sessionStorage.getItem("username") + " telah mengklik profile " + currentTalent + " dengan user id-" + currentTalentId
-      })
-      // post tracking
-      fetch(trackingURL, {  
-        method: 'POST',
-        headers: {
-          'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          data:{
-              clientId: String(sessionStorage.getItem('userId')),
-              clientIdentifier: sessionStorage.getItem("username"),
-              talentId: String(currentTalentId),
-              watchedPage: "Detail",
-              talentName: currentTalent
-          }})
-      }).then((data)=>{
-
-        window.location.replace(webflowUrl+'hubungi-talent');
+      }).then((res)=> {
+        // post tracking
+        fetch(trackingURL, {  
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            data:{
+                clientId: String(sessionStorage.getItem('userId')),
+                clientIdentifier: sessionStorage.getItem("username"),
+                talentId: String(currentTalentId),
+                watchedPage: "Detail",
+                talentName: currentTalent
+            }})
+        }).then((data)=>{
+          window.location.replace(webflowUrl+'hubungi-talent');
+        })
       })
     }
   })
