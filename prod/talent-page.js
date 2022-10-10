@@ -102,7 +102,6 @@ function selfDataComplete() {
   fetch(urlGetSelf, options)
   .then(data => {return data.json()})
   .then(res => {
-    console.log({res})
     if(!res.client_profile?.fullName ||
       !res.email ||
       !res.client_profile?.phoneNumber ||
@@ -123,8 +122,8 @@ function selfDataComplete() {
 
 
 document.getElementById("contact-talent-button-2check").addEventListener('click', async function() {
-  console.log(selfDataComplete())
-  if(await selfDataComplete()) {
+  const isDataComplete = await selfDataComplete();
+  if(isDataComplete) {
     // post email notif
     Email.send({
       SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
