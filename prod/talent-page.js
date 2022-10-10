@@ -90,8 +90,9 @@ const urlGetSelf = beUrl + '/api/users/' + sessionStorage.getItem("userId") + '?
 
 // var
 let currentTalent = ''
-  
-function selfDataComplete() {
+
+
+document.getElementById("contact-talent-button-2check").addEventListener('click', function() {
   const options = {  
     method: 'GET',
     headers: {
@@ -114,22 +115,11 @@ function selfDataComplete() {
       !res.client_profile?.instagram ||
       !res.client_profile?.size ||
       !res.client_profile?.address){
-        return false
-    }
-    return true
-  })
-}
-
-
-document.getElementById("contact-talent-button-2check").addEventListener('click', function() {
-  const selfDataPromise = new Promise(function(resolve, reject) {
-   resolve(selfDataComplete())
-  });
-  
-  selfDataPromise.then((isDataComplete)=> {
-    if(isDataComplete) {
-      // post email notif
-      Email.send({
+      alert('Please complete account profile before proceeding')
+      window.location.replace(webflowUrl+'profil');
+    }else {
+       // post email notif
+       Email.send({
         SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
         To : 'christianbonafena7@gmail.com',
         From : "bonafena@alterra.id",
@@ -156,11 +146,9 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
       }).then((_)=>{
         window.location.replace(webflowUrl+'hubungi-talent');
       })
-    } else {
-      alert('Please complete account profile before proceeding')
-      // window.location.replace(webflowUrl+'profil');
     }
   })
+
 })
 
 function getTalent() {
