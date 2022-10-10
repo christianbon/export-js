@@ -122,7 +122,11 @@ function selfDataComplete() {
 
 
 document.getElementById("contact-talent-button-2check").addEventListener('click', function() {
-  selfDataComplete().then((isDataComplete)=> {
+  const selfDataPromise = new Promise(function(resolve, reject) {
+   resolve(selfDataComplete())
+  });
+  
+  selfDataPromise.then((isDataComplete)=> {
     if(isDataComplete) {
       // post email notif
       Email.send({
