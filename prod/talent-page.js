@@ -121,41 +121,42 @@ function selfDataComplete() {
 }
 
 
-document.getElementById("contact-talent-button-2check").addEventListener('click', async function() {
-  const isDataComplete = await selfDataComplete();
-  if(isDataComplete) {
-    // post email notif
-    Email.send({
-      SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
-      To : 'christianbonafena7@gmail.com',
-      From : "bonafena@alterra.id",
-      Subject : "Someone clicked",
-      Body : sessionStorage.getItem("username") + " telah mengklik profile " + currentTalent
-    })
-
-    // post tracking
-    fetch(trackingURL, {  
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        data:{
-            clientId: String(sessionStorage.getItem('userId')),
-            clientIdentifier: sessionStorage.getItem("username"),
-            talentId: String(talent.id),
-            watchedPage: "Detail",
-            talentName: currentTalent
-        }})
-    }).then((_)=>{
-      window.location.replace(webflowUrl+'hubungi-talent');
-    })
-  } else {
-    alert('Please complete account profile before proceeding')
-    // window.location.replace(webflowUrl+'profil');
-  }
+document.getElementById("contact-talent-button-2check").addEventListener('click', function() {
+  selfDataComplete().then((isDataComplete)=> {
+    if(isDataComplete) {
+      // post email notif
+      Email.send({
+        SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
+        To : 'christianbonafena7@gmail.com',
+        From : "bonafena@alterra.id",
+        Subject : "Someone clicked",
+        Body : sessionStorage.getItem("username") + " telah mengklik profile " + currentTalent
+      })
+  
+      // post tracking
+      fetch(trackingURL, {  
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data:{
+              clientId: String(sessionStorage.getItem('userId')),
+              clientIdentifier: sessionStorage.getItem("username"),
+              talentId: String(talent.id),
+              watchedPage: "Detail",
+              talentName: currentTalent
+          }})
+      }).then((_)=>{
+        window.location.replace(webflowUrl+'hubungi-talent');
+      })
+    } else {
+      alert('Please complete account profile before proceeding')
+      // window.location.replace(webflowUrl+'profil');
+    }
+  })
 })
 
 function getTalent() {
