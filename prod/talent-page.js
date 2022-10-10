@@ -123,6 +123,15 @@ function selfDataComplete() {
 
 document.getElementById("contact-talent-button-2check").addEventListener('click', function() {
   if(selfDataComplete()) {
+    // post email notif
+    Email.send({
+      SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
+      To : 'christianbonafena7@gmail.com',
+      From : "bonafena@alterra.id",
+      Subject : "Someone clicked",
+      Body : sessionStorage.getItem("username") + " telah mengklik profile " + currentTalent
+    })
+
     // post tracking
     fetch(trackingURL, {  
       method: 'POST',
@@ -141,14 +150,6 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
         }})
     })
 
-    // post email notif
-    Email.send({
-      SecureToken: 'b9dae6a0-94a2-45b3-931c-b33e9e018248',
-      To : 'christianbonafena7@gmail.com',
-      From : "bonafena@alterra.id",
-      Subject : "Someone clicked",
-      Body : sessionStorage.getItem("username") + " telah mengklik profile " + currentTalent
-    })
   } else {
     alert('Mohon lengkapi data diri terlebih dahulu')
     window.location.replace(webflowUrl+'profile');
