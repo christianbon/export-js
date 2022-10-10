@@ -90,6 +90,7 @@ const urlGetSelf = beUrl + '/api/users/' + sessionStorage.getItem("userId") + '?
 
 // var
 let currentTalent = ''
+let currentTalentId = ''
 
 
 document.getElementById("contact-talent-button-2check").addEventListener('click', function() {
@@ -131,7 +132,7 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
           data:{
               clientId: String(sessionStorage.getItem('userId')),
               clientIdentifier: sessionStorage.getItem("username"),
-              talentId: String(talent.id),
+              talentId: String(currentTalentId),
               watchedPage: "Detail",
               talentName: currentTalent
           }})
@@ -242,6 +243,8 @@ function getTalent() {
 
     // when clicked
     card.childNodes[1].addEventListener('click', function() {
+      currentTalent = talent.name
+      currentTalentId = talent.id
       // set selected talent ID
       sessionStorage.setItem('selectedTalent', talent.id)
 
