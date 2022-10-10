@@ -546,5 +546,4 @@ function getSavedTalent() {
     changeUsername();
     getSelfData();
     getSavedTalent();
-    addEmailClick();
 })();
