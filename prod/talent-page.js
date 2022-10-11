@@ -258,11 +258,13 @@ function getTalent() {
       tools.innerHTML = 'none';
     }
 
-    // when clicked
+    // when card clicked
     card.childNodes[1].addEventListener('click', function() {
       resetData()
       currentTalent = talent.talent_profile?.name
       currentTalentId = talent.id
+      document.getElementById('tnc-warning-text').innerHTML = "Anda akan menghubungi talent dengan ID-" + <b>currentTalentId</b> + ", pastikan membaca syarat dan ketentuan yang berlaku sebelum mengubungi talent"
+
       // set selected talent ID
       sessionStorage.setItem('selectedTalent', talent.id)
 
