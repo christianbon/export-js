@@ -263,7 +263,7 @@ function getTalent() {
       resetData()
       currentTalent = talent.talent_profile?.name
       currentTalentId = talent.id
-      document.getElementById('tnc-warning-text').innerHTML = "Anda akan menghubungi talent dengan ID- <b>" +currentTalentId + "</b> , pastikan membaca syarat dan ketentuan yang berlaku sebelum mengubungi talent"
+      document.getElementById('tnc-warning-text').innerHTML = "You will contact talent ID- <b>" +currentTalentId + ".</b> Make sure to read the terms and conditions before contacting talent."
 
       // set selected talent ID
       sessionStorage.setItem('selectedTalent', talent.id)
