@@ -263,7 +263,7 @@ function getTalent() {
       resetData()
       currentTalent = talent.talent_profile?.name
       currentTalentId = talent.id
-      document.getElementById('tnc-warning-text').innerHTML = "You will contact talent ID- <b>" +currentTalentId + ".</b> Make sure to read the terms and conditions before contacting talent."
+      document.getElementById('tnc-warning-text').innerHTML = "You will contact talent <b>ID-" + currentTalentId + ".</b> Make sure to read the terms and conditions before contacting talent."
 
       // set selected talent ID
       sessionStorage.setItem('selectedTalent', talent.id)
