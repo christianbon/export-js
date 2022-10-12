@@ -124,14 +124,7 @@ document.getElementById("contact-talent-button-2check").addEventListener('click'
         !res.email ||
         !res.client_profile?.phoneNumber ||
         !res.client_profile?.userPosition ||
-        !res.client_profile?.department ||
-        !res.client_profile?.companyName ||
-        !res.client_profile?.about ||
-        !res.client_profile?.industryTypes ||
-        !res.client_profile?.companyWebsite ||
-        !res.client_profile?.instagram ||
-        !res.client_profile?.size ||
-        !res.client_profile?.address){
+        !res.client_profile?.department){
           alert('Please complete account profile before proceeding')
           window.location.replace(webflowUrl+'profil');
         } else {
