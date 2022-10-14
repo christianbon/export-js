@@ -256,7 +256,7 @@ function getTalent() {
     latestEducation.innerHTML = talent.talent_profile.latestEducation ? talent.talent_profile.latestEducation : '-';
 
     // status
-    const status = card.childNodes[1].childNodes[4].childNodes[1];
+    const status = card.childNodes[1].childNodes[5].childNodes[1];
     status.innerHTML = talent.talent_profile.status ? talent.talent_profile.status : '-';
    
 
