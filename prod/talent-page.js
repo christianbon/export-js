@@ -664,15 +664,16 @@ function initFilter() {
   document.getElementById('dropdown-programming').addEventListener("change", event => {
     if(chosenFilterProgramming.length < 5) {
       if(!chosenFilterProgramming.includes(event.target.data)) {
+        const insertedData = event.target.value
         filterBoxStyle = style.cloneNode(true)
         filterBoxStyle.setAttribute('id', '');
-        chosenFilterProgramming.push(event.target.value)
-        filterBoxStyle.childNodes[0].innerHTML = event.target.value
+        chosenFilterProgramming.push(insertedData)
+        filterBoxStyle.childNodes[0].innerHTML = insertedData
         document.getElementById('filter-programming').appendChild(filterBoxStyle)
         
         // handle delete selected filter box
         filterBoxStyle.childNodes[1].addEventListener("click", event => {
-          const indexRemoved = chosenFilterProgramming.indexOf(event.target.value);
+          const indexRemoved = chosenFilterProgramming.indexOf(insertedData);
           console.log({indexRemoved})
           if (indexRemoved !== -1) {
             chosenFilterProgramming.splice(indexRemoved, 1);
@@ -690,15 +691,16 @@ function initFilter() {
   document.getElementById('dropdown-tools').addEventListener("change", event => {
     if(chosenFilterProgramming.length < 5) {
       if(!chosenFilterProgramming.includes(event.target.data)) {
+        const insertedData = event.target.value
         filterBoxStyle = style.cloneNode(true)
         filterBoxStyle.setAttribute('id', '');
-        chosenFilterTools.push(event.target.value)
-        filterBoxStyle.childNodes[0].innerHTML = event.target.value
+        chosenFilterTools.push(insertedData)
+        filterBoxStyle.childNodes[0].innerHTML = insertedData
         document.getElementById('filter-tools').appendChild(filterBoxStyle)
 
         // handle delete selected filter box
         filterBoxStyle.childNodes[1].addEventListener("click", event => {
-          const indexRemoved = chosenFilterTools.indexOf(event.target.value);
+          const indexRemoved = chosenFilterTools.indexOf(insertedData);
           if (indexRemoved !== -1) {
             chosenFilterTools.splice(indexRemoved, 1);
           }
