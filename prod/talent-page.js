@@ -620,6 +620,10 @@ function initFilter() {
   };
 
   const style = document.getElementById('filter-box-style')
+  
+  // remove default
+  document.getElementById('filter-programming').removeChild(document.getElementById('filter-programming').firstChild)
+  document.getElementById('filter-tools').removeChild(document.getElementById('filter-tools').firstChild)
 
   // INIT DROPDOWN DATA
   fetch(toolsURL, options)
