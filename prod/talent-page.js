@@ -673,6 +673,7 @@ function initFilter() {
         // handle delete selected filter box
         filterBoxStyle.childNodes[1].addEventListener("click", event => {
           const indexRemoved = chosenFilterProgramming.indexOf(event.target.value);
+          console.log({indexRemoved})
           if (indexRemoved !== -1) {
             chosenFilterProgramming.splice(indexRemoved, 1);
           }
