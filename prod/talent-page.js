@@ -609,6 +609,15 @@ function clearFilter() {
   addFilterURL = ''
 }
 
+function removeExistingData() {
+  while (cardContainerFE.hasChildNodes()) {
+    cardContainerFE.removeChild(cardContainerFE.firstChild);
+  }
+  while (cardContainerBE.hasChildNodes()) {
+    cardContainerBE.removeChild(cardContainerBE.firstChild);
+  }
+}
+
 // FILTER
 function initFilter() {
   const options = {  
@@ -653,40 +662,49 @@ function initFilter() {
 
   // handle programming
   document.getElementById('dropdown-programming').addEventListener("change", event => {
-    filterBoxStyle = style.cloneNode(true)
-    filterBoxStyle.setAttribute('id', '');
-    chosenFilterProgramming.push(event.target.value)
-    filterBoxStyle.childNodes[0].innerHTML = event.target.value
-    document.getElementById('filter-programming').appendChild(filterBoxStyle)
-    
-    // handle delete selected filter box
-    filterBoxStyle.childNodes[1].addEventListener("click", event => {
-      console.log({chosenFilterProgramming})
-      console.log({filterBoxStyle})
-      chosenFilterProgramming = chosenFilterProgramming.filter(function(item) {
-        return item !== event.target.value
-      })
-      document.getElementById('filter-programming').removeChild(filterBoxStyle)
-      console.log({chosenFilterProgramming})
-    })
-    console.log(event.target.value)
+    if(chosenFilterProgramming.length < 5) {
+      if(!chosenFilterProgramming.includes(event.target.data)) {
+        filterBoxStyle = style.cloneNode(true)
+        filterBoxStyle.setAttribute('id', '');
+        chosenFilterProgramming.push(event.target.value)
+        filterBoxStyle.childNodes[0].innerHTML = event.target.value
+        document.getElementById('filter-programming').appendChild(filterBoxStyle)
+        
+        // handle delete selected filter box
+        filterBoxStyle.childNodes[1].addEventListener("click", event => {
+          chosenFilterProgramming = chosenFilterProgramming.filter(function(item) {
+            return item !== event.target.value
+          })
+          document.getElementById('filter-programming').removeChild(filterBoxStyle)
+          console.log({chosenFilterProgramming})
+        })
+      }
+    }else {
+      alert('Maximum 5 data to filter')
+    }
   })
 
   // handle tools
   document.getElementById('dropdown-tools').addEventListener("change", event => {
-    filterBoxStyle = style.cloneNode(true)
-    filterBoxStyle.setAttribute('id', '');
-    chosenFilterTools.push(event.target.value)
-    filterBoxStyle.childNodes[0].innerHTML = event.target.value
-    document.getElementById('filter-tools').appendChild(filterBoxStyle)
+    if(chosenFilterProgramming.length < 5) {
+      if(!chosenFilterProgramming.includes(event.target.data)) {
+        filterBoxStyle = style.cloneNode(true)
+        filterBoxStyle.setAttribute('id', '');
+        chosenFilterTools.push(event.target.value)
+        filterBoxStyle.childNodes[0].innerHTML = event.target.value
+        document.getElementById('filter-tools').appendChild(filterBoxStyle)
 
-    // handle delete selected filter box
-    filterBoxStyle.childNodes[1].addEventListener("click", event => {
-      chosenFilterTools = chosenFilterTools.filter(function(item) {
-        return item !== event.target.value
-      })
-      document.getElementById('filter-tools').removeChild(filterBoxStyle)
-    })
+        // handle delete selected filter box
+        filterBoxStyle.childNodes[1].addEventListener("click", event => {
+          chosenFilterTools = chosenFilterTools.filter(function(item) {
+            return item !== event.target.value
+          })
+          document.getElementById('filter-tools').removeChild(filterBoxStyle)
+        })
+      }
+    }else {
+      alert('Maximum 5 data to filter')
+    }
   })
 
 
@@ -696,7 +714,7 @@ function initFilter() {
   })
 
   // handle apply filter
-  document.getElementById('button-filter').addEventListener("click", event => {
+  document.getElementById('button-filter').addEventListener("click", async event => {
     let filterIndex = 1
     // Ganti url filter
     chosenFilterProgramming.forEach((data,index) => {
@@ -710,15 +728,9 @@ function initFilter() {
     })
 
     // remove existing data
-    while (cardContainerFE.hasChildNodes()) {
-      cardContainerFE.removeChild(cardContainerFE.firstChild);
-    }
-    while (cardContainerBE.hasChildNodes()) {
-      cardContainerBE.removeChild(cardContainerBE.firstChild);
-    }
-
+    await removeExistingData()
     // get talent ulang
-    getTalent()
+    await getTalent()
   })
 
 }
