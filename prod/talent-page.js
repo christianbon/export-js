@@ -654,14 +654,16 @@ function initFilter() {
     chosenFilterProgramming.push(event.target.value)
     filterBoxStyle.childNodes[0].innerHTML = event.target.value
     document.getElementById('filter-programming').appendChild(filterBoxStyle)
-    console.log(filterBoxStyle)
     
     // handle delete selected filter box
     filterBoxStyle.childNodes[1].addEventListener("click", event => {
+      console.log({chosenFilterProgramming})
+      console.log({filterBoxStyle})
       chosenFilterProgramming = chosenFilterProgramming.filter(function(item) {
         return item !== event.target.value
       })
       document.getElementById('filter-programming').removeChild(filterBoxStyle)
+      console.log({chosenFilterProgramming})
     })
     console.log(event.target.value)
   })
@@ -672,6 +674,7 @@ function initFilter() {
     filterBoxStyle.setAttribute('id', '');
     chosenFilterTools.push(event.target.value)
     filterBoxStyle.childNodes[0].innerHTML = event.target.value
+    document.getElementById('filter-tools').appendChild(filterBoxStyle)
 
     // handle delete selected filter box
     filterBoxStyle.childNodes[1].addEventListener("click", event => {
@@ -680,8 +683,6 @@ function initFilter() {
       })
       document.getElementById('filter-tools').removeChild(filterBoxStyle)
     })
-    console.log(event.target.value)
-    document.getElementById('filter-tools').appendChild(filterBoxStyle)
   })
 
 
