@@ -612,6 +612,22 @@ function clearFilter() {
   addFilterURL = ''
 }
 
+function clearProgramming() {
+  chosenFilterProgramming.forEach(()=>{
+    document.getElementById('filter-programming').removeChild(document.getElementById('filter-programming').firstChild)
+  })
+  chosenFilterProgramming = []
+  addFilterURL = ''
+}
+
+function clearTools() {
+  chosenFilterTools.forEach(()=>{
+    document.getElementById('filter-tools').removeChild(document.getElementById('filter-tools').firstChild)
+  })
+  chosenFilterTools = []
+  addFilterURL = ''
+}
+
 function removeExistingData() {
   while (cardContainerFE.hasChildNodes()) {
     cardContainerFE.removeChild(cardContainerFE.firstChild);
@@ -619,16 +635,6 @@ function removeExistingData() {
   while (cardContainerBE.hasChildNodes()) {
     cardContainerBE.removeChild(cardContainerBE.firstChild);
   }
-}
-
-function addFilterBoxProgramming(insertedData) {
-  
-  filterBoxStyle = style.cloneNode(true)
-  filterBoxStyle.setAttribute('id', insertedData);
-  chosenFilterProgramming.push(insertedData)
-  filterBoxStyle.childNodes[0].innerHTML = insertedData
-  document.getElementById('filter-programming').appendChild(filterBoxStyle)
-
 }
 
 // FILTER
@@ -684,20 +690,6 @@ function initFilter() {
         chosenFilterProgramming.push(insertedData)
         filterBoxStyle.childNodes[0].innerHTML = insertedData
         document.getElementById('filter-programming').appendChild(filterBoxStyle)
-        
-        // handle delete selected filter box
-        filterBoxStyle.childNodes[1].addEventListener("click", event => {
-          const indexRemoved = chosenFilterProgramming.indexOf(insertedData);
-          if (indexRemoved !== -1) {
-            chosenFilterProgramming.splice(indexRemoved, 1);
-          }
-          chosenFilterProgramming.forEach(()=>{
-            document.getElementById('filter-programming').removeChild(document.getElementById('filter-programming').firstChild)
-          })
-          chosenFilterProgramming.forEach(()=>{
-            addFilterBoxProgramming(insertedData)
-          })
-        })
       }
     }else {
       alert('Maximum 5 data to filter')
@@ -714,20 +706,6 @@ function initFilter() {
         chosenFilterTools.push(insertedData)
         filterBoxStyle.childNodes[0].innerHTML = insertedData
         document.getElementById('filter-tools').appendChild(filterBoxStyle)
-
-        // handle delete selected filter box
-        filterBoxStyle.childNodes[1].addEventListener("click", event => {
-          const indexRemoved = chosenFilterTools.indexOf(insertedData);
-          if (indexRemoved !== -1) {
-            chosenFilterTools.splice(indexRemoved, 1);
-          }
-          chosenFilterTools.forEach(()=>{
-            document.getElementById('filter-tools').removeChild(document.getElementById('filter-tools').firstChild)
-          })
-          chosenFilterTools.forEach(()=>{
-            addFilterBoxProgramming(insertedData)
-          })
-        })
       }
     }else {
       alert('Maximum 5 data to filter')
@@ -740,9 +718,19 @@ function initFilter() {
     clearFilter()
   })
 
+  // handle clear programming
+  document.getElementById('programming-clear').addEventListener("click", event => {
+    clearProgramming()
+  })
+  // handle clear tools
+  document.getElementById('tools-clear').addEventListener("click", event => {
+    clearTools()
+  })
+
   // handle apply filter
   document.getElementById('button-filter').addEventListener("click", async event => {
     let filterIndex = 1
+    addFilterURL = ''
     // Ganti url filter
     chosenFilterProgramming.forEach((data,index) => {
       addFilterURL = addFilterURL + '&filters[talent_profile][programming_languages][name][$eq]['+ (filterIndex+index) +']=' + data
