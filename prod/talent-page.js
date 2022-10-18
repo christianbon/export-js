@@ -553,6 +553,7 @@ function getTalent() {
   fetch(url+addFilterURL, options)
     .then(data => {return data.json()})
     .then(res => {
+      console.log({res})
       if (res.length > 0) {
 
         // modal close
@@ -566,6 +567,7 @@ function getTalent() {
         const dataDevFE = res.filter((data)=>{
           return data.talent_profile.talentCategory === 'Front End'
         })
+        console.log({dataDevBE})
         if(dataDevBE.length > 0) {
           document.getElementById('no-data-be').style.display = 'none';
         } else {
@@ -633,6 +635,9 @@ function initFilter() {
   // remove default
   document.getElementById('filter-programming').removeChild(document.getElementById('filter-programming').firstChild)
   document.getElementById('filter-tools').removeChild(document.getElementById('filter-tools').firstChild)
+  document.getElementById('dropdown-programming').innerHTML = 'Programming'
+  document.getElementById('dropdown-tools').innerHTML = 'Tools'
+
 
   // INIT DROPDOWN DATA
   fetch(toolsURL, options)
@@ -674,7 +679,6 @@ function initFilter() {
         // handle delete selected filter box
         filterBoxStyle.childNodes[1].addEventListener("click", event => {
           const indexRemoved = chosenFilterProgramming.indexOf(insertedData);
-          console.log({indexRemoved})
           if (indexRemoved !== -1) {
             chosenFilterProgramming.splice(indexRemoved, 1);
           }
@@ -720,26 +724,25 @@ function initFilter() {
 
   // handle apply filter
   document.getElementById('button-filter').addEventListener("click", async event => {
-    console.log({chosenFilterProgramming})
-    console.log(document.getElementById('filter-programming'))
-
-    // let filterIndex = 1
-    // // Ganti url filter
-    // chosenFilterProgramming.forEach((data,index) => {
-    //   addFilterURL = addFilterURL + '&filters[talent_profile][programming_languages][name][$eq]['+ (filterIndex+index) +']=' + data
-    //   filterIndex++
-    // })
+    let filterIndex = 1
+    // Ganti url filter
+    chosenFilterProgramming.forEach((data,index) => {
+      addFilterURL = addFilterURL + '&filters[talent_profile][programming_languages][name][$eq]['+ (filterIndex+index) +']=' + data
+      filterIndex++
+    })
     
-    // chosenFilterTools.forEach((data,index) => {
-    //   addFilterURL = addFilterURL + '&filters[talent_profile][tools][name][$eq]['+ (filterIndex+index) +']=' + data
-    //   filterIndex++
-    // })
+    chosenFilterTools.forEach((data,index) => {
+      addFilterURL = addFilterURL + '&filters[talent_profile][tools][name][$eq]['+ (filterIndex+index) +']=' + data
+      filterIndex++
+    })
 
-    // // remove existing data
-    // await removeExistingData()
+    // remove existing data
+    await removeExistingData()
 
-    // // get talent ulang
-    // await getTalent()
+    console.log({cardContainerBE})
+    console.log({cardContainerFE})
+    // get talent ulang
+    await getTalent()
   })
 
 }
