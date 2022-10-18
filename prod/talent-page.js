@@ -629,7 +629,6 @@ function initFilter() {
     .then(data => {return data.json()})
     .then(res => {
       res.data.map((data)=>{
-        console.log({data})
         let option = document.createElement("option");
         option.setAttribute('value',  data.attributes.name);
       
@@ -653,24 +652,29 @@ function initFilter() {
 
   // handle programming
   document.getElementById('dropdown-programming').addEventListener("change", event => {
-    filterProgramming.push(event.target.value)
+    chosenFilterProgramming.push(event.target.value)
     filterBoxStyle.innerHTML = event.target.value
+    document.getElementById('filter-programming').appendChild(filterBoxStyle)
+    console.log(filterBoxStyle)
+    
+    // handle delete selected filter box
     filterBoxStyle.childNodes[1].addEventListener("click", event => {
-      filterProgramming = filterProgramming.filter(function(item) {
+      chosenFilterProgramming = chosenFilterProgramming.filter(function(item) {
         return item !== event.target.value
       })
       document.getElementById('filter-programming').removeChild(filterBoxStyle)
     })
     console.log(event.target.value)
-    document.getElementById('filter-programming').appendChild(filterBoxStyle)
   })
 
   // handle tools
   document.getElementById('dropdown-tools').addEventListener("change", event => {
-    filterTools.push(event.target.value)
+    chosenFilterTools.push(event.target.value)
     filterBoxStyle.innerHTML = event.target.value
+
+    // handle delete selected filter box
     filterBoxStyle.childNodes[1].addEventListener("click", event => {
-      filterTools = filterTools.filter(function(item) {
+      chosenFilterTools = chosenFilterTools.filter(function(item) {
         return item !== event.target.value
       })
       document.getElementById('filter-tools').removeChild(filterBoxStyle)
