@@ -673,7 +673,7 @@ function initFilter() {
       if(!chosenFilterProgramming.includes(event.target.data)) {
         const insertedData = event.target.value
         filterBoxStyle = style.cloneNode(true)
-        filterBoxStyle.setAttribute('id', '');
+        filterBoxStyle.setAttribute('id', event.target.value);
         chosenFilterProgramming.push(insertedData)
         filterBoxStyle.childNodes[0].innerHTML = insertedData
         document.getElementById('filter-programming').appendChild(filterBoxStyle)
@@ -685,7 +685,8 @@ function initFilter() {
             chosenFilterProgramming.splice(indexRemoved, 1);
           }
           console.log({filterBoxStyle})
-          document.getElementById('filter-programming').removeChild(filterBoxStyle)
+
+          document.getElementById('filter-programming').removeChild(document.getElementById(event.target.value))
           console.log(document.getElementById('filter-programming'))
           console.log({chosenFilterProgramming})
         })
@@ -701,7 +702,7 @@ function initFilter() {
       if(!chosenFilterProgramming.includes(event.target.data)) {
         const insertedData = event.target.value
         filterBoxStyle = style.cloneNode(true)
-        filterBoxStyle.setAttribute('id', '');
+        filterBoxStyle.setAttribute('id', event.target.value);
         chosenFilterTools.push(insertedData)
         filterBoxStyle.childNodes[0].innerHTML = insertedData
         document.getElementById('filter-tools').appendChild(filterBoxStyle)
@@ -712,7 +713,7 @@ function initFilter() {
           if (indexRemoved !== -1) {
             chosenFilterTools.splice(indexRemoved, 1);
           }
-          document.getElementById('filter-tools').removeChild(filterBoxStyle)
+          document.getElementById('filter-programming').removeChild(document.getElementById(event.target.value))
         })
       }
     }else {
