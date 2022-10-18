@@ -706,11 +706,11 @@ function initFilter() {
     })
 
     // remove existing data
-    while (cardContainerFE.childNodes[0].hasChildNodes()) {
-      cardContainerFE.childNodes[0].removeChild(cardContainerFE.childNodes[0].firstChild);
+    while (cardContainerFE.hasChildNodes()) {
+      cardContainerFE.removeChild(cardContainerFE.firstChild);
     }
-    while (cardContainerBE.childNodes[0].hasChildNodes()) {
-      cardContainerBE.childNodes[0].removeChild(cardContainerBE.childNodes[0].firstChild);
+    while (cardContainerBE.hasChildNodes()) {
+      cardContainerBE.removeChild(cardContainerBE.firstChild);
     }
 
     // get talent ulang
