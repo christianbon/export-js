@@ -686,7 +686,7 @@ function initFilter() {
           }
           let removedElement = ''
           document.getElementById('filter-programming').children.forEach((data)=> {
-            console.log9{data}
+            console.log({data})
             if(data.id === event.target.value){
               removedElement = data
             }
