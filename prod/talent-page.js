@@ -83,16 +83,24 @@ function makeCardListText(data) {
 }
 
 const url = new URL(beUrl + '/api/users?filters[role][name][$eq]=Talent&populate[talent_profile][populate]=%2A&sort[0]=talent_profile[assessmentLevel]%3Adesc&sort[1]=talent_profile[assessmentScore]%3Adesc&sort[2]=talent_profile[hackerrankScore]%3Adesc&sort[3]=talent_profile[yearsOfExperience]%3Adesc');
+let addFilterURL = ''
 const trackingURL = new URL(beUrl + '/api/client-histories');
 const bookmarkURL = new URL(beUrl + '/api/bookmarks');
 const getBookmarkURL = new URL(beUrl + '/api/bookmarks?filters[clientId][$eq]=');
 const urlGetSelf = beUrl + '/api/users/' + sessionStorage.getItem("userId") + '?populate[client_profile][populate]=%2A';
+const toolsURL = new URL(beUrl + '/api/tools');
+const programmingLanguageURL = new URL(beUrl + '/api/programming-languages');
 
-// var
+// variables data
 let currentTalent = ''
 let currentTalentId = ''
 let checkbox1 = false
 let checkbox2 = false
+let filterProgramming = []
+let filterTools = []
+let chosenFilterProgramming = []
+let chosenFilterTools = []
+let filterBoxStyle = ''
 
 function resetData() {
   checkbox1 = false
@@ -544,7 +552,7 @@ function getTalent() {
     if(developerCategory === 'BE') cardContainerBE.appendChild(card);
   }
 
-  fetch(url, options)
+  fetch(url+addFilterURL, options)
     .then(data => {return data.json()})
     .then(res => {
       if (res.length > 0) {
@@ -591,9 +599,112 @@ function getTalent() {
     })
 }
 
+function clearFilter() {
+  chosenFilterProgramming.forEach(()=>{
+    document.getElementById('filter-programming').removeChild(document.getElementById('filter-programming').firstChild)
+  })
+  chosenFilterTools.forEach(()=>{
+    document.getElementById('filter-tools').removeChild(document.getElementById('filter-tools').firstChild)
+  })
+  chosenFilterProgramming = []
+  chosenFilterTools = []
+  addFilterURL = ''
+}
+
+// FILTER
+function initFilter() {
+  const options = {  
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + sessionStorage.getItem('authToken'),
+      'Content-Type': 'application/json',
+    },
+  };
+
+  const style = document.getElementById('filter-box-style')
+  filterBoxStyle = style.cloneNode(true)
+  filterBoxStyle.setAttribute('id', '');
+
+  // INIT DROPDOWN DATA
+  fetch(toolsURL, options)
+    .then(data => {return data.json()})
+    .then(res => {
+      res.data.map((data)=>{
+        console.log({data})
+        document.getElementById('dropdown-tools').add(data.attributes.name)
+      })
+    }) 
+  fetch(programmingLanguageURL, options)
+    .then(data => {return data.json()})
+    .then(res => {
+      res.data.map((data)=>{
+        document.getElementById('dropdown-programming').add(data.attributes.name)
+      })
+    }) 
+
+  // handle programming
+  document.getElementById('dropdown-programming').addEventListener("change", event => {
+    filterProgramming.push(event.target.value)
+    filterBoxStyle.innerHTML = event.target.value
+    filterBoxStyle.childNodes[1].addEventListener("click", event => {
+      filterProgramming = filterProgramming.filter(function(item) {
+        return item !== event.target.value
+      })
+      document.getElementById('filter-programming').removeChild(filterBoxStyle)
+    })
+    console.log(event.target.value)
+    document.getElementById('filter-programming').appendChild(filterBoxStyle)
+  })
+
+  // handle tools
+  document.getElementById('dropdown-tools').addEventListener("change", event => {
+    filterTools.push(event.target.value)
+    filterBoxStyle.innerHTML = event.target.value
+    filterBoxStyle.childNodes[1].addEventListener("click", event => {
+      filterTools = filterTools.filter(function(item) {
+        return item !== event.target.value
+      })
+      document.getElementById('filter-tools').removeChild(filterBoxStyle)
+    })
+    console.log(event.target.value)
+    document.getElementById('filter-tools').appendChild(filterBoxStyle)
+  })
+
+
+  // handle clear filter
+  document.getElementById('filter-clear').addEventListener("click", event => {
+    clearFilter()
+  })
+
+  // handle apply filter
+  document.getElementById('button-filter').addEventListener("click", event => {
+    let filterIndex = 1
+    // Ganti url filter
+    chosenFilterProgramming.forEach((index,data) => {
+      addFilterURL = addFilterURL + '&filters[talent_profile][programming_languages][name][$eq]['+ (filterIndex+index) +']=' + chosenFilterProgramming[index]
+      filterIndex++
+    })
+    
+    chosenFilterProgramming.forEach((index,data) => {
+      addFilterURL = addFilterURL + '&filters[talent_profile][programming_languages][name][$eq]['+ (filterIndex+index) +']=' + chosenFilterProgramming[index]
+      filterIndex++
+    })
+
+    // remove existing data
+    while (cardContainerFE.childNodes[0].hasChildNodes()) {
+      cardContainerFE.childNodes[0].removeChild(cardContainerFE.childNodes[0].firstChild);
+    }
+
+    // get talent ulang
+    getTalent()
+  })
+
+}
+
 // This fires all of the defined functions when the document is "ready" or loaded
 (function() {
   chechAuth()
   changeUsername()
   getTalent();
+  initFilter()
 })();
