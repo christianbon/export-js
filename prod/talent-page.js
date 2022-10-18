@@ -715,22 +715,26 @@ function initFilter() {
 
   // handle apply filter
   document.getElementById('button-filter').addEventListener("click", async event => {
-    let filterIndex = 1
-    // Ganti url filter
-    chosenFilterProgramming.forEach((data,index) => {
-      addFilterURL = addFilterURL + '&filters[talent_profile][programming_languages][name][$eq]['+ (filterIndex+index) +']=' + data
-      filterIndex++
-    })
-    
-    chosenFilterProgramming.forEach((data,index) => {
-      addFilterURL = addFilterURL + '&filters[talent_profile][programming_languages][name][$eq]['+ (filterIndex+index) +']=' + data
-      filterIndex++
-    })
+    console.log({chosenFilterProgramming})
+    console.log(document.getElementById('filter-programming'))
 
-    // remove existing data
-    await removeExistingData()
-    // get talent ulang
-    await getTalent()
+    // let filterIndex = 1
+    // // Ganti url filter
+    // chosenFilterProgramming.forEach((data,index) => {
+    //   addFilterURL = addFilterURL + '&filters[talent_profile][programming_languages][name][$eq]['+ (filterIndex+index) +']=' + data
+    //   filterIndex++
+    // })
+    
+    // chosenFilterTools.forEach((data,index) => {
+    //   addFilterURL = addFilterURL + '&filters[talent_profile][tools][name][$eq]['+ (filterIndex+index) +']=' + data
+    //   filterIndex++
+    // })
+
+    // // remove existing data
+    // await removeExistingData()
+
+    // // get talent ulang
+    // await getTalent()
   })
 
 }
