@@ -631,14 +631,20 @@ function initFilter() {
     .then(res => {
       res.data.map((data)=>{
         console.log({data})
-        document.getElementById('dropdown-tools').appendChild(data.attributes.name)
+        let option = document.createElement("option");
+        option.setAttribute('value', data.attributes.name);
+        option.appendChild(data.attributes.name);
+        document.getElementById('dropdown-tools').appendChild(option)
       })
     }) 
   fetch(programmingLanguageURL, options)
     .then(data => {return data.json()})
     .then(res => {
       res.data.map((data)=>{
-        document.getElementById('dropdown-programming').appendChild(data.attributes.name)
+        let option = document.createElement("option");
+        option.setAttribute('value', data.attributes.name);
+        option.appendChild(data.attributes.name);
+        document.getElementById('dropdown-programming').appendChild(option)
       })
     }) 
 
