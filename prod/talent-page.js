@@ -685,7 +685,8 @@ function initFilter() {
             chosenFilterProgramming.splice(indexRemoved, 1);
           }
           console.log(document.getElementById('filter-programming').childNodes)
-          const removedElement = document.getElementById('filter-programming').childNodes.filter((data)=> {
+          console.log(document.getElementById('filter-programming').children)
+          const removedElement = document.getElementById('filter-programming').children.filter((data)=> {
             return data.id === event.target.value
           })
           console.log({removedElement})
