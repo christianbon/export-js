@@ -684,15 +684,7 @@ function initFilter() {
           if (indexRemoved !== -1) {
             chosenFilterProgramming.splice(indexRemoved, 1);
           }
-          let removedElement = ''
-          document.getElementById('filter-programming').children.forEach((data)=> {
-            console.log({data})
-            if(data.id === event.target.value){
-              removedElement = data
-            }
-          })
-          console.log({removedElement})
-          document.getElementById('filter-programming').removeChild(removedElement[0])
+          document.getElementById('filter-programming').removeChild(filterBoxStyle)
           console.log({chosenFilterProgramming})
         })
       }
