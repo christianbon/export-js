@@ -567,7 +567,6 @@ function getTalent() {
         const dataDevFE = res.filter((data)=>{
           return data.talent_profile.talentCategory === 'Front End'
         })
-        console.log({dataDevBE})
         if(dataDevBE.length > 0) {
           document.getElementById('no-data-be').style.display = 'none';
         } else {
@@ -684,7 +683,6 @@ function initFilter() {
             chosenFilterProgramming.splice(indexRemoved, 1);
           }
           document.getElementById('filter-programming').removeChild(filterBoxStyle)
-          console.log({chosenFilterProgramming})
         })
       }
     }else {
