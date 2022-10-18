@@ -684,10 +684,12 @@ function initFilter() {
           if (indexRemoved !== -1) {
             chosenFilterProgramming.splice(indexRemoved, 1);
           }
-          console.log(document.getElementById('filter-programming').childNodes[event.target.value])
-          console.log(document.getElementById('filter-programming').children[event.target.value])
-          const removedElement = document.getElementById('filter-programming').children.filter((data)=> {
-            return data.id === event.target.value
+          let removedElement = ''
+          document.getElementById('filter-programming').children.forEach((data)=> {
+            console.log9{data}
+            if(data.id === event.target.value){
+              removedElement = data
+            }
           })
           console.log({removedElement})
           document.getElementById('filter-programming').removeChild(removedElement[0])
