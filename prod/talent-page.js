@@ -553,6 +553,7 @@ function getTalent() {
   fetch(url+addFilterURL, options)
     .then(data => {return data.json()})
     .then(res => {
+      removeExistingData()
       if (res.length > 0) {
 
         // modal close
@@ -592,8 +593,6 @@ function getTalent() {
         for(let i = 0; i < (3-lastRowBe);i++){
           addEmptyCard('BE');
         }
-        cardContainerFE.childNodes[0].remove();
-        cardContainerBE.childNodes[0].remove();
       } else {
         document.getElementById('no-data-be').style.display = 'block';
         document.getElementById('no-data-fe').style.display = 'block';
@@ -737,12 +736,7 @@ function initFilter() {
       addFilterURL = addFilterURL + '&filters[talent_profile][tools][name][$eq]['+ (filterIndex+index) +']=' + data
       filterIndex++
     })
-
-    // remove existing data
-    await removeExistingData()
-
-    console.log({cardContainerBE})
-    console.log({cardContainerFE})
+    
     // get talent ulang
     await getTalent()
   })
