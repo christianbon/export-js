@@ -620,8 +620,6 @@ function initFilter() {
   };
 
   const style = document.getElementById('filter-box-style')
-  filterBoxStyle = style.cloneNode(true)
-  filterBoxStyle.setAttribute('id', '');
 
   // INIT DROPDOWN DATA
   fetch(toolsURL, options)
@@ -651,6 +649,8 @@ function initFilter() {
 
   // handle programming
   document.getElementById('dropdown-programming').addEventListener("change", event => {
+    filterBoxStyle = style.cloneNode(true)
+    filterBoxStyle.setAttribute('id', '');
     chosenFilterProgramming.push(event.target.value)
     filterBoxStyle.childNodes[0].innerHTML = event.target.value
     document.getElementById('filter-programming').appendChild(filterBoxStyle)
@@ -668,6 +668,8 @@ function initFilter() {
 
   // handle tools
   document.getElementById('dropdown-tools').addEventListener("change", event => {
+    filterBoxStyle = style.cloneNode(true)
+    filterBoxStyle.setAttribute('id', '');
     chosenFilterTools.push(event.target.value)
     filterBoxStyle.childNodes[0].innerHTML = event.target.value
 
@@ -692,13 +694,13 @@ function initFilter() {
   document.getElementById('button-filter').addEventListener("click", event => {
     let filterIndex = 1
     // Ganti url filter
-    chosenFilterProgramming.forEach((index,data) => {
-      addFilterURL = addFilterURL + '&filters[talent_profile][programming_languages][name][$eq]['+ (filterIndex+index) +']=' + chosenFilterProgramming[index]
+    chosenFilterProgramming.forEach((data,index) => {
+      addFilterURL = addFilterURL + '&filters[talent_profile][programming_languages][name][$eq]['+ (filterIndex+index) +']=' + data
       filterIndex++
     })
     
-    chosenFilterProgramming.forEach((index,data) => {
-      addFilterURL = addFilterURL + '&filters[talent_profile][programming_languages][name][$eq]['+ (filterIndex+index) +']=' + chosenFilterProgramming[index]
+    chosenFilterProgramming.forEach((data,index) => {
+      addFilterURL = addFilterURL + '&filters[talent_profile][programming_languages][name][$eq]['+ (filterIndex+index) +']=' + data
       filterIndex++
     })
 
