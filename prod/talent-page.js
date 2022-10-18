@@ -672,9 +672,10 @@ function initFilter() {
         
         // handle delete selected filter box
         filterBoxStyle.childNodes[1].addEventListener("click", event => {
-          chosenFilterProgramming = chosenFilterProgramming.filter(function(item) {
-            return item !== event.target.value
-          })
+          const indexRemoved = chosenFilterProgramming.indexOf(event.target.value);
+          if (indexRemoved !== -1) {
+            chosenFilterProgramming.splice(indexRemoved, 1);
+          }
           document.getElementById('filter-programming').removeChild(filterBoxStyle)
           console.log({chosenFilterProgramming})
         })
@@ -696,9 +697,10 @@ function initFilter() {
 
         // handle delete selected filter box
         filterBoxStyle.childNodes[1].addEventListener("click", event => {
-          chosenFilterTools = chosenFilterTools.filter(function(item) {
-            return item !== event.target.value
-          })
+          const indexRemoved = chosenFilterTools.indexOf(event.target.value);
+          if (indexRemoved !== -1) {
+            chosenFilterTools.splice(indexRemoved, 1);
+          }
           document.getElementById('filter-tools').removeChild(filterBoxStyle)
         })
       }
