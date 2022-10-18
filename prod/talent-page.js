@@ -92,6 +92,8 @@ const toolsURL = new URL(beUrl + '/api/tools');
 const programmingLanguageURL = new URL(beUrl + '/api/programming-languages');
 
 // variables data
+const cardContainerFE = document.getElementById("card-container-frontend")
+const cardContainerBE = document.getElementById("card-container-backend")
 let currentTalent = ''
 let currentTalentId = ''
 let checkbox1 = false
@@ -197,9 +199,6 @@ function getTalent() {
       })
       sessionStorage.setItem('bookmarked', JSON.stringify(bookmarkList))
     })
-
-  const cardContainerFE = document.getElementById("card-container-frontend")
-  const cardContainerBE = document.getElementById("card-container-backend")
 
   function mappingData(talent, developerCategory){
     const style = document.getElementById('card-talent-ui')
@@ -632,8 +631,10 @@ function initFilter() {
       res.data.map((data)=>{
         console.log({data})
         let option = document.createElement("option");
-        option.setAttribute('value', data.attributes.name);
-        option.appendChild(data.attributes.name);
+        option.setAttribute('value',  data.attributes.name);
+      
+        let optionText = document.createTextNode( data.attributes.name);
+        option.appendChild(optionText);
         document.getElementById('dropdown-tools').appendChild(option)
       })
     }) 
@@ -642,8 +643,10 @@ function initFilter() {
     .then(res => {
       res.data.map((data)=>{
         let option = document.createElement("option");
-        option.setAttribute('value', data.attributes.name);
-        option.appendChild(data.attributes.name);
+        option.setAttribute('value',  data.attributes.name);
+      
+        let optionText = document.createTextNode( data.attributes.name);
+        option.appendChild(optionText);
         document.getElementById('dropdown-programming').appendChild(option)
       })
     }) 
@@ -699,6 +702,9 @@ function initFilter() {
     // remove existing data
     while (cardContainerFE.childNodes[0].hasChildNodes()) {
       cardContainerFE.childNodes[0].removeChild(cardContainerFE.childNodes[0].firstChild);
+    }
+    while (cardContainerBE.childNodes[0].hasChildNodes()) {
+      cardContainerBE.childNodes[0].removeChild(cardContainerBE.childNodes[0].firstChild);
     }
 
     // get talent ulang
