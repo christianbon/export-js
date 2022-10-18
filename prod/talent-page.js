@@ -620,6 +620,16 @@ function removeExistingData() {
   }
 }
 
+function addFilterBoxProgramming(insertedData) {
+  
+  filterBoxStyle = style.cloneNode(true)
+  filterBoxStyle.setAttribute('id', insertedData);
+  chosenFilterProgramming.push(insertedData)
+  filterBoxStyle.childNodes[0].innerHTML = insertedData
+  document.getElementById('filter-programming').appendChild(filterBoxStyle)
+
+}
+
 // FILTER
 function initFilter() {
   const options = {  
@@ -682,7 +692,12 @@ function initFilter() {
           if (indexRemoved !== -1) {
             chosenFilterProgramming.splice(indexRemoved, 1);
           }
-          document.getElementById('filter-programming').removeChild(filterBoxStyle)
+          chosenFilterProgramming.forEach(()=>{
+            document.getElementById('filter-programming').removeChild(document.getElementById('filter-programming').firstChild)
+          })
+          chosenFilterProgramming.forEach(()=>{
+            addFilterBoxProgramming(insertedData)
+          })
         })
       }
     }else {
