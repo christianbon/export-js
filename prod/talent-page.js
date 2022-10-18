@@ -684,8 +684,7 @@ function initFilter() {
           if (indexRemoved !== -1) {
             chosenFilterProgramming.splice(indexRemoved, 1);
           }
-          console.log(document.getElementById('filter-programming'))
-          console.log(document.getElementById('filter-programming').getElementById(event.target.value))
+          console.log(document.getElementById('filter-programming').childNodes)
 
 
           document.getElementById('filter-programming').removeChild(document.getElementById(event.target.value))
