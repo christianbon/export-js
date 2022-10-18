@@ -553,7 +553,6 @@ function getTalent() {
   fetch(url+addFilterURL, options)
     .then(data => {return data.json()})
     .then(res => {
-      console.log({res})
       if (res.length > 0) {
 
         // modal close
@@ -595,6 +594,9 @@ function getTalent() {
         }
         cardContainerFE.childNodes[0].remove();
         cardContainerBE.childNodes[0].remove();
+      } else {
+        document.getElementById('no-data-be').style.display = 'block';
+        document.getElementById('no-data-fe').style.display = 'block';
       }
     })
 }
@@ -682,7 +684,9 @@ function initFilter() {
           if (indexRemoved !== -1) {
             chosenFilterProgramming.splice(indexRemoved, 1);
           }
+          console.log({filterBoxStyle})
           document.getElementById('filter-programming').removeChild(filterBoxStyle)
+          console.log(document.getElementById('filter-programming'))
           console.log({chosenFilterProgramming})
         })
       }
