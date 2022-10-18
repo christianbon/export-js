@@ -94,6 +94,7 @@ const programmingLanguageURL = new URL(beUrl + '/api/programming-languages');
 // variables data
 const cardContainerFE = document.getElementById("card-container-frontend")
 const cardContainerBE = document.getElementById("card-container-backend")
+const cardStyle = document.getElementById('card-talent-ui')
 let currentTalent = ''
 let currentTalentId = ''
 let checkbox1 = false
@@ -201,9 +202,8 @@ function getTalent() {
     })
 
   function mappingData(talent, developerCategory){
-    const style = document.getElementById('card-talent-ui')
-    const card = style.cloneNode(true)
-    card.setAttribute('id', '');
+    const card = cardStyle.cloneNode(true)
+    card.setAttribute('id', 'card-talent-ui');
     card.style.display = 'block';
 
     // talentID
@@ -542,9 +542,8 @@ function getTalent() {
   }
 
   function addEmptyCard(developerCategory){
-    const style = document.getElementById('card-talent-ui')
-    const card = style.cloneNode(true)
-    card.setAttribute('id', '');
+    const card = cardStyle.cloneNode(true)
+    card.setAttribute('id', 'card-talent-ui');
     card.style.display = 'block';
     card.style.opacity = 0;
     if(developerCategory === 'FE') cardContainerFE.appendChild(card);
