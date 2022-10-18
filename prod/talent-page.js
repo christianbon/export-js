@@ -695,6 +695,7 @@ function initFilter() {
           chosenFilterProgramming.forEach(()=>{
             document.getElementById('filter-programming').removeChild(document.getElementById('filter-programming').firstChild)
           })
+          console.log({chosenFilterProgramming})
           chosenFilterProgramming.forEach(()=>{
             addFilterBoxProgramming(insertedData)
           })
