@@ -694,8 +694,8 @@ function initFilter() {
 
   // handle tools
   document.getElementById('dropdown-tools').addEventListener("change", event => {
-    if(chosenFilterProgramming.length < 5) {
-      if(!chosenFilterProgramming.includes(event.target.data)) {
+    if(chosenFilterTools.length < 5) {
+      if(!chosenFilterTools.includes(event.target.data)) {
         const insertedData = event.target.value
         filterBoxStyle = style.cloneNode(true)
         filterBoxStyle.setAttribute('id', event.target.value);
