@@ -95,6 +95,7 @@ const programmingLanguageURL = new URL(beUrl + '/api/programming-languages');
 const cardContainerFE = document.getElementById("card-container-frontend")
 const cardContainerBE = document.getElementById("card-container-backend")
 const cardStyle = document.getElementById('card-talent-ui')
+const style = document.getElementById('filter-box-style')
 let currentTalent = ''
 let currentTalentId = ''
 let checkbox1 = false
@@ -640,8 +641,6 @@ function initFilter() {
     },
   };
 
-  const style = document.getElementById('filter-box-style')
-  
   // remove default
   document.getElementById('filter-programming').removeChild(document.getElementById('filter-programming').firstChild)
   document.getElementById('filter-tools').removeChild(document.getElementById('filter-tools').firstChild)
@@ -695,7 +694,6 @@ function initFilter() {
           chosenFilterProgramming.forEach(()=>{
             document.getElementById('filter-programming').removeChild(document.getElementById('filter-programming').firstChild)
           })
-          console.log({chosenFilterProgramming})
           chosenFilterProgramming.forEach(()=>{
             addFilterBoxProgramming(insertedData)
           })
@@ -723,7 +721,12 @@ function initFilter() {
           if (indexRemoved !== -1) {
             chosenFilterTools.splice(indexRemoved, 1);
           }
-          document.getElementById('filter-tools').removeChild(document.getElementById(event.target.value))
+          chosenFilterTools.forEach(()=>{
+            document.getElementById('filter-tools').removeChild(document.getElementById('filter-tools').firstChild)
+          })
+          chosenFilterTools.forEach(()=>{
+            addFilterBoxProgramming(insertedData)
+          })
         })
       }
     }else {
