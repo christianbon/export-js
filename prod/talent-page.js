@@ -653,7 +653,7 @@ function initFilter() {
   // handle programming
   document.getElementById('dropdown-programming').addEventListener("change", event => {
     chosenFilterProgramming.push(event.target.value)
-    filterBoxStyle.innerHTML = event.target.value
+    filterBoxStyle.childNodes[0].innerHTML = event.target.value
     document.getElementById('filter-programming').appendChild(filterBoxStyle)
     console.log(filterBoxStyle)
     
@@ -670,7 +670,7 @@ function initFilter() {
   // handle tools
   document.getElementById('dropdown-tools').addEventListener("change", event => {
     chosenFilterTools.push(event.target.value)
-    filterBoxStyle.innerHTML = event.target.value
+    filterBoxStyle.childNodes[0].innerHTML = event.target.value
 
     // handle delete selected filter box
     filterBoxStyle.childNodes[1].addEventListener("click", event => {
