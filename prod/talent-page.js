@@ -684,10 +684,11 @@ function initFilter() {
           if (indexRemoved !== -1) {
             chosenFilterProgramming.splice(indexRemoved, 1);
           }
-          console.log({filterBoxStyle})
+          console.log(document.getElementById('filter-programming'))
+          console.log(document.getElementById(event.target.value))
+
 
           document.getElementById('filter-programming').removeChild(document.getElementById(event.target.value))
-          console.log(document.getElementById('filter-programming'))
           console.log({chosenFilterProgramming})
         })
       }
@@ -713,7 +714,7 @@ function initFilter() {
           if (indexRemoved !== -1) {
             chosenFilterTools.splice(indexRemoved, 1);
           }
-          document.getElementById('filter-programming').removeChild(document.getElementById(event.target.value))
+          document.getElementById('filter-tools').removeChild(document.getElementById(event.target.value))
         })
       }
     }else {
